@@ -5,94 +5,63 @@
  * @format
  */
 
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
-import type {PropsWithChildren} from 'react';
 import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
+  Button,
   StyleSheet,
   Text,
-  useColorScheme,
-  View,
 } from 'react-native';
+import { setupURLPolyfill } from 'react-native-url-polyfill';
+import { getCosmosClient } from './utils/cosmosClient';
+import { SocialLoginsView } from './views/SocialLoginsView';
+import { ProfileView } from './views/ProfileView';
+import { SettingsView } from './views/SettingsView';
+import { useHandlers } from './utils/useHandlers';
+import { useInitialLoad } from './utils/useInitiaLoad';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
 
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
 
-function Section({children, title}: SectionProps): JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-}
+setupURLPolyfill()
+const Stack = createNativeStackNavigator();
+const cosmosClient=getCosmosClient()
+
+
+
+
+
 
 function App(): JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
+ 
+useInitialLoad()
+    const {handleAdd}=useHandlers(cosmosClient)
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+    <NavigationContainer>
+    <Stack.Navigator>
+                <Stack.Screen
+                    name="Home"
+                    component={SocialLoginsView}
+                    options={{
+                        headerTitle: props => <Text>Home</Text>,
+                        fullScreenGestureEnabled:true,
+                        headerRight: () => (
+                            <Button
+                                onPress={handleAdd
+                                }
+                                title="Add"
+                                color="#00cc00"
+                            />
+                        ),
+                    }}
+                />
+                
+        <Stack.Screen name="Profile" component={ProfileView} />
+        <Stack.Screen name="Settings" component={SettingsView} />
+      
+            </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
