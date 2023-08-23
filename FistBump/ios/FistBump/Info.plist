@@ -51,43 +51,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-<key>CFBundleURLTypes</key>
-	<array>
-		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>org.reactjs.native.example.FistBump</string>
-			</array>
-		</dict>
-		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>com.googleusercontent.apps.79644514365-n2v7gii0ps085lvl97futgipkjd8oucm</string>
-			</array>
-		</dict>
-		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>fb1014665559565413</string>
-			</array>
-		</dict>
-	</array>
-
-<key>FacebookAppID</key>
-<string>1014665559565413</string>
-<key>FacebookClientToken</key>
-<string>570dd05a70cbf94bb0e609775c9ff3c8</string>
-<key>FacebookDisplayName</key>
-<string>FistBump</string>
-<key>LSApplicationQueriesSchemes</key>
-<array>
-<string>fb-messenger-share-api</string>
-</array>
 </dict>
 </plist>

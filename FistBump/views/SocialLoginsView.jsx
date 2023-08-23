@@ -123,8 +123,7 @@ export function SocialLoginsView({navigation}){
        />
        {/* <LinkedInModal
          ref={linkedRef}
-         clientID="78jx520vqfzskv"
-         clientSecret="h7kXliVSwS9SydjZ"
+         
          permissions={['openid','profile','email','r_emailaddress']}
          redirectUri="https://oauth.pstmn.io/v1/callback"
          onSuccess={onSuccessLinkedin}
