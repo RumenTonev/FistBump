@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@azure/cosmos": "^3.17.3",
+    "@invertase/react-native-apple-authentication": "^2.2.2",
     "@react-native-community/cli-doctor": "^11.3.7",
     "@react-native-google-signin/google-signin": "^10.0.1",
     "@react-navigation/native": "^6.1.7",

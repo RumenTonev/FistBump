@@ -27,11 +27,6 @@ setupURLPolyfill()
 const Stack = createNativeStackNavigator();
 const cosmosClient=getCosmosClient()
 
-
-
-
-
-
 function App(){
  
 useInitialLoad()
