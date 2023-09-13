@@ -4,13 +4,29 @@ import { Button } from "react-native";
 import { LoginResult, Profile } from "react-native-fbsdk-next";
 import { appleAuth } from '@invertase/react-native-apple-authentication';
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useDbHandlers } from "../../../utils/useDbHandlers";
+import { CosmosClient } from "@azure/cosmos";
+
 export function useHandlers(navigation) {
+  
+  const{handleGet,handleUpsert}=useDbHandlers()
     const signInFacebook = useCallback((error, data) => {
+      console.log('In Facebook')
+        debugger
         if (data) {
             console.log(data)
             const currentProfile = Profile.getCurrentProfile().then(
                 function (currentProfile) {
                     if (currentProfile) {
+                      debugger
+                      console.log(currentProfile.email)
+
+                      if(currentProfile.email){handleGet(currentProfile.email)}
+                      else{
+                        //TODO Facebook API ia unreliable not returning email in all cases, I guess we should return them to login page suggest to use
+                        //something else
+                      }
                         console.log("USER NAME :" + currentProfile.email)
                     }
                 }
@@ -25,9 +41,17 @@ export function useHandlers(navigation) {
 
     const signInGoogle = useCallback(async () => {
         try {
-            await GoogleSignin.hasPlayServices();
+            console.log('before first')
+            
+            GoogleSignin.signOut();
+            var hasPlaysevrivse=await GoogleSignin.hasPlayServices();
+            console.log(hasPlaysevrivse)
             const userInfo = await GoogleSignin.signIn();
-            navigation.navigate('Profile', { name: 'Jane' })
+                console.log('before second')
+              handleGet(userInfo.user.email)
+            
+                      
+                      navigation.navigate('Profile', { name: 'Jane' })
             console.log(userInfo.user.email);
         } catch (error) {
             if (error.code === statusCodes.SIGN_IN_CANCELLED) {
@@ -44,46 +68,46 @@ export function useHandlers(navigation) {
         }
     }, [])
 
-    const onSuccessLinkedin = useCallback(async (token) => {
-        try {
-            navigation.navigate('Profile', { name: 'Jane' });
-            const { access_token, authentication_code } = token
-            //const emailRespone=await fetch('https://api.linkedin.com/v2/clientAwareMemberHandles?q=members&projection=(elements*(primary,type,handle~))',
-            const emailRespone = await fetch('https://api.linkedin.com/v2/userinfo',
-                {
-                    method: 'GET',
-                    headers: {
-                        Authorization: 'Bearer ' + access_token
-                    }
-                })
-            console.log(emailRespone)
-            const emailObj = await emailRespone.json()
-            console.log(emailObj)
-        } catch (error) {
-            if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-                console.log('User cancelled the login flow');
-            } else if (error.code === statusCodes.IN_PROGRESS) {
-                console.log('Signing in');
-            } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
-                console.log('Play services not available');
-            } else {
-                console.log('Some other error happened');
-                console.log(error.message);
-                console.log(error.code);
-            }
-        }
-    }, [])
+    // const onSuccessLinkedin = useCallback(async (token:any) => {
+    //     try {
+    //         navigation.navigate('Profile', { name: 'Jane' });
+    //         const { access_token, authentication_code } = token
+    //         //const emailRespone=await fetch('https://api.linkedin.com/v2/clientAwareMemberHandles?q=members&projection=(elements*(primary,type,handle~))',
+    //         const emailRespone = await fetch('https://api.linkedin.com/v2/userinfo',
+    //             {
+    //                 method: 'GET',
+    //                 headers: {
+    //                     Authorization: 'Bearer ' + access_token
+    //                 }
+    //             })
+    //         console.log(emailRespone)
+    //         const emailObj = await emailRespone.json()
+    //         console.log(emailObj)
+    //     } catch (error:any) {
+    //         if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+    //             console.log('User cancelled the login flow');
+    //         } else if (error.code === statusCodes.IN_PROGRESS) {
+    //             console.log('Signing in');
+    //         } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+    //             console.log('Play services not available');
+    //         } else {
+    //             console.log('Some other error happened');
+    //             console.log(error.message);
+    //             console.log(error.code);
+    //         }
+    //     }
+    // }, [])
 
 
-    useEffect(() => {
-        // Use `setOptions` to update the button that we previously specified
-        // Now the button includes an `onPress` handler to update the count
-        navigation.setOptions({
-            headerLeft: () => (
-                <Button onPress={() => navigation.goBack()} title='' />
-            ),
-        });
-    }, [navigation]);
+    // useEffect(() => {
+    //     // Use `setOptions` to update the button that we previously specified
+    //     // Now the button includes an `onPress` handler to update the count
+    //     navigation.setOptions({
+    //         headerLeft: () => (
+    //             <Button onPress={() => navigation.goBack()} title='' />
+    //         ),
+    //     });
+    // }, [navigation]);
 
 
     // async function fetchAndUpdateCredentialState(updateCredentialStateForUser) {
@@ -129,6 +153,12 @@ export function useHandlers(navigation) {
         //   );
       
           if (identityToken) {
+            if(email){
+            console.log('EMAILLLL' +email)
+            handleGet(email)}
+          else{
+            
+          }
             // e.g. sign in with Firebase Auth using `nonce` & `identityToken`
             console.log(nonce, identityToken);
           } else {
@@ -158,7 +188,7 @@ export function useHandlers(navigation) {
 
     return {
         signInGoogle,
-        onSuccessLinkedin,
+        //onSuccessLinkedin,
         signInFacebook,
         onAppleButtonPress
     }

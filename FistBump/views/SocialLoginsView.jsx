@@ -6,19 +6,44 @@
  * @format
  */
 
-import { GoogleSigninButton } from '@react-native-google-signin/google-signin';
-import React from 'react';
+import { GoogleSignin, GoogleSigninButton } from '@react-native-google-signin/google-signin';
+import React, { useEffect } from 'react';
 import { LoginButton } from 'react-native-fbsdk-next';
 import {
   Button,
   View,
-  StyleSheet
+  StyleSheet,
+  TouchableOpacity
 } from 'react-native';
 import { useHandlers } from './socialLogins/handlers/useHandlers';
 import { AppleButton } from '@invertase/react-native-apple-authentication';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+
+const cgetMyStringValue = async (key,navigation) => {
+  try {
+    const value=await AsyncStorage.getItem(key)
+    console.log(key+' USER '+value)
+    if (value) {
+      navigation.navigate('Profile', { name: 'Jane' })
+    }
+  } catch(e) {
+    // read error
+  }
+
+  console.log('Done.')
+}
 
 
 export function SocialLoginsView({ navigation }) {
+  useEffect( () => {
+    console.log('Inidetime')
+    //GoogleSignin.signOut();
+    cgetMyStringValue('user',navigation).catch(console.error)
+   
+   // error reading value
+ 
+},[navigation]);
   const linkedRef = React.useRef()
   const { signInGoogle, signInFacebook,onAppleButtonPress } = useHandlers(navigation)
   return (
@@ -30,12 +55,14 @@ export function SocialLoginsView({ navigation }) {
           navigation.navigate('Profile', { name: 'Jane' })
         }
       />
+      
       <GoogleSigninButton
-        style={{ width: 192, height: 48, marginTop: 30 }}
+        style={{ width: 192, height: 48, marginTop: 30 ,marginBottom:30}}
         size={GoogleSigninButton.Size.Wide}
         color={GoogleSigninButton.Color.Dark}
         onPress={signInGoogle}
       />
+  
       <LoginButton
         testID='facebook-login'
         permissions={['email', 'public_profile', 'openid']}
