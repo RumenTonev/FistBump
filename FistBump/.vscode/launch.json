@@ -1,6 +1,7 @@
 {
     "version": "0.2.0",
     "configurations": [
+        
 
 
         {
@@ -8,7 +9,7 @@
             "request": "launch",
             "type": "reactnativedirect",
             "cwd": "${workspaceFolder}",
-            "platform": "android"
+            "platform": "ios"
         }
     ]
 }

@@ -18,6 +18,7 @@ import {
 import { useHandlers } from './socialLogins/handlers/useHandlers';
 import { AppleButton } from '@invertase/react-native-apple-authentication';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import CountryCodePicker from './components/CountryCodePicker';
 
 
 const cgetMyStringValue = async (key,navigation) => {
@@ -48,6 +49,7 @@ export function SocialLoginsView({ navigation }) {
   const { signInGoogle, signInFacebook,onAppleButtonPress } = useHandlers(navigation)
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+<CountryCodePicker/> 
 
       <Button
         title="Go to Jane's profile"

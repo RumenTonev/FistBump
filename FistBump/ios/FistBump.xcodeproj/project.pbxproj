@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,6 +12,11 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		1AA0D4EF2AEA4707004FF62A /* FistBumpSKConf.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 1AA0D4EE2AEA4707004FF62A /* FistBumpSKConf.storekit */; };
+		1AA0D4F02AEA4707004FF62A /* FistBumpSKConf.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 1AA0D4EE2AEA4707004FF62A /* FistBumpSKConf.storekit */; };
+		1AA0D4F22AEA5157004FF62A /* StoreKitTestCertificate.cer in Resources */ = {isa = PBXBuildFile; fileRef = 1AA0D4F12AEA5157004FF62A /* StoreKitTestCertificate.cer */; };
+		1AA0D4F32AEA5157004FF62A /* StoreKitTestCertificate.cer in Resources */ = {isa = PBXBuildFile; fileRef = 1AA0D4F12AEA5157004FF62A /* StoreKitTestCertificate.cer */; };
+		1AF68BA52ABB044300CCA4E4 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AF68BA42ABB044300CCA4E4 /* StoreKit.framework */; };
 		7699B88040F8A987B510C191 /* libPods-FistBump-FistBumpTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-FistBump-FistBumpTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
@@ -37,7 +42,10 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = FistBump/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = FistBump/main.m; sourceTree = "<group>"; };
 		19F6CBCC0A4E27FBF8BF4A61 /* libPods-FistBump-FistBumpTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FistBump-FistBumpTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1AA0D4EE2AEA4707004FF62A /* FistBumpSKConf.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = FistBumpSKConf.storekit; sourceTree = "<group>"; };
+		1AA0D4F12AEA5157004FF62A /* StoreKitTestCertificate.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = StoreKitTestCertificate.cer; sourceTree = "<group>"; };
 		1AB2797D2A97F801008A2B91 /* FistBump.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = FistBump.entitlements; path = FistBump/FistBump.entitlements; sourceTree = "<group>"; };
+		1AF68BA42ABB044300CCA4E4 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		3B4392A12AC88292D35C810B /* Pods-FistBump.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FistBump.debug.xcconfig"; path = "Target Support Files/Pods-FistBump/Pods-FistBump.debug.xcconfig"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-FistBump.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FistBump.release.xcconfig"; path = "Target Support Files/Pods-FistBump/Pods-FistBump.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-FistBump-FistBumpTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FistBump-FistBumpTests.debug.xcconfig"; path = "Target Support Files/Pods-FistBump-FistBumpTests/Pods-FistBump-FistBumpTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -61,6 +69,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C80B921A6F3F58F76C31292 /* libPods-FistBump.a in Frameworks */,
+				1AF68BA52ABB044300CCA4E4 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,6 +110,7 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1AF68BA42ABB044300CCA4E4 /* StoreKit.framework */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				5DCACB8F33CDC322A6C60F78 /* libPods-FistBump.a */,
 				19F6CBCC0A4E27FBF8BF4A61 /* libPods-FistBump-FistBumpTests.a */,
@@ -118,6 +128,8 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				1AA0D4EE2AEA4707004FF62A /* FistBumpSKConf.storekit */,
+				1AA0D4F12AEA5157004FF62A /* StoreKitTestCertificate.cer */,
 				13B07FAE1A68108700A75B9A /* FistBump */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* FistBumpTests */,
@@ -214,7 +226,7 @@
 				};
 			};
 			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "FistBump" */;
-			compatibilityVersion = "Xcode 12.0";
+			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -237,6 +249,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1AA0D4F02AEA4707004FF62A /* FistBumpSKConf.storekit in Resources */,
+				1AA0D4F32AEA5157004FF62A /* StoreKitTestCertificate.cer in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -244,8 +258,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1AA0D4EF2AEA4707004FF62A /* FistBumpSKConf.storekit in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				1AA0D4F22AEA5157004FF62A /* StoreKitTestCertificate.cer in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -440,7 +456,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = FistBumpTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -464,7 +480,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = FistBumpTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -492,6 +508,7 @@
 				DEVELOPMENT_TEAM = MC5XCSR7F8;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = FistBump/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -522,6 +539,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = MC5XCSR7F8;
 				INFOPLIST_FILE = FistBump/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

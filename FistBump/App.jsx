@@ -20,6 +20,8 @@ import { ProfileView } from './views/ProfileView';
 import { SettingsView } from './views/SettingsView';
 import { useDbHandlers } from './utils/useDbHandlers';
 import { useInitialLoad } from './utils/useInitiaLoad';
+import { ConfirmationCodeView } from './views/ConfirmationCodeView';
+import CountryCodePicker from './views/components/CountryCodePicker';
 
 
 
@@ -40,7 +42,7 @@ useInitialLoad()
     <Stack.Navigator>
                 <Stack.Screen
                     name="Home"
-                    component={SocialLoginsView}
+                    component={CountryCodePicker}
                     options={{
                         headerTitle: props => <Text>Home</Text>,
                         fullScreenGestureEnabled:true,
@@ -57,7 +59,7 @@ useInitialLoad()
                 
         <Stack.Screen name="Profile" component={ProfileView} />
         <Stack.Screen name="Settings" component={SettingsView} />
-      
+      <Stack.Screen name="ConfirmationCode" component ={ConfirmationCodeView}/>
             </Stack.Navigator>
             </DbContext.Provider>
 

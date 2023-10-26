@@ -55,7 +55,6 @@ export function useDbHandlers(){
       .items.upsert(newEntry).then((response) => {
     console.log('Kureeec')
     const { resource: readDoc } = response;
-    debugger
 }).catch((error)=>{
   console.log('Insied error')
   console.log(error)
