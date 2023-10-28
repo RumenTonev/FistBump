@@ -12,12 +12,15 @@ import {
   Button,
   StyleSheet,
   Text,
+  View,
 } from 'react-native';
 import { setupURLPolyfill } from 'react-native-url-polyfill';
 import { getCosmosClient } from './utils/cosmosClient';
-import { SocialLoginsView } from './views/SocialLoginsView';
-import { ProfileView } from './views/ProfileView';
-import { SettingsView } from './views/SettingsView';
+import { SocialLoginsView } from './views/socialLogins/SocialLoginsView';
+import { ProfileView } from './views/profile/ProfileView';
+import { SettingsView } from './views/settings/SettingsView';
+import { LogoView } from './views/logo/LogoView';
+import { EulaView } from './views/eula/EulaView';
 import { useDbHandlers } from './utils/useDbHandlers';
 import { useInitialLoad } from './utils/useInitiaLoad';
 import { ConfirmationCodeView } from './views/ConfirmationCodeView';
@@ -39,28 +42,33 @@ useInitialLoad()
     <NavigationContainer>
             <DbContext.Provider value={cosmosClient}>
 
-    <Stack.Navigator>
-                <Stack.Screen
-                    name="Home"
-                    component={CountryCodePicker}
-                    options={{
-                        headerTitle: props => <Text>Home</Text>,
-                        fullScreenGestureEnabled:true,
-                        headerRight: () => (
-                            <Button
-                                onPress={handleAdd
-                                }
-                                title="Add"
-                                color="#00cc00"
-                            />
-                        ),
-                    }}
-                />
-                
+      <Stack.Navigator>
+        <Stack.Screen name="Logo" component={LogoView} options={{
+            headerShown: false,
+        }} />
+        <Stack.Screen name="EULA" component={EulaView} options={{
+          headerShown: false,
+        }} />
+        <Stack.Screen
+          name="SocialLogins"
+          component={CountryCodePicker}
+          options={{
+            headerTitle: props => <Text>Home</Text>,
+            fullScreenGestureEnabled: true,
+            headerRight: () => (
+              <Button
+                onPress={handleAdd
+                }
+                title="Add"
+                color="#00cc00"
+              />
+            ),
+          }}
+        />
         <Stack.Screen name="Profile" component={ProfileView} />
         <Stack.Screen name="Settings" component={SettingsView} />
-      <Stack.Screen name="ConfirmationCode" component ={ConfirmationCodeView}/>
-            </Stack.Navigator>
+<Stack.Screen name="ConfirmationCode" component ={ConfirmationCodeView}/>
+      </Stack.Navigator>
             </DbContext.Provider>
 
     </NavigationContainer>
