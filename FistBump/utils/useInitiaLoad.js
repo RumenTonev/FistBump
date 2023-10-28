@@ -5,7 +5,7 @@ export function useInitialLoad(){
     useEffect(() => {
         GoogleSignin.configure({
           iosClientId:
-            '79644514365-n2v7gii0ps085lvl97futgipkjd8oucm.apps.googleusercontent.com',
+          process.env.REACT_APP_IOS_CLIENTID,
         
           forceCodeForRefreshToken: true,
         });

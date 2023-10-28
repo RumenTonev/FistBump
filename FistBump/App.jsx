@@ -7,7 +7,7 @@
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import React from 'react';
+import React,{createContext} from 'react';
 import {
   Button,
   StyleSheet,
@@ -18,26 +18,31 @@ import { getCosmosClient } from './utils/cosmosClient';
 import { SocialLoginsView } from './views/SocialLoginsView';
 import { ProfileView } from './views/ProfileView';
 import { SettingsView } from './views/SettingsView';
-import { useHandlers } from './utils/useHandlers';
+import { useDbHandlers } from './utils/useDbHandlers';
 import { useInitialLoad } from './utils/useInitiaLoad';
+import { ConfirmationCodeView } from './views/ConfirmationCodeView';
+import CountryCodePicker from './views/components/CountryCodePicker';
 
 
 
 setupURLPolyfill()
 const Stack = createNativeStackNavigator();
 const cosmosClient=getCosmosClient()
+export const DbContext = createContext(cosmosClient);
 
 function App(){
  
 useInitialLoad()
-    const {handleAdd}=useHandlers(cosmosClient)
+    const {handleAdd}=useDbHandlers()
 
   return (
     <NavigationContainer>
+            <DbContext.Provider value={cosmosClient}>
+
     <Stack.Navigator>
                 <Stack.Screen
                     name="Home"
-                    component={SocialLoginsView}
+                    component={CountryCodePicker}
                     options={{
                         headerTitle: props => <Text>Home</Text>,
                         fullScreenGestureEnabled:true,
@@ -54,8 +59,10 @@ useInitialLoad()
                 
         <Stack.Screen name="Profile" component={ProfileView} />
         <Stack.Screen name="Settings" component={SettingsView} />
-      
+      <Stack.Screen name="ConfirmationCode" component ={ConfirmationCodeView}/>
             </Stack.Navigator>
+            </DbContext.Provider>
+
     </NavigationContainer>
   );
 }
