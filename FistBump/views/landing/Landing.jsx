@@ -10,7 +10,7 @@ export function Landing({ navigation }) {
         <View style={styles.container}>
             <ImageBackground style={styles.landingBackground} source={LandingBackground}>
                 <View style={styles.landingContent}>
-                    <View style={styles.landingContentPlayers}>
+                    <View style={[styles.landingContentPlayers]}>
                         <Image style={styles.landingPlayers} source={TrumpHome}>
                         </Image>
                     </View>
@@ -74,23 +74,26 @@ const styles = StyleSheet.create({
     },
     landingContentPlayers: {
         flex: 2,
-        height: '100%'
+        height: '100%',
+        paddingTop: '10%'
     },
     landingPlayers: {
-        width: 250,
-        height: 350
+        width: '100%',
+        height: '100%'
     },
     actionsContainer: {
         flex: 2,
         flexDirection: 'column',
-        justifyContent: 'space-around'
+        justifyContent: 'space-between'
     },
     action: {
         flex: 1
     },
     button: {
-        width: 250,
-        height: 90
+        marginTop: '7%',
+        marginBottom: '7%',
+        width: 'auto',
+        height: '100%'
     },
     emptyContainer: {
         flex: 2
