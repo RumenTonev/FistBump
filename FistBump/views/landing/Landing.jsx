@@ -42,20 +42,6 @@ export function Landing({ navigation }) {
                     </View>
                 </View>
             </ImageBackground>
-            {/* <View style={styles.actionsContainer}>
-                <TouchableOpacity onPress={() => navigation.navigate('Landing')} style={styles.button}>
-                    <Image source={Accept} style={styles.button}>
-                    </Image>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => exitApp()} >
-                    <Image source={PrivacyPolicy} style={styles.button}>
-                    </Image>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => exitApp()} >
-                    <Image source={Decline} style={styles.button}>
-                    </Image>
-                </TouchableOpacity>
-            </View> */}
         </View>
     );
 }
