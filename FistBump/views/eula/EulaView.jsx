@@ -28,15 +28,15 @@ export function EulaView({ navigation }) {
                 <Image source={BottomFrame} style={styles.bottomFrame}></Image>
             </View> */}
             <View style={styles.actionsContainer}>
-                <TouchableOpacity onPress={() => navigation.navigate('Landing')} style={styles.button}>
+                <TouchableOpacity onPress={() => navigation.navigate('Landing')} style={styles.buttonContainer}>
                     <Image source={Accept} style={styles.button}>
                     </Image>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => exitApp()} >
+                <TouchableOpacity onPress={() => exitApp()} style={styles.buttonContainer}>
                     <Image source={PrivacyPolicy} style={styles.button}>
                     </Image>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => exitApp()} >
+                <TouchableOpacity onPress={() => exitApp()} style={styles.buttonContainer}>
                     <Image source={Decline} style={styles.button}>
                     </Image>
                 </TouchableOpacity>
@@ -89,6 +89,9 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
         flexDirection: 'row'
+    },
+    buttonContainer: {
+        flex: 1
     },
     button: {
         width: 250,

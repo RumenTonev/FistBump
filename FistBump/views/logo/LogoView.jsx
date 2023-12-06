@@ -49,10 +49,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     imgContainer: {
-        width:'60%',
-        padding: 25
+        width:'60%'
     },
     logoImage: {
+        marginTop: '1%',
         width: '100%',
         height: '100%'
     }

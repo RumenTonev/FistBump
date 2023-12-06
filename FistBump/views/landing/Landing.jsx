@@ -1,47 +1,66 @@
-import { View, TouchableOpacity, Image, StyleSheet, Text, ScrollView, BackHandler, ImageBackground } from "react-native";
-import { LandingPlayers, Play, Stats, LandingBackground, BindenHome, TrumpHome, Vote } from "../../resources";
+import { View, TouchableOpacity, Image, StyleSheet, Text, ScrollView, BackHandler, ImageBackground, Dimensions } from "react-native";
+import { LandingPlayers, Play, Stats, LandingBackground, BidenHome, TrumpHome, Vote, bottomLanding, preBottomLanding, mediumLanding, preTopLanding, topLanding } from "../../resources";
+import { useEffect, useState } from "react";
 
 export function Landing({ navigation }) {
-    const exitApp = () => {
-        BackHandler.exitApp();
-    }
+
+    const [height, setHeight] = useState((Dimensions.get('window').height * 95) / 100);
+    const [width, setWidth] = useState((Dimensions.get('window').width * 42) / 100);
 
     return (
         <View style={styles.container}>
-            <ImageBackground style={styles.landingBackground} source={LandingBackground}>
-                <View style={styles.landingContent}>
-                    <View style={[styles.landingContentPlayers]}>
-                        <Image style={styles.landingPlayers} source={TrumpHome}>
-                        </Image>
-                    </View>
-                    <View style={styles.actionsContainer}>
-                        <View style={styles.emptyContainer}></View>
-                        <View style={styles.action}>
-                            <TouchableOpacity onPress={() => navigation.navigate('MainGame')} style={styles.button}>
-                                <Image source={Play} style={styles.button}>
-                                </Image>
-                            </TouchableOpacity>
-                        </View>
-                        <View style={styles.action}>
-                            <TouchableOpacity onPress={() => exitApp()} >
-                                <Image source={Stats} style={styles.button}>
-                                </Image>
-                            </TouchableOpacity>
-                        </View>
-                        <View style={styles.action}>
-                            <TouchableOpacity onPress={() => exitApp()} >
+            <View style={[styles.landingContentPlayerTrump]}>
+                <Image style={{ height: height, width: width }} source={TrumpHome}>
+                </Image>
+            </View>
+            <View style={styles.actionsContainer}>
+                <View id="topLanding" style={styles.topBackgroundElement}>
+                    <ImageBackground source={topLanding} style={styles.topLanding} resizeMode="cover"></ImageBackground>
+                </View>
+                <View id="preTopLanding" style={styles.backgroundElement}>
+                    <ImageBackground source={preTopLanding} style={[styles.backgroundElementImage, styles.buttonContainerFlex]}>
+                        <View style={styles.emptyButtonContainer}></View>
+                        <View style={styles.buttonContainer}>
+                            <TouchableOpacity onPress={() => navigation.navigate('MainGame')} style={styles.buttonContainer}>
                                 <Image source={Vote} style={styles.button}>
                                 </Image>
                             </TouchableOpacity>
                         </View>
-                        <View style={styles.emptyContainer}></View>
-                    </View>
-                    <View style={styles.landingContentPlayers}>
-                        <Image style={styles.landingPlayers} source={BindenHome}>
-                        </Image>
-                    </View>
+                        <View style={styles.emptyButtonContainer}></View>
+                    </ImageBackground>
                 </View>
-            </ImageBackground>
+                <View id="mediumLanding" style={styles.backgroundElement}>
+                    <ImageBackground source={mediumLanding} style={[styles.backgroundElementImage, styles.buttonContainerFlex]}>
+                        <View style={styles.emptyButtonContainer}></View>
+                        <View style={styles.buttonContainer}>
+                            <TouchableOpacity onPress={() => navigation.navigate('MainGame')} style={styles.buttonContainer}>
+                                <Image source={Play} style={styles.button}>
+                                </Image>
+                            </TouchableOpacity>
+                        </View>
+                        <View style={styles.emptyButtonContainer}></View>
+                    </ImageBackground>
+                </View>
+                <View id="preBottomLanding" style={styles.backgroundElement}>
+                    <ImageBackground source={preBottomLanding} style={[styles.backgroundElementImage, styles.buttonContainerFlex]}>
+                        <View style={styles.emptyButtonContainer}></View>
+                        <View style={styles.buttonContainer}>
+                            <TouchableOpacity onPress={() => navigation.navigate('MainGame')} style={styles.buttonContainer}>
+                                <Image source={Stats} style={styles.button}>
+                                </Image>
+                            </TouchableOpacity>
+                        </View>
+                        <View style={styles.emptyButtonContainer}></View>
+                    </ImageBackground>
+                </View>
+                <View id="bottomLanding" style={styles.backgroundElement}>
+                    <ImageBackground source={bottomLanding} style={styles.backgroundElementImage}></ImageBackground>
+                </View>
+            </View>
+            <View style={styles.landingContentPlayerBIden}>
+                <Image style={{ height: height, width: width }} source={BidenHome}>
+                </Image>
+            </View>
         </View>
     );
 }
@@ -49,37 +68,56 @@ export function Landing({ navigation }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        height: '100%'
-    },
-    landingBackground: {
-        aspectRatio: 16 / 9
-    },
-    landingContent: {
-        flex: 1,
-        flexDirection: 'row'
-    },
-    landingContentPlayers: {
-        flex: 2,
         height: '100%',
-        paddingTop: '10%'
-    },
-    landingPlayers: {
         width: '100%',
-        height: '100%'
+        position: 'relative'
     },
-    actionsContainer: {
-        flex: 2,
-        flexDirection: 'column',
-        justifyContent: 'space-between'
+    topBackgroundElement: {
+        height: '30%',
     },
-    action: {
+    topLanding: {
         flex: 1
     },
-    button: {
-        marginTop: '7%',
-        marginBottom: '7%',
-        width: 'auto',
+    backgroundElement: {
+        height: '20%',
+    },
+    backgroundElementImage: {
         height: '100%'
+    },
+    landingContentPlayerTrump: {
+        position: 'absolute',
+        zIndex: 1,
+        bottom: '-5%',
+        left: 0
+    },
+    landingContentPlayerBIden: {
+        position: 'absolute',
+        zIndex: 1,
+        bottom: '-5%',
+        right: 0
+    },
+    actionsContainer: {
+        position: 'absolute',
+        width: '100%',
+        height: '100%',
+        zIndex: 0,
+        top: 0,
+        left: 0
+    },
+    buttonContainerFlex: {
+        flex: 1,
+        flexDirection: 'row',
+    },
+    emptyButtonContainer: {
+        flex: 0.5,
+    },
+    buttonContainer: {
+        flex: 1,
+    },
+    button: {
+        flex: 1,
+        width: '100%',
+        resizeMode: 'center'
     },
     emptyContainer: {
         flex: 2
