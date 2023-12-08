@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 export function Landing({ navigation }) {
 
-    const [height, setHeight] = useState((Dimensions.get('window').height * 95) / 100);
+    const [height, setHeight] = useState((Dimensions.get('window').height * 85) / 100);
     const [width, setWidth] = useState((Dimensions.get('window').width * 42) / 100);
 
     return (
@@ -87,13 +87,13 @@ const styles = StyleSheet.create({
     landingContentPlayerTrump: {
         position: 'absolute',
         zIndex: 1,
-        bottom: '-5%',
+        bottom: 0,
         left: 0
     },
     landingContentPlayerBIden: {
         position: 'absolute',
         zIndex: 1,
-        bottom: '-5%',
+        bottom: 0,
         right: 0
     },
     actionsContainer: {
