@@ -9,16 +9,18 @@ import {
 } from 'react-native-confirmation-code-field';
 import styles from './styles';
 import { useAxiosHandlers } from '../../utils/useAxiosHandlers';
+import { useSelector } from 'react-redux';
 
 //import styles from './styles';
 
 const CELL_COUNT = 4;
-// interface Props{
-//   phone:string
-//   navigation:any
-// }
-const ConfirmationCode = (propsMine) => {
-  const {phone,navigation} = propsMine;
+
+const ConfirmationCode = ({navigation}) => {
+  debugger
+  const user = useSelector((state) => state.user.user);
+  debugger
+  const {id,isUs} = user
+  debugger
   const [value, setValue] = useState('');
   const ref = useBlurOnFulfill({value, cellCount: CELL_COUNT});
   const [props, getCellOnLayoutHandler] = useClearByFocusCell({
@@ -50,7 +52,7 @@ const disabled=value.length<CELL_COUNT
       />
       <TouchableOpacity
             style={[styles.button, disabled ? {} : styles.redColor]}
-            onPress={()=>handleConfirmOTP(phone,value,navigation)
+            onPress={()=>handleConfirmOTP(id,value,isUs,navigation)
             
             }>
             <Text style={styles.buttonText}>Continue</Text>

@@ -30,6 +30,11 @@ import { MainGame } from './views/mainGame/MainGame';
 import { MainPlayerAnimation } from './views/mainGame/MainPlayerAnimation';
 import { Stats } from './views/stats/Stats';
 import { VoteView } from './views/vote/VoteView';
+import PaywallScreen from './views/components/payments/Paywall/Paywall';
+import StatePicker from './views/components/statePicker/StatePicker';
+import { Provider } from 'react-redux';
+import { persistor, store } from './store/store';
+import { PersistGate } from 'redux-persist/integration/react';
 
 
 
@@ -45,51 +50,37 @@ function App() {
 
   return (
     <NavigationContainer>
-      <DbContext.Provider value={cosmosClient}>
-
-        <Stack.Navigator>
-          <Stack.Screen name="Logo" component={LogoView} options={{
-            headerShown: false,
-          }} />
-          <Stack.Screen name="EULA" component={EulaView} options={{
-            headerShown: false,
-          }} />
-          <Stack.Screen
-            name="SocialLogins"
-            component={CountryCodePicker}
-            options={{
-              headerTitle: props => <Text>Home</Text>,
-              fullScreenGestureEnabled: true,
-              headerRight: () => (
-                <Button
-                  onPress={handleAdd
-                  }
-                  title="Add"
-                  color="#00cc00"
+            <DbContext.Provider value={cosmosClient}>
+            <Provider store={store}>
+              <PersistGate loading={null} persistor={persistor}>
+    <Stack.Navigator>
+                <Stack.Screen
+                    name="Home"
+                    component={CountryCodePicker}
+                    //component={ProfileView}
+                    //component={StatePicker}
+                    options={{
+                        headerTitle: props => <Text>Home</Text>,
+                        fullScreenGestureEnabled:true,
+                        headerRight: () => (
+                            <Button
+                                onPress={handleAdd
+                                }
+                                title="Add"
+                                color="#00cc00"
+                            />
+                        ),
+                    }}
                 />
-              ),
-            }}
-          />
-          <Stack.Screen name="Landing" component={Landing} options={{
-            headerShown: false,
-          }} />
-          <Stack.Screen name="MainGame" component={MainGame} options={{
-            headerShown: false,
-          }} />
-          <Stack.Screen name="Vote" component={VoteView} options={{
-            headerShown: false,
-          }} />
-          <Stack.Screen name="MainPlayerAnimation" component={MainPlayerAnimation} options={{
-            headerShown: false,
-          }} />
-          <Stack.Screen name="Stats" component={Stats} options={{
-            headerShown: false,
-          }} />
-          <Stack.Screen name="Profile" component={ProfileView} />
-          <Stack.Screen name="Settings" component={SettingsView} />
-          <Stack.Screen name="ConfirmationCode" component={ConfirmationCodeView} />
-        </Stack.Navigator>
-      </DbContext.Provider>
+                
+        <Stack.Screen name="Profile" component={ProfileView} />
+        <Stack.Screen name="Settings" component={SettingsView} />
+        <Stack.Screen name="PaywallScreen" component={PaywallScreen}/>
+      <Stack.Screen name="ConfirmationCode" component ={ConfirmationCodeView}/>
+            </Stack.Navigator>
+            </PersistGate>
+            </Provider>
+            </DbContext.Provider>
 
     </NavigationContainer>
   );

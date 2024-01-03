@@ -2,10 +2,10 @@ import { Button, View } from "react-native";
 
 import React, { FC } from 'react';
 import ConfirmationCode from "./components/ConfirmationCode";
-export const ConfirmationCodeView = ({route,navigation}) => {
-const {phone}=route.params
+export const ConfirmationCodeView = ({navigation}) => {
+
     return(<View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
             
-    <ConfirmationCode phone={phone} navigation={navigation}/>
+    <ConfirmationCode  navigation={navigation}/>
   </View>)
   };
