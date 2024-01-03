@@ -2,28 +2,30 @@ import { CosmosClient } from "@azure/cosmos";
 import { useCallback, useContext } from "react";
 import { DbContext } from "../App";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import Config from "react-native-config";
 
 export function useDbHandlers(){
   const cosmosClient= useContext(DbContext);
-  const handleGet=useCallback(async (emailId)=>
+  const resultsContainer=cosmosClient.database('FistBump').container
+  const handleGet=useCallback(async (phone,isUs)=>
   {
       await cosmosClient
-      // .database(process.env.REACT_APP_COSMOS_DATABASE!)
-      // .container(process.env.REACT_APP_COSMOS_CONTAINER!)
-      .database('FistBump')
-      .container('Items')
-      .item(emailId,emailId).read()
+       .database(Config.REACT_APP_COSMOS_DATABASE)
+      .container(Config.REACT_APP_COSMOS_CONTAINER)
+      .item(phone,phone).read()
       .then(async (response) => {
         
     console.log('Kureeec')
+    debugger
     if(response.statusCode===404)
     {
       console.log('NOT FOUND')
       const newEntry={
-        "id": emailId,
+        "id": phone,
         "VoteFor": null,
         "CountVisitStats": null,
-        "State":null
+        "State":null,
+        "isUS":isUs
       }
       handleUpsert(newEntry)
       await AsyncStorage.setItem('user',JSON.stringify(newEntry))
@@ -32,7 +34,7 @@ export function useDbHandlers(){
 
       
   const { resource: readDoc } = response;
-
+  await AsyncStorage.setItem('user',JSON.stringify(readDoc))
   console.log(readDoc)
     }
     console.log(response)
@@ -48,10 +50,8 @@ export function useDbHandlers(){
  const handleUpsert= useCallback((newEntry)=>
   {
       cosmosClient
-      // .database(process.env.REACT_APP_COSMOS_DATABASE!)
-      // .container(process.env.REACT_APP_COSMOS_CONTAINER!)
-      .database('FistBump')
-      .container('Items')
+      .database(Config.REACT_APP_COSMOS_DATABASE)
+      .container(Config.REACT_APP_COSMOS_CONTAINER)
       .items.upsert(newEntry).then((response) => {
     console.log('Kureeec')
     const { resource: readDoc } = response;
@@ -67,10 +67,8 @@ export function useDbHandlers(){
   const getCounts=useCallback(()=>
   {
       cosmosClient
-      // .database(process.env.REACT_APP_COSMOS_DATABASE!)
-      // .container(process.env.REACT_APP_COSMOS_CONTAINER!)
-      .database('FistBump')
-      .container('Items')
+      .database(Config.REACT_APP_COSMOS_DATABASE)
+     .container(Config.REACT_APP_COSMOS_CONTAINER)
       .items.query(
       ''
   )
@@ -82,10 +80,8 @@ export function useDbHandlers(){
     const handleAdd=useCallback(()=>
   {
       cosmosClient
-      // .database(process.env.REACT_APP_COSMOS_DATABASE!)
-      // .container(process.env.REACT_APP_COSMOS_CONTAINER!)
-      .database('FistBump')
-      .container('Items')
+      .database(Config.REACT_APP_COSMOS_DATABASE)
+     .container(Config.REACT_APP_COSMOS_CONTAINER)
       .items.create(
       {
         "id": "mine909759@mine00.com",

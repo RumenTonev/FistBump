@@ -22,6 +22,11 @@ import { useDbHandlers } from './utils/useDbHandlers';
 import { useInitialLoad } from './utils/useInitiaLoad';
 import { ConfirmationCodeView } from './views/ConfirmationCodeView';
 import CountryCodePicker from './views/components/CountryCodePicker';
+import PaywallScreen from './views/components/payments/Paywall/Paywall';
+import StatePicker from './views/components/statePicker/StatePicker';
+import { Provider } from 'react-redux';
+import { persistor, store } from './store/store';
+import { PersistGate } from 'redux-persist/integration/react';
 
 
 
@@ -38,11 +43,14 @@ useInitialLoad()
   return (
     <NavigationContainer>
             <DbContext.Provider value={cosmosClient}>
-
+            <Provider store={store}>
+              <PersistGate loading={null} persistor={persistor}>
     <Stack.Navigator>
                 <Stack.Screen
                     name="Home"
                     component={CountryCodePicker}
+                    //component={ProfileView}
+                    //component={StatePicker}
                     options={{
                         headerTitle: props => <Text>Home</Text>,
                         fullScreenGestureEnabled:true,
@@ -59,8 +67,11 @@ useInitialLoad()
                 
         <Stack.Screen name="Profile" component={ProfileView} />
         <Stack.Screen name="Settings" component={SettingsView} />
+        <Stack.Screen name="PaywallScreen" component={PaywallScreen}/>
       <Stack.Screen name="ConfirmationCode" component ={ConfirmationCodeView}/>
             </Stack.Navigator>
+            </PersistGate>
+            </Provider>
             </DbContext.Provider>
 
     </NavigationContainer>
