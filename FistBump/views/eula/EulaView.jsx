@@ -1,13 +1,17 @@
+import { useCallback } from "react";
+import { Linking } from 'react-native';
 import { View, TouchableOpacity, Image, StyleSheet, Text, ScrollView, BackHandler, ImageBackground } from "react-native";
-import { Accept } from "../../resources";
-import { Decline } from "../../resources";
-import { PrivacyPolicy } from "../../resources";
-import { TopFrame } from "../../resources";
-import { BottomFrame } from "../../resources";
-import { EulaFrame } from "../../resources";
+import { Accept, Decline, PrivacyPolicy, EulaFrame } from "../../resources";
 
 
 export function EulaView({ navigation }) {
+
+    const privacyPolicyUrl = 'http://google.com';
+
+    const openUrl = async (url) => {
+        await Linking.openURL(url);
+    }
+
     const exitApp = () => {
         BackHandler.exitApp();
     }
@@ -26,7 +30,7 @@ export function EulaView({ navigation }) {
                     <Image source={Accept} style={styles.button}>
                     </Image>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => exitApp()} style={styles.buttonContainer}>
+                <TouchableOpacity onPress={() => openUrl(privacyPolicyUrl)} style={styles.buttonContainer}>
                     <Image source={PrivacyPolicy} style={styles.button}>
                     </Image>
                 </TouchableOpacity>
@@ -46,7 +50,7 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     textContainer: {
-        top:'12%',
+        top: '12%',
         left: '10%',
         height: '70%',
         width: '80%',

@@ -20,3 +20,4 @@ export const preBottomLanding = require('./landing/preBottomLanding.png');
 export const mediumLanding = require('./landing/mediumLanding.png'); 
 export const preTopLanding = require('./landing/preTopLanding.png'); 
 export const topLanding = require('./landing/topLanding.png'); 
+export const backBtn = require('./back.png'); 
