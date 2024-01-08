@@ -15,7 +15,7 @@ import {
   StyleSheet,
   TouchableOpacity
 } from 'react-native';
-import { useHandlers } from './socialLogins/handlers/useHandlers';
+import { useHandlers } from './handlers/useHandlers';
 import { AppleButton } from '@invertase/react-native-apple-authentication';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import CountryCodePicker from './components/CountryCodePicker';
