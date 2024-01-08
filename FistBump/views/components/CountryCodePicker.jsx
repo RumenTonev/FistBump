@@ -21,7 +21,7 @@ const CountryCodePicker = ({navigation}) => {
   const [isUs,setIsUs]=useState(true)
   const [disabled, setDisabled] = useState(false);
   const [isValid,setIsValid]=useState(false)
-  const phoneInput = useRef<PhoneInput>(null);
+  const phoneInput = useRef(null);
 const {handleSendOTP}=  useAxiosHandlers()
   const handleOnChange=useCallback((phoneNumber)=>
   {
@@ -52,7 +52,7 @@ setIsValid(isValidNum)
 // => 2024561414
     //const parsedNo = phoneUtil.parse(phoneNumber, '');
     console.log(parsedNo)
-    debugger
+    
     if (parsedNo.hasNationalNumber()) {
       const nationalNumber = parsedNo.getNationalNumber().toString();
       console.log(nationalNumber)

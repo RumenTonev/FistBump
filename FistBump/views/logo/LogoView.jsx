@@ -1,10 +1,14 @@
 import { useRef, useEffect } from 'react';
 import { Animated, Image, StyleSheet, View } from 'react-native'
 import { Logo } from '../../resources';
+import { useSelector } from 'react-redux';
 
 export function LogoView({ navigation }) {
+    console.log('Fuckit')
     const fadeInitial = useRef(new Animated.Value(0)).current;
-
+console.log('Fuckit')
+    const user = useSelector((state) => state.user.user);
+    
     const screenAnimation = ({ navigation }) => {
         Animated.timing(fadeInitial, {
             toValue: 1,
@@ -18,7 +22,8 @@ export function LogoView({ navigation }) {
                     useNativeDriver: true
                 }).start(({ finished }) => {
                     if (finished) {
-                        navigation.navigate("EULA");
+                        user?.id?navigation.navigate("Landing"):navigation.navigate("EULA");
+                        //navigation.navigate("EULA");
                         fadeInitial.current = new Animated.Value(0);
                     }
                 });
@@ -46,6 +51,7 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: 'black',
         display: 'flex',
+        flex:1,
         alignItems: 'center',
     },
     imgContainer: {

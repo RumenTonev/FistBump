@@ -9,19 +9,14 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React, { createContext } from 'react';
 import {
-  Button,
   StyleSheet,
-  Text,
-  View,
 } from 'react-native';
 import { setupURLPolyfill } from 'react-native-url-polyfill';
 import { getCosmosClient } from './utils/cosmosClient';
-import { SocialLoginsView } from './views/socialLogins/SocialLoginsView';
 import { ProfileView } from './views/profile/ProfileView';
 import { SettingsView } from './views/settings/SettingsView';
 import { LogoView } from './views/logo/LogoView';
 import { EulaView } from './views/eula/EulaView';
-import { useDbHandlers } from './utils/useDbHandlers';
 import { useInitialLoad } from './utils/useInitiaLoad';
 import { ConfirmationCodeView } from './views/ConfirmationCodeView';
 import CountryCodePicker from './views/components/CountryCodePicker';
@@ -31,10 +26,12 @@ import { MainPlayerAnimation } from './views/mainGame/MainPlayerAnimation';
 import { Stats } from './views/stats/Stats';
 import { VoteView } from './views/vote/VoteView';
 import PaywallScreen from './views/components/payments/Paywall/Paywall';
-import StatePicker from './views/components/statePicker/StatePicker';
 import { Provider } from 'react-redux';
 import { persistor, store } from './store/store';
 import { PersistGate } from 'redux-persist/integration/react';
+import { Landing } from './views/landing/Landing';
+import { MainGame } from './views/mainGame/MainGame';
+import { StatsView } from './views/stats/Stats';
 
 
 
@@ -44,9 +41,7 @@ const cosmosClient = getCosmosClient()
 export const DbContext = createContext(cosmosClient);
 
 function App() {
-
   useInitialLoad()
-  const { handleAdd } = useDbHandlers()
 
   return (
     <NavigationContainer>

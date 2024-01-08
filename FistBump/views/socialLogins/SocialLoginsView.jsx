@@ -43,7 +43,7 @@ export function SocialLoginsView({ navigation }) {
    // error reading value
  
 },[navigation]);
-  const linkedRef = React.useRef()
+  //const linkedRef = React.useRef()
   const { onAppleButtonPress } = useHandlers(navigation)
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
