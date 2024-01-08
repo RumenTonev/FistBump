@@ -3,6 +3,8 @@ import { View, Text, Pressable, Alert } from 'react-native';
 import Purchases,{CustomerInfo, PurchasesStoreProduct} from 'react-native-purchases';
 import { useNavigation } from '@react-navigation/native';
 import styles from './styles';
+import { setPaymentCount } from '../../../../store/userSlice';
+import { useDispatch } from 'react-redux';
 //import { ENTITLEMENT_ID } from '../../constants';
 
 // interface Props{
@@ -19,14 +21,15 @@ export const PackageItem = (props) => {
 
   //const navigation = useNavigation<any>();
   const navigation = useNavigation();
-
+  const dispatch = useDispatch();
   const onSelection = async () => {
     setIsPurchasing(true);
     try {
       const { customerInfo } = await Purchases.purchaseStoreProduct(props.product);
        //const kur:CustomerInf
      // if (typeof purchaserInfo.entitlements.active[ENTITLEMENT_ID] !== 'undefined') {
-      navigation.navigate('Profile',{ name: 'Jane' })
+      navigation.navigate('Stats')
+      dispatch(setPaymentCount(3))
       //}
     } catch (e) {
       
@@ -36,6 +39,7 @@ export const PackageItem = (props) => {
       else {
         Alert.alert('User cancelled');
       }
+      navigation.navigate('Landing')
     } finally {
       setIsPurchasing(false);
     }

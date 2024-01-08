@@ -1,12 +1,13 @@
 import { View, TouchableOpacity, Image, StyleSheet, Text, ScrollView, BackHandler, ImageBackground, Dimensions } from "react-native";
 import { LandingPlayers, Play, Stats, LandingBackground, BidenHome, TrumpHome, Vote, bottomLanding, preBottomLanding, mediumLanding, preTopLanding, topLanding } from "../../resources";
 import { useEffect, useState } from "react";
+import { useActions } from "./useActions";
 
 export function Landing({ navigation }) {
 
     const [height, setHeight] = useState((Dimensions.get('window').height * 85) / 100);
     const [width, setWidth] = useState((Dimensions.get('window').width * 42) / 100);
-
+    const{handleStatsFlow,handleVoteFlow}=useActions(navigation)
     return (
         <View style={styles.container}>
             <View style={[styles.landingContentPlayerTrump]}>
@@ -21,7 +22,7 @@ export function Landing({ navigation }) {
                     <ImageBackground source={preTopLanding} style={[styles.backgroundElementImage, styles.buttonContainerFlex]}>
                         <View style={styles.emptyButtonContainer}></View>
                         <View style={styles.buttonContainer}>
-                            <TouchableOpacity onPress={() => navigation.navigate('MainGame')} style={styles.buttonContainer}>
+                            <TouchableOpacity onPress={handleVoteFlow} style={styles.buttonContainer}>
                                 <Image source={Vote} style={styles.button}>
                                 </Image>
                             </TouchableOpacity>
@@ -45,7 +46,7 @@ export function Landing({ navigation }) {
                     <ImageBackground source={preBottomLanding} style={[styles.backgroundElementImage, styles.buttonContainerFlex]}>
                         <View style={styles.emptyButtonContainer}></View>
                         <View style={styles.buttonContainer}>
-                            <TouchableOpacity onPress={() => navigation.navigate('MainGame')} style={styles.buttonContainer}>
+                            <TouchableOpacity onPress={handleStatsFlow} style={styles.buttonContainer}>
                                 <Image source={Stats} style={styles.button}>
                                 </Image>
                             </TouchableOpacity>

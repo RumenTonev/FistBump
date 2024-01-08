@@ -9,32 +9,24 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React, { createContext } from 'react';
 import {
-  Button,
   StyleSheet,
-  Text,
-  View,
 } from 'react-native';
 import { setupURLPolyfill } from 'react-native-url-polyfill';
 import { getCosmosClient } from './utils/cosmosClient';
-import { SocialLoginsView } from './views/socialLogins/SocialLoginsView';
 import { ProfileView } from './views/profile/ProfileView';
 import { SettingsView } from './views/settings/SettingsView';
 import { LogoView } from './views/logo/LogoView';
 import { EulaView } from './views/eula/EulaView';
-import { useDbHandlers } from './utils/useDbHandlers';
 import { useInitialLoad } from './utils/useInitiaLoad';
 import { ConfirmationCodeView } from './views/ConfirmationCodeView';
 import CountryCodePicker from './views/components/CountryCodePicker';
-<<<<<<< HEAD
 import PaywallScreen from './views/components/payments/Paywall/Paywall';
-import StatePicker from './views/components/statePicker/StatePicker';
 import { Provider } from 'react-redux';
 import { persistor, store } from './store/store';
 import { PersistGate } from 'redux-persist/integration/react';
-=======
 import { Landing } from './views/landing/Landing';
 import { MainGame } from './views/mainGame/MainGame';
->>>>>>> initialAnimations
+import { StatsView } from './views/stats/Stats';
 
 
 
@@ -44,83 +36,48 @@ const cosmosClient = getCosmosClient()
 export const DbContext = createContext(cosmosClient);
 
 function App() {
-
   useInitialLoad()
-  const { handleAdd } = useDbHandlers()
 
   return (
     <NavigationContainer>
-<<<<<<< HEAD
-            <DbContext.Provider value={cosmosClient}>
-            <Provider store={store}>
-              <PersistGate loading={null} persistor={persistor}>
-    <Stack.Navigator>
-                <Stack.Screen
-                    name="Home"
-                    component={CountryCodePicker}
-                    //component={ProfileView}
-                    //component={StatePicker}
-                    options={{
-                        headerTitle: props => <Text>Home</Text>,
-                        fullScreenGestureEnabled:true,
-                        headerRight: () => (
-                            <Button
-                                onPress={handleAdd
-                                }
-                                title="Add"
-                                color="#00cc00"
-                            />
-                        ),
-                    }}
-                />
-                
-        <Stack.Screen name="Profile" component={ProfileView} />
-        <Stack.Screen name="Settings" component={SettingsView} />
-        <Stack.Screen name="PaywallScreen" component={PaywallScreen}/>
-      <Stack.Screen name="ConfirmationCode" component ={ConfirmationCodeView}/>
-            </Stack.Navigator>
-            </PersistGate>
-            </Provider>
-            </DbContext.Provider>
-=======
       <DbContext.Provider value={cosmosClient}>
-
-        <Stack.Navigator>
-          <Stack.Screen name="Logo" component={LogoView} options={{
-            headerShown: false,
-          }} />
-          <Stack.Screen name="EULA" component={EulaView} options={{
-            headerShown: false,
-          }} />
-          <Stack.Screen
-            name="SocialLogins"
-            component={CountryCodePicker}
-            options={{
-              headerTitle: props => <Text>Home</Text>,
-              fullScreenGestureEnabled: true,
-              headerRight: () => (
-                <Button
-                  onPress={handleAdd
-                  }
-                  title="Add"
-                  color="#00cc00"
-                />
-              ),
-            }}
-          />
-          <Stack.Screen name="Landing" component={Landing} options={{
-            headerShown: false,
-          }} />
-          <Stack.Screen name="MainGame" component={MainGame} options={{
-            headerShown: false,
-          }} />
-          <Stack.Screen name="Profile" component={ProfileView} />
-          <Stack.Screen name="Settings" component={SettingsView} />
-          <Stack.Screen name="ConfirmationCode" component={ConfirmationCodeView} />
-        </Stack.Navigator>
+        <Provider store={store}>
+          <PersistGate loading={null} persistor={persistor}>
+            <Stack.Navigator>
+              <Stack.Screen name="Logo" component={LogoView} options={{
+                headerShown: false,
+              }} />
+              <Stack.Screen name="EULA" component={EulaView} options={{
+                headerShown: false,
+              }} />
+              <Stack.Screen
+                name="SocialLogins"
+                component={CountryCodePicker}
+                options={{
+                  headerShown: false
+                }}
+              />
+              <Stack.Screen
+                name="Stats"
+                component={StatsView}
+                options={{
+                  headerShown: false
+                }}
+              />
+              <Stack.Screen name="Landing" component={Landing} options={{
+                headerShown: false,
+              }} />
+              <Stack.Screen name="MainGame" component={MainGame} options={{
+                headerShown: false,
+              }} />
+              <Stack.Screen name="Profile" component={ProfileView} />
+              <Stack.Screen name="Settings" component={SettingsView} />
+              <Stack.Screen name="PaywallScreen" component={PaywallScreen} />
+              <Stack.Screen name="ConfirmationCode" component={ConfirmationCodeView} />
+            </Stack.Navigator>
+          </PersistGate >
+        </Provider >
       </DbContext.Provider>
->>>>>>> initialAnimations
-
     </NavigationContainer>
   );
 }

@@ -40,7 +40,7 @@ debugger
               if (savedcode == code) {
                 dispatch(setConfirmedLogin())
                 handleGet(phoneNumber,isUs)
-                navigation.navigate('Settings')
+                navigation.navigate('Landing')
               }
             }
           }
