@@ -1,17 +1,10 @@
 import { CosmosClient } from "@azure/cosmos"
+import Config from 'react-native-config'
 
 export const getCosmosClient=()=>{
 
-//const CosmosClient = require('@azure/cosmos').CosmosClient
-
-// const endpoint = process.env.REACT_APP_COSOMOS_ENDPOINT!
-// const authResourceToken = process.env.REACT_APP_COSMOS_AUTHTOKEN
-
-const endpoint = 'https://mine.documents.azure.com:443/'
-const authResourceToken = process.env.REACT_APP_COSOMOS_AUTHTOKEN
-console.log(process.env.REACT_APP_COSOMOS_ENDPOINT)
-console.log(process.env.REACT_APP_COSMOS_AUTHTOKEN)
-//get your auth or resource token securely here from a token broker on the server
+const endpoint = Config.REACT_APP_COSOMOS_ENDPOINT?Config.REACT_APP_COSOMOS_ENDPOINT:''
+const authResourceToken = Config.REACT_APP_COSMOS_AUTHTOKEN?Config.REACT_APP_COSMOS_AUTHTOKEN:''
 const querySpec = {
     query: 'SELECT * from c',
 };

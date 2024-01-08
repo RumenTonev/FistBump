@@ -1,0 +1,35 @@
+{
+  "identifier" : "D377F4BF",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+    {
+      "displayPrice" : "1.99",
+      "familyShareable" : false,
+      "internalID" : "6469732571",
+      "localizations" : [
+        {
+          "description" : "A game with stats about USA presidential ELEC",
+          "displayName" : "FistBump",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "RenewableSubscription",
+      "referenceName" : "RenewableSubscription",
+      "type" : "Consumable"
+    }
+  ],
+  "settings" : {
+    "_applicationInternalID" : "6469732169",
+    "_developerTeamID" : "MC5XCSR7F8",
+    "_lastSynchronizedDate" : 726337807.12642002
+  },
+  "subscriptionGroups" : [
+
+  ],
+  "version" : {
+    "major" : 2,
+    "minor" : 0
+  }
+}

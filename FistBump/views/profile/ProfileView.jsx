@@ -7,7 +7,7 @@ export const ProfileView = ({navigation}) => {
     <Button
   title="Go to Settings"
   onPress={() =>
-   navigation.navigate('Settings')
+   navigation.navigate('PaywallScreen')
   }
   />
   </View>)
