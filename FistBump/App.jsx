@@ -27,6 +27,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { Landing } from './views/landing/Landing';
 import { MainGame } from './views/mainGame/MainGame';
 import { StatsView } from './views/stats/Stats';
+import { MainPlayerAnimation } from './views/mainGame/MainPlayerAnimation';
 
 
 
@@ -70,6 +71,9 @@ function App() {
               <Stack.Screen name="MainGame" component={MainGame} options={{
                 headerShown: false,
               }} />
+              <Stack.Screen name="MainPlayerAnimation" component={MainPlayerAnimation} options={{
+            headerShown: false,
+          }} />
               <Stack.Screen name="Profile" component={ProfileView} />
               <Stack.Screen name="Settings" component={SettingsView} />
               <Stack.Screen name="PaywallScreen" component={PaywallScreen} />
@@ -77,6 +81,7 @@ function App() {
             </Stack.Navigator>
           </PersistGate >
         </Provider >
+
       </DbContext.Provider>
     </NavigationContainer>
   );
