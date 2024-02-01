@@ -1,5 +1,5 @@
 import { View, TouchableOpacity, Image, StyleSheet, Text, ScrollView, BackHandler, ImageBackground, Dimensions } from "react-native";
-import { LandingPlayers, Play, Stats, LandingBackground, BidenHome, TrumpHome, Vote, bottomLanding, preBottomLanding, mediumLanding, preTopLanding, topLanding } from "../../resources";
+import { LandingPlayers, Play, StatsBtn, LandingBackground, BidenHome, TrumpHome, Vote, bottomLanding, preBottomLanding, mediumLanding, preTopLanding, topLanding } from "../../resources";
 import { useEffect, useState } from "react";
 
 export function Landing({ navigation }) {
@@ -45,8 +45,8 @@ export function Landing({ navigation }) {
                     <ImageBackground source={preBottomLanding} style={[styles.backgroundElementImage, styles.buttonContainerFlex]}>
                         <View style={styles.emptyButtonContainer}></View>
                         <View style={styles.buttonContainer}>
-                            <TouchableOpacity onPress={() => navigation.navigate('MainGame')} style={styles.buttonContainer}>
-                                <Image source={Stats} style={styles.button}>
+                            <TouchableOpacity onPress={() => navigation.navigate('Stats')} style={styles.buttonContainer}>
+                                <Image source={StatsBtn} style={styles.button}>
                                 </Image>
                             </TouchableOpacity>
                         </View>
