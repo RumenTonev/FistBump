@@ -21,7 +21,7 @@ export function Landing({ navigation }) {
                     <ImageBackground source={preTopLanding} style={[styles.backgroundElementImage, styles.buttonContainerFlex]}>
                         <View style={styles.emptyButtonContainer}></View>
                         <View style={styles.buttonContainer}>
-                            <TouchableOpacity onPress={() => navigation.navigate('MainGame')} style={styles.buttonContainer}>
+                            <TouchableOpacity onPress={() => navigation.navigate('Vote')} style={styles.buttonContainer}>
                                 <Image source={Vote} style={styles.button}>
                                 </Image>
                             </TouchableOpacity>

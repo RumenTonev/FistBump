@@ -21,3 +21,6 @@ export const mediumLanding = require('./landing/mediumLanding.png');
 export const preTopLanding = require('./landing/preTopLanding.png'); 
 export const topLanding = require('./landing/topLanding.png'); 
 export const backBtn = require('./back.png'); 
+export const tickBtn = require('./tick1.png'); 
+export const VoteBackground = require('./vote/vote-background.png'); 
+export const VoteHeader = require('./vote/vote-header1.png'); 
