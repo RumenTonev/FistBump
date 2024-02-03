@@ -1,11 +1,12 @@
 import { View, TouchableOpacity, Image, StyleSheet, Text, ScrollView, BackHandler, ImageBackground, Dimensions } from "react-native";
-import { LandingPlayers, Play, StatsBtn, LandingBackground, BidenHome, TrumpHome, Vote, bottomLanding, preBottomLanding, mediumLanding, preTopLanding, topLanding } from "../../resources";
+import { LandingPlayers, PlayBtn, StatsBtn, LandingBackground, BidenHome, TrumpHome, VoteBtn, bottomLanding, preBottomLanding, mediumLanding, preTopLanding, topLanding } from "../../resources";
 import { useEffect, useState } from "react";
 
 export function Landing({ navigation }) {
-
-    const [height, setHeight] = useState((Dimensions.get('window').height * 82) / 100);
-    const [width, setWidth] = useState((Dimensions.get('window').width * 40) / 100);
+    //For tablet devices we need to add additional check, 
+    //since only percetage won't fully work on all devices 
+    const [height, setHeight] = useState((Dimensions.get('window').height * 80) / 100);
+    const [width, setWidth] = useState((Dimensions.get('window').width * 35) / 100);
 
     return (
         <View style={styles.container}>
@@ -22,7 +23,7 @@ export function Landing({ navigation }) {
                         <View style={styles.emptyButtonContainer}></View>
                         <View style={styles.buttonContainer}>
                             <TouchableOpacity onPress={() => navigation.navigate('Vote')} style={styles.buttonContainer}>
-                                <Image source={Vote} style={styles.button}>
+                                <Image source={VoteBtn} style={styles.button}>
                                 </Image>
                             </TouchableOpacity>
                         </View>
@@ -34,7 +35,7 @@ export function Landing({ navigation }) {
                         <View style={styles.emptyButtonContainer}></View>
                         <View style={styles.buttonContainer}>
                             <TouchableOpacity onPress={() => navigation.navigate('MainGame')} style={styles.buttonContainer}>
-                                <Image source={Play} style={styles.button}>
+                                <Image source={PlayBtn} style={styles.button}>
                                 </Image>
                             </TouchableOpacity>
                         </View>
