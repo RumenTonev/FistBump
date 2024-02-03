@@ -11,8 +11,11 @@ export function VoteView({ navigation }) {
                     <Image source={backBtn} style={styles.button}>
                     </Image>
                 </TouchableOpacity>
-                <Image source={VoteHeader} style={styles.header}>
-                </Image>
+                <View style={[styles.voteHeaderContent]}>
+                    <View style={[styles.voteHeaderContainer]}>
+                        <ImageBackground style={styles.voteHeader} source={VoteHeader}></ImageBackground>
+                    </View>
+                </View>
                 <TouchableOpacity onPress={() => navigation.navigate('Landing')} style={styles.voteTrump}>
                     <Image source={tickBtn} style={styles.voteTrumpBtn}>
                     </Image>
@@ -41,11 +44,6 @@ const styles = StyleSheet.create({
         top: 10,
         left: 10
     },
-    header: {
-        position: 'absolute',
-        top: 10,
-        left: '40%'
-    },
     voteBiden: {
         position: 'absolute',
         bottom: '15%',
@@ -55,5 +53,19 @@ const styles = StyleSheet.create({
         position: 'absolute',
         bottom: '15%',
         left: '15%'
-    }
+    },
+    voteHeaderContent: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        height: '25%',
+        width: '100%',
+        marginTop: '2%'
+    },
+    voteHeaderContainer: {
+        width: '30%'
+    },
+    voteHeader: {
+        height: '100%',
+        width: '100%'
+    },
 })

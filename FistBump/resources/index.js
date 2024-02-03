@@ -29,4 +29,5 @@ export const TrumpStatsHeader = require('./stats/trump-header.png')
 export const BidenStatsHeader = require('./stats/biden-header.png')
 export const tickBtn = require('./tick1.png'); 
 export const VoteBackground = require('./vote/vote-background.png'); 
-export const VoteHeader = require('./vote/vote-header1.png'); 
+export const VoteHeader = require('./vote/vote-header.png'); 
+export const PlayHeader = require('./main-game/play-header.png'); 
