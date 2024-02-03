@@ -3,10 +3,9 @@ import { LandingPlayers, PlayBtn, StatsBtn, LandingBackground, BidenHome, TrumpH
 import { useEffect, useState } from "react";
 
 export function Landing({ navigation }) {
-    //For tablet devices we need to add additional check, 
-    //since only percetage won't fully work on all devices 
+    
     const [height, setHeight] = useState((Dimensions.get('window').height * 80) / 100);
-    const [width, setWidth] = useState((Dimensions.get('window').width * 35) / 100);
+    const [width, setWidth] = useState((Dimensions.get('window').width * 40) / 100);
 
     return (
         <View style={styles.container}>
