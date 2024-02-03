@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 
 export function Landing({ navigation }) {
 
-    const [height, setHeight] = useState((Dimensions.get('window').height * 85) / 100);
-    const [width, setWidth] = useState((Dimensions.get('window').width * 42) / 100);
+    const [height, setHeight] = useState((Dimensions.get('window').height * 82) / 100);
+    const [width, setWidth] = useState((Dimensions.get('window').width * 40) / 100);
 
     return (
         <View style={styles.container}>
