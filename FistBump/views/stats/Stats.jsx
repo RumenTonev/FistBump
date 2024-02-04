@@ -8,20 +8,22 @@ export function Stats({ navigation }) {
     return (
         <View style={styles.container}>
             <ImageBackground style={styles.landingContentStatsBackground} source={StatsBackgroundPlain}>
-                <TouchableOpacity onPress={() => navigation.navigate('Landing')} style={styles.buttonContainer}>
-                    <Image source={backBtn} style={styles.buttonNavBack}>
-                    </Image>
-                </TouchableOpacity>
+                <View style={styles.buttonNavBackContainer}>
+                    <TouchableOpacity onPress={() => navigation.navigate('Landing')} style={styles.buttonNavBack}>
+                        <Image source={backBtn} style={styles.buttonNavBackImage}>
+                        </Image>
+                    </TouchableOpacity>
+                </View>
                 <View style={[styles.statsHeaderContent]}>
-                    {/* <View style={[styles.statsHeaderContainer]}>
+                    <View style={[styles.statsHeaderContainer, styles.statsHeaderPaddingTop]}>
                         <ImageBackground style={styles.statsHeader} source={TrumpStatsHeader}></ImageBackground>
-                    </View> */}
-                    <View style={[styles.statsHeaderContainer]}>
+                    </View>
+                    <View style={[styles.statsHeaderContainer, styles.statsHeaderPaddingBottom]}>
                         <ImageBackground style={styles.statsHeader} source={StatsHeader}></ImageBackground>
                     </View>
-                    {/* <View style={[styles.statsHeaderContainer]}>
+                    <View style={[styles.statsHeaderContainer, styles.statsHeaderPaddingTop]}>
                         <ImageBackground style={styles.statsHeader} source={BidenStatsHeader}></ImageBackground>
-                    </View> */}
+                    </View>
                 </View>
                 <View style={styles.statsContent}>
 
@@ -43,14 +45,20 @@ const styles = StyleSheet.create({
     },
     statsHeaderContent: {
         flexDirection: 'row',
-        justifyContent: 'space-around',
-        height: '25%',
+        justifyContent: 'center',
+        height: '35%',
         width: '100%',
         marginTop: '2%'
     },
     statsContent: {
         height: '65%',
         width: '100%',
+    },
+    statsHeaderPaddingTop: {
+        paddingTop: '5%'
+    },
+    statsHeaderPaddingBottom: {
+        paddingBottom: '5%'
     },
     statsHeaderContainer: {
         width: '30%'
@@ -59,9 +67,10 @@ const styles = StyleSheet.create({
         height: '100%',
         width: '100%'
     },
-    buttonNavBack: {
+    buttonNavBackContainer: {
         position: 'absolute',
+        zIndex: 10,
         top: 10,
         left: 10
-    },
+    }
 })
