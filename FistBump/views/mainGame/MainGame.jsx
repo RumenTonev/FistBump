@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { View, TouchableOpacity, Image, StyleSheet, ImageBackground } from "react-native";
-import { MainGameSparing, HitLeft, HitRight, TrumpBiden, BidenTrump } from "../../resources";
+import { MainGameSparing, HitLeft, HitRight, TrumpBiden, BidenTrump, backBtn, PlayHeader } from "../../resources";
 
 export function MainGame({ navigation }) {
     const [actionImage, setActionAnimation] = useState({ image: MainGameSparing });
@@ -12,6 +12,15 @@ export function MainGame({ navigation }) {
     return (
         <View style={styles.container}>
             <ImageBackground style={styles.landingBackgroundAnimated} source={actionImage.image}>
+                <TouchableOpacity onPress={() => navigation.navigate('Landing')} style={styles.buttonContainer}>
+                    <Image source={backBtn} style={styles.buttonNavBack}>
+                    </Image>
+                </TouchableOpacity>
+                <View style={[styles.playHeaderContent]}>
+                    <View style={[styles.playHeaderContainer]}>
+                        <ImageBackground style={styles.playHeader} source={PlayHeader}></ImageBackground>
+                    </View>
+                </View>
                 <View style={[styles.actionButton, styles.buttonHitTrump]}>
                     <TouchableOpacity onPress={() => this.setActionImage({ image: TrumpBiden })} >
                         <Image source={HitLeft} style={styles.button}>
@@ -59,6 +68,11 @@ const styles = StyleSheet.create({
         width: 70,
         height: 70
     },
+    buttonNavBack: {
+        position: 'absolute',
+        top: 10,
+        left: 10
+    },
     buttonHitBiden: {
         right: '10%'
     },
@@ -67,5 +81,19 @@ const styles = StyleSheet.create({
     },
     emptyContainer: {
         flex: 2
+    },
+    playHeaderContent: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        height: '25%',
+        width: '100%',
+        marginTop: '2%'
+    },
+    playHeaderContainer: {
+        width: '30%'
+    },
+    playHeader: {
+        height: '100%',
+        width: '100%'
     }
 })

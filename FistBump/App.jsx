@@ -28,6 +28,8 @@ import CountryCodePicker from './views/components/CountryCodePicker';
 import { Landing } from './views/landing/Landing';
 import { MainGame } from './views/mainGame/MainGame';
 import { MainPlayerAnimation } from './views/mainGame/MainPlayerAnimation';
+import { Stats } from './views/stats/Stats';
+import { VoteView } from './views/vote/VoteView';
 
 
 
@@ -74,7 +76,13 @@ function App() {
           <Stack.Screen name="MainGame" component={MainGame} options={{
             headerShown: false,
           }} />
+          <Stack.Screen name="Vote" component={VoteView} options={{
+            headerShown: false,
+          }} />
           <Stack.Screen name="MainPlayerAnimation" component={MainPlayerAnimation} options={{
+            headerShown: false,
+          }} />
+          <Stack.Screen name="Stats" component={Stats} options={{
             headerShown: false,
           }} />
           <Stack.Screen name="Profile" component={ProfileView} />

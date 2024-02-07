@@ -1,11 +1,11 @@
 import { View, TouchableOpacity, Image, StyleSheet, Text, ScrollView, BackHandler, ImageBackground, Dimensions } from "react-native";
-import { LandingPlayers, Play, Stats, LandingBackground, BidenHome, TrumpHome, Vote, bottomLanding, preBottomLanding, mediumLanding, preTopLanding, topLanding } from "../../resources";
+import { LandingPlayers, PlayBtn, StatsBtn, LandingBackground, BidenHome, TrumpHome, VoteBtn, bottomLanding, preBottomLanding, mediumLanding, preTopLanding, topLanding } from "../../resources";
 import { useEffect, useState } from "react";
 
 export function Landing({ navigation }) {
-
-    const [height, setHeight] = useState((Dimensions.get('window').height * 85) / 100);
-    const [width, setWidth] = useState((Dimensions.get('window').width * 42) / 100);
+    
+    const [height, setHeight] = useState((Dimensions.get('window').height * 80) / 100);
+    const [width, setWidth] = useState((Dimensions.get('window').width * 40) / 100);
 
     return (
         <View style={styles.container}>
@@ -21,8 +21,8 @@ export function Landing({ navigation }) {
                     <ImageBackground source={preTopLanding} style={[styles.backgroundElementImage, styles.buttonContainerFlex]}>
                         <View style={styles.emptyButtonContainer}></View>
                         <View style={styles.buttonContainer}>
-                            <TouchableOpacity onPress={() => navigation.navigate('MainGame')} style={styles.buttonContainer}>
-                                <Image source={Vote} style={styles.button}>
+                            <TouchableOpacity onPress={() => navigation.navigate('Vote')} style={styles.buttonContainer}>
+                                <Image source={VoteBtn} style={styles.button}>
                                 </Image>
                             </TouchableOpacity>
                         </View>
@@ -34,7 +34,7 @@ export function Landing({ navigation }) {
                         <View style={styles.emptyButtonContainer}></View>
                         <View style={styles.buttonContainer}>
                             <TouchableOpacity onPress={() => navigation.navigate('MainGame')} style={styles.buttonContainer}>
-                                <Image source={Play} style={styles.button}>
+                                <Image source={PlayBtn} style={styles.button}>
                                 </Image>
                             </TouchableOpacity>
                         </View>
@@ -45,8 +45,8 @@ export function Landing({ navigation }) {
                     <ImageBackground source={preBottomLanding} style={[styles.backgroundElementImage, styles.buttonContainerFlex]}>
                         <View style={styles.emptyButtonContainer}></View>
                         <View style={styles.buttonContainer}>
-                            <TouchableOpacity onPress={() => navigation.navigate('MainGame')} style={styles.buttonContainer}>
-                                <Image source={Stats} style={styles.button}>
+                            <TouchableOpacity onPress={() => navigation.navigate('Stats')} style={styles.buttonContainer}>
+                                <Image source={StatsBtn} style={styles.button}>
                                 </Image>
                             </TouchableOpacity>
                         </View>
