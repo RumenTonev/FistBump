@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {SafeAreaView, Text, TouchableOpacity,StyleSheet} from 'react-native';
+import {View, Text, TouchableOpacity,StyleSheet,Image,ImageBackground} from 'react-native';
 
 import {
   CodeField,
@@ -11,16 +11,16 @@ import styles from './styles';
 import { useAxiosHandlers } from '../../utils/useAxiosHandlers';
 import { useSelector } from 'react-redux';
 
-//import styles from './styles';
+import { ContinueButton,LoginBackground} from '../../resources';
 
 const CELL_COUNT = 4;
 
 const ConfirmationCode = ({navigation}) => {
-  debugger
+  
   const user = useSelector((state) => state.user.user);
-  debugger
+
   const {id,isUs} = user
-  debugger
+
   const [value, setValue] = useState('');
   const ref = useBlurOnFulfill({value, cellCount: CELL_COUNT});
   const [props, getCellOnLayoutHandler] = useClearByFocusCell({
@@ -30,8 +30,7 @@ const ConfirmationCode = ({navigation}) => {
 const disabled=value.length<CELL_COUNT
     const {handleConfirmOTP} =  useAxiosHandlers()
   return (
-    <SafeAreaView style={styles.root}>
-      <Text style={styles.title}>Basic example</Text>
+       <ImageBackground source={LoginBackground} style={styles.wrapper}>
       <CodeField
         ref={ref}
         {...props}
@@ -52,12 +51,15 @@ const disabled=value.length<CELL_COUNT
       />
       <TouchableOpacity
             style={[styles.button, disabled ? {} : styles.redColor]}
-            onPress={()=>handleConfirmOTP(id,value,isUs,navigation)
+            onPress={()=>handleConfirmOTP(value)
             
             }>
-            <Text style={styles.buttonText}>Continue</Text>
+                <Text style={styles.buttonText}>Continue</Text> 
+
           </TouchableOpacity>
-    </SafeAreaView>
+          </ImageBackground>
+          
+  
   );
 };
 

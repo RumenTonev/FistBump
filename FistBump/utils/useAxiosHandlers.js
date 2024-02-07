@@ -6,7 +6,8 @@ import axios from "axios";
 import { getGetRequest, getPostRequestObject } from "./axiosRepo";
 import { useDbHandlers } from "./useDbHandlers";
 import { setConfirmedLogin, setLoggedIn } from "../store/userSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch ,useSelector} from "react-redux";
+import { useNavigation } from '@react-navigation/native';
 
 
 // "account_id": "72e47e47-95b9-41c2-bdcd-55dd9bb04e14",
@@ -18,19 +19,22 @@ import { useDispatch } from "react-redux";
 
 export function useAxiosHandlers() {
   const{handleGet,handleUpsert}=useDbHandlers()
-  //const user = useSelector((state) => state.user.user);
+  const user = useSelector((state) => state.user.user);
+  const {id,isUs}=user
+  const navigation = useNavigation();
   const dispatch = useDispatch();
 
-  const handleConfirmOTP = useCallback(async (phoneNumber, code,isUs, navigation) => {
-
-    console.log('IIIIIIII')
-  let localPhone=phoneNumber
-  
-  if(phoneNumber.startsWith('+'))localPhone=phoneNumber.substring(1)
+  const handleConfirmOTP = useCallback(async (code) => {
 debugger
+    console.log('IIIIIIII')
+  let localPhone=id
+  
+  if(id.startsWith('+'))localPhone=id.substring(1)
+
     const config = getGetRequest(localPhone, code)
     axios(config)
       .then(async function (response) {
+        debugger
         if (response.data) {
 
           const { data } = response.data
@@ -39,7 +43,7 @@ debugger
               const { code: savedcode } = data[0]
               if (savedcode == code) {
                 dispatch(setConfirmedLogin())
-                handleGet(phoneNumber,isUs)
+                handleGet(id,isUs)
                 navigation.navigate('Landing')
               }
             }
@@ -52,14 +56,14 @@ debugger
         console.log(error);
       });
 
-  }, [])
+  }, [id,isUs,navigation])
 
 
 
 
-  const handleSendOTP = useCallback(async (phoneNumber,isUs, navigation) => {
+  const handleSendOTP = useCallback(async (phoneNumber,isUs) => {
   const flag=false
-  debugger
+  
   if(flag) return
     console.log('IIIIIIII')
     const config = getPostRequestObject(phoneNumber)
@@ -68,7 +72,7 @@ debugger
         if (response.data) {
           const {data}=response
           dispatch(setLoggedIn({ phone: data.data.phone ,isUs:isUs}))
-          debugger
+          
           navigation.navigate('ConfirmationCode')
         }
         else {
@@ -79,7 +83,7 @@ debugger
         console.log(error);
       });
 
-  }, [])
+  }, [navigation])
 
 
   return {

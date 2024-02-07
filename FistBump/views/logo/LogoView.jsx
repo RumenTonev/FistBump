@@ -2,13 +2,15 @@ import { useRef, useEffect } from 'react';
 import { Animated, Image, StyleSheet, View } from 'react-native'
 import { Logo } from '../../resources';
 import { useSelector } from 'react-redux';
+import { useDbHandlers } from '../../utils/useDbHandlers';
+import { useGetUserOnLoad } from '../../store/hooks/useGetUserOnLoad';
 
 export function LogoView({ navigation }) {
     console.log('Fuckit')
     const fadeInitial = useRef(new Animated.Value(0)).current;
 console.log('Fuckit')
     const user = useSelector((state) => state.user.user);
-    
+   const status= useGetUserOnLoad()
     const screenAnimation = ({ navigation }) => {
         Animated.timing(fadeInitial, {
             toValue: 1,
@@ -21,9 +23,10 @@ console.log('Fuckit')
                     duration: 5000,
                     useNativeDriver: true
                 }).start(({ finished }) => {
-                    if (finished) {
+            
+                    if (finished&&status!='pending') {
                         user?.id?navigation.navigate("Landing"):navigation.navigate("EULA");
-                        //navigation.navigate("EULA");
+                        //navigation.navigate("EUL");
                         fadeInitial.current = new Animated.Value(0);
                     }
                 });

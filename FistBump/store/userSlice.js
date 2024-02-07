@@ -12,6 +12,7 @@ export const userSlice = createSlice({
   } },
   reducers: {
     setUser: (state, action) => {
+      debugger
       state.user = action.payload;
     },
     setLoggedIn:(state,action)=>{
@@ -23,10 +24,11 @@ state.user.isUs=action.payload.isUs
       state.user.VoteFor=action.payload
     },
     setPaymentCount:(state,action)=>{
+      debugger
       state.user.CountVisitStats=action.payload
     },
     setConfirmedLogin:(state)=>{
-      debugger
+      
       state.user.confirmedLogin=true
     }
     // Other reducers go here

@@ -7,10 +7,13 @@ import {
   TouchableOpacity,
   Text,
   Alert,
+  ImageBackground,
+  Image,
 } from 'react-native';
 import PhoneInput from 'react-native-phone-number-input';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import { useAxiosHandlers } from '../../utils/useAxiosHandlers';
+import { ContinueButton, LoginBackground } from '../../resources';
 const phoneUtil = require('google-libphonenumber').PhoneNumberUtil.getInstance();
 
 
@@ -122,8 +125,8 @@ Alert.alert("Please enter a valid number",)
     <>
       <StatusBar barStyle="dark-content" />
       <View style={styles.container}> 
+      <ImageBackground source={LoginBackground} style={styles.wrapper}>
       
-        <SafeAreaView style={styles.wrapper}>
         
         {/*@ts-ignore*/}
            <PhoneInput
@@ -135,7 +138,7 @@ Alert.alert("Please enter a valid number",)
             onChangeText={(text)=>{handleOnChange(text)}}
             countryPickerProps={{withAlphaFilter:true}}
             disabled={false}
-            //withDarkTheme
+            //withDarkThemer
             //withShadow
             autoFocus
             textInputProps={{ autoCorrect:true,textContentType:"telephoneNumber",autoComplete:"tel",autoFocus:false,importantForAutofill:"yes" ,inputMode:"tel",dataDetectorTypes:"phoneNumber",keyboardType:"phone-pad"}}
@@ -148,9 +151,11 @@ Alert.alert("Please enter a valid number",)
             //onPress={()=>handleSendOTP(`+${callingCode}${value}`,isUs,navigation)}
             onPress={handleOnPress}
             >
-            <Text style={styles.buttonText}>Continue</Text>
+
+           <Text style={styles.buttonText}>Continue</Text> 
           </TouchableOpacity> 
-        </SafeAreaView>
+          
+        </ImageBackground>
       </View>
     </>
   );
@@ -188,6 +193,14 @@ const styles = StyleSheet.create({
   },
   redColor: {
     backgroundColor: '#F57777'
+  },
+  image:{
+    flex:1,
+    alignSelf:'center',
+    width:'100%',
+    height:'100%',
+    resizeMode:'contain',
+    aspectRatio:4
   },
   message: {
     borderWidth: 1,

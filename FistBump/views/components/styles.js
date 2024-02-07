@@ -6,9 +6,9 @@ import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 
 export default StyleSheet.create({
-  root: {padding: 20, minHeight: 300},
+  root: { minHeight: 300},
   title: {textAlign: 'center', fontSize: 30},
-  codeFieldRoot: {marginTop: 20},
+  codeFieldRoot: {marginTop: 20,backgroundColor: 'transparent',zIndex:999,opacity:0.99,width:200},
   cell: {
     width: 40,
     height: 40,
@@ -16,7 +16,8 @@ export default StyleSheet.create({
     fontSize: 24,
     borderWidth: 2,
     borderColor: '#00000030',
-    textAlign: 'center',
+    textAlign: 'center',backgroundColor:'white'
+
   },
   focusCell: {
     borderColor: '#000',
@@ -60,5 +61,14 @@ export default StyleSheet.create({
     marginBottom: 20,
     justifyContent: 'center',
     alignItems: 'flex-start',
+  },
+  image:{
+    flex:1,
+    alignSelf:'center',
+    width:500,
+    height:400,
+    resizeMode:'stretch',
+    aspectRatio:4,
+    fontSize:200
   },
 });
