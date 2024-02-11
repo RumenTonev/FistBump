@@ -27,12 +27,20 @@ export function Stats({ navigation }) {
                 </View>
                 <View style={styles.statsContent}>
                     <View style={styles.statsContainer}>
-                        <ImageBackground source={TrumpStatsHolder} style={styles.trumpStatsHolder}></ImageBackground>
+                        <ImageBackground source={TrumpStatsHolder} style={[styles.trumpStatsHolder, styles.centerStat]}>
+                            <View style={styles.statValueContainer}>
+                                <Text style={styles.statValue}>6 452 860</Text>
+                            </View>
+                        </ImageBackground>
                     </View>
                     <View style={styles.emptyStatsContainer}>
                     </View>
                     <View style={styles.statsContainer}>
-                        <ImageBackground source={BidenStatsHolder} style={styles.bidenStatsHolder}></ImageBackground>
+                        <ImageBackground source={BidenStatsHolder} style={[styles.bidenStatsHolder, styles.centerStat]}>
+                            <View style={styles.statValueContainer}>
+                                <Text style={styles.statValue}>3 650 350</Text>
+                            </View>
+                        </ImageBackground>
                     </View>
                 </View>
             </ImageBackground>
@@ -89,6 +97,16 @@ const styles = StyleSheet.create({
     statsHeader: {
         height: '100%',
         width: '100%'
+    },
+    statValueContainer: {
+    },
+    centerStat: {
+        justifyContent: 'center'
+    },
+    statValue: {
+        textAlign: 'center',
+        fontSize: 30,
+        fontFamily: 'sans',
     },
     buttonNavBackContainer: {
         position: 'absolute',
