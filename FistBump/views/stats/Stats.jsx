@@ -1,5 +1,5 @@
 import { View, TouchableOpacity, Image, StyleSheet, Text, ScrollView, BackHandler, ImageBackground, Dimensions } from "react-native";
-import { StatsBackground, TrumpStatsHolder, BidenStatsHolder, StatsBackgroundPlain, TrumpStatsHeader, StatsBtn, StatsHeader, BidenStatsHeader, backBtn } from "../../resources";
+import { StatsBackground, TrumpStatsHolder, BidenStatsHolder, StatsBackgroundPlain, TrumpStatsHeader, StatsBtn, funkyFont,StatsHeader, BidenStatsHeader, backBtn } from "../../resources";
 import { useEffect, useState } from "react";
 
 export function Stats({ navigation }) {
@@ -29,7 +29,7 @@ export function Stats({ navigation }) {
                     <View style={styles.statsContainer}>
                         <ImageBackground source={TrumpStatsHolder} style={[styles.trumpStatsHolder, styles.centerStat]}>
                             <View style={styles.statValueContainer}>
-                                <Text style={styles.statValue}>6 452 860</Text>
+                                <Text style={styles.statValue}>126 452 860</Text>
                             </View>
                         </ImageBackground>
                     </View>
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
     statValue: {
         textAlign: 'center',
         fontSize: 30,
-        fontFamily: 'sans',
+        fontFamily: 'SuperFunky-lgmWw',
     },
     buttonNavBackContainer: {
         position: 'absolute',

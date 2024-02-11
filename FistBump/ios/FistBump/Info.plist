@@ -36,7 +36,7 @@
 		</dict>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string/>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -51,7 +51,7 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-<key>CFBundleURLTypes</key>
+	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
 			<key>CFBundleTypeRole</key>
@@ -78,16 +78,19 @@
 			</array>
 		</dict>
 	</array>
-
-<key>FacebookAppID</key>
-<string>1014665559565413</string>
-<key>FacebookClientToken</key>
-<string>570dd05a70cbf94bb0e609775c9ff3c8</string>
-<key>FacebookDisplayName</key>
-<string>FistBump</string>
-<key>LSApplicationQueriesSchemes</key>
-<array>
-<string>fb-messenger-share-api</string>
-</array>
+	<key>FacebookAppID</key>
+	<string>1014665559565413</string>
+	<key>FacebookClientToken</key>
+	<string>570dd05a70cbf94bb0e609775c9ff3c8</string>
+	<key>FacebookDisplayName</key>
+	<string>FistBump</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>fb-messenger-share-api</string>
+	</array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>SuperFunky-lgmWw.ttf</string>
+	</array>
 </dict>
 </plist>

@@ -32,3 +32,4 @@ export const tickBtn = require('./tick1.png');
 export const VoteBackground = require('./vote/vote-background.png'); 
 export const VoteHeader = require('./vote/vote-header.png'); 
 export const PlayHeader = require('./main-game/play-header.png'); 
+export const funkyFont = require('./fonts/SuperFunky-lgmWw.ttf');

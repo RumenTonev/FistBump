@@ -19,6 +19,7 @@
 		1AF68BA52ABB044300CCA4E4 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AF68BA42ABB044300CCA4E4 /* StoreKit.framework */; };
 		7699B88040F8A987B510C191 /* libPods-FistBump-FistBumpTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-FistBump-FistBumpTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		B4F1738CB2554D948A363C93 /* SuperFunky-lgmWw.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9796758599A541CB8EAECE46 /* SuperFunky-lgmWw.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = FistBump/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-FistBump-FistBumpTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FistBump-FistBumpTests.release.xcconfig"; path = "Target Support Files/Pods-FistBump-FistBumpTests/Pods-FistBump-FistBumpTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		9796758599A541CB8EAECE46 /* SuperFunky-lgmWw.ttf */ = {isa = PBXFileReference; name = "SuperFunky-lgmWw.ttf"; path = "../resources/fonts/SuperFunky-lgmWw.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +138,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
+				1C66997A030148E48AFE5368 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -161,6 +164,15 @@
 			);
 			path = Pods;
 			sourceTree = "<group>";
+		};
+		1C66997A030148E48AFE5368 /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				9796758599A541CB8EAECE46 /* SuperFunky-lgmWw.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -262,6 +274,7 @@
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				1AA0D4F22AEA5157004FF62A /* StoreKitTestCertificate.cer in Resources */,
+				B4F1738CB2554D948A363C93 /* SuperFunky-lgmWw.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
