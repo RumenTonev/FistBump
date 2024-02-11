@@ -1,9 +1,8 @@
-import { View, TouchableOpacity, Image, StyleSheet, Text, ScrollView, BackHandler, ImageBackground, Dimensions } from "react-native";
-import { StatsBackground, TrumpStatsHolder, BidenStatsHolder, StatsBackgroundPlain, TrumpStatsHeader, StatsBtn, funkyFont,StatsHeader, BidenStatsHeader, backBtn } from "../../resources";
-import { useEffect, useState } from "react";
+import { View, TouchableOpacity, Image, StyleSheet, Text, ImageBackground } from "react-native";
+import { TrumpStatsHolder, BidenStatsHolder, StatsBackgroundPlain, TrumpStatsHeader, StatsHeader, BidenStatsHeader, backBtn } from "../../resources";
+import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 
 export function Stats({ navigation }) {
-
 
     return (
         <View style={styles.container}>
@@ -105,7 +104,7 @@ const styles = StyleSheet.create({
     },
     statValue: {
         textAlign: 'center',
-        fontSize: 30,
+        fontSize: RFPercentage(4),
         fontFamily: 'SuperFunky-lgmWw',
     },
     buttonNavBackContainer: {
