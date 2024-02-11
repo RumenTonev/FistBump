@@ -24,6 +24,7 @@ export const backBtn = require('./back.png');
 export const StatsBackground = require('./stats/stats-background.png')
 export const StatsBackgroundPlain = require('./stats/stats-background-plain.png')
 export const TrumpStatsHolder = require('./stats/trump-stats-holder.png')
+export const BidenStatsHolder = require('./stats/biden-stats-holder.png')
 export const StatsHeader = require('./stats/stats-header.png')
 export const TrumpStatsHeader = require('./stats/trump-header-new.png')
 export const BidenStatsHeader = require('./stats/biden-header-new.png')

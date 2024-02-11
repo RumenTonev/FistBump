@@ -26,7 +26,14 @@ export function Stats({ navigation }) {
                     </View>
                 </View>
                 <View style={styles.statsContent}>
-
+                    <View style={styles.statsContainer}>
+                        <ImageBackground source={TrumpStatsHolder} style={styles.trumpStatsHolder}></ImageBackground>
+                    </View>
+                    <View style={styles.emptyStatsContainer}>
+                    </View>
+                    <View style={styles.statsContainer}>
+                        <ImageBackground source={BidenStatsHolder} style={styles.bidenStatsHolder}></ImageBackground>
+                    </View>
                 </View>
             </ImageBackground>
         </View>
@@ -51,8 +58,24 @@ const styles = StyleSheet.create({
         marginTop: '2%'
     },
     statsContent: {
-        height: '65%',
+        height: '60%',
         width: '100%',
+        flexDirection: 'row',
+        justifyContent: 'space-evenly'
+    },
+    statsContainer: {
+        width: '40%',
+    },
+    emptyStatsContainer: {
+        width: '10%'
+    },
+    trumpStatsHolder: {
+        width: '100%',
+        height: '100%'
+    },
+    bidenStatsHolder: {
+        width: '100%',
+        height: '100%'
     },
     statsHeaderPaddingTop: {
         paddingTop: '5%'
