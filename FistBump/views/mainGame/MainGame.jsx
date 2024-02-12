@@ -4,15 +4,23 @@ import { MainGameSparing, HitLeft, HitRight, TrumpBiden, BidenTrump, backBtn, Pl
 
 export function MainGame({ navigation }) {
     const [actionImage, setActionAnimation] = useState({ image: MainGameSparing });
+    let [elementsVisibility, setElementsVisibility] = useState(true);
+    let elementVisible = elementsVisibility ? styles.visible : styles.hidden;
 
-    setActionImage = (actionImage) => {
+
+    setActionImage = (actionImage, duration) => {
         setActionAnimation(actionImage);
+        setElementsVisibility(false);
+        setTimeout(() => {
+            setElementsVisibility(true);
+            setActionAnimation({ image: MainGameSparing });
+        }, duration)
     };
 
     return (
         <View style={styles.container}>
             <ImageBackground style={styles.landingBackgroundAnimated} source={actionImage.image}>
-                <TouchableOpacity onPress={() => navigation.navigate('Landing')} style={styles.buttonContainer}>
+                <TouchableOpacity onPress={() => navigation.navigate('Landing')} style={[styles.buttonContainer, elementVisible]}>
                     <Image source={backBtn} style={styles.buttonNavBack}>
                     </Image>
                 </TouchableOpacity>
@@ -22,18 +30,18 @@ export function MainGame({ navigation }) {
                     </View>
                 </View>
                 <View style={[styles.actionButton, styles.buttonHitTrump]}>
-                    <TouchableOpacity onPress={() => this.setActionImage({ image: TrumpBiden })} >
+                    <TouchableOpacity onPress={() => this.setActionImage({ image: TrumpBiden }, 2500)} style={elementVisible} >
                         <Image source={HitLeft} style={styles.button}>
                         </Image>
                     </TouchableOpacity>
                 </View>
                 <View style={[styles.actionButton, styles.buttonHitBiden]}>
-                    <TouchableOpacity onPress={() => this.setActionImage({ image: BidenTrump })} >
+                    <TouchableOpacity onPress={() => this.setActionImage({ image: BidenTrump }, 1750)} style={elementVisible}>
                         <Image source={HitRight} style={styles.button}>
                         </Image>
                     </TouchableOpacity>
                 </View>
-            </ImageBackground>
+            </ImageBackground >
         </View >
     );
 }
@@ -95,5 +103,11 @@ const styles = StyleSheet.create({
     playHeader: {
         height: '100%',
         width: '100%'
+    },
+    visible: {
+        display: 'block'
+    },
+    hidden: {
+        display: 'none'
     }
 })
