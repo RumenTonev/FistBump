@@ -3,7 +3,7 @@ import { LandingPlayers, PlayBtn, StatsBtn, LandingBackground, BidenHome, TrumpH
 import { useEffect, useState } from "react";
 
 export function Landing({ navigation }) {
-    
+
     const [height, setHeight] = useState((Dimensions.get('window').height * 80) / 100);
     const [width, setWidth] = useState((Dimensions.get('window').width * 40) / 100);
 
@@ -15,7 +15,7 @@ export function Landing({ navigation }) {
             </View>
             <View style={styles.actionsContainer}>
                 <View id="topLanding" style={styles.topBackgroundElement}>
-                    <ImageBackground source={topLanding} style={styles.topLanding} resizeMode="cover"></ImageBackground>
+                    <ImageBackground source={topLanding} style={styles.topLanding}></ImageBackground>
                 </View>
                 <View id="preTopLanding" style={styles.backgroundElement}>
                     <ImageBackground source={preTopLanding} style={[styles.backgroundElementImage, styles.buttonContainerFlex]}>
