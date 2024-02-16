@@ -47,7 +47,9 @@ function App() {
     <NavigationContainer>
       <DbContext.Provider value={cosmosClient}>
 
-        <Stack.Navigator>
+        <Stack.Navigator screenOptions={{
+          orientation: 'landscape'
+        }}>
           <Stack.Screen name="Logo" component={LogoView} options={{
             headerShown: false,
           }} />

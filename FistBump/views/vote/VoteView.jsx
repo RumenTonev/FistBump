@@ -7,7 +7,7 @@ export function VoteView({ navigation }) {
     return (
         <View style={styles.container}>
             <ImageBackground source={VoteBackground} style={styles.backgroundContainer}>
-                <TouchableOpacity onPress={() => navigation.navigate('Landing')} style={styles.buttonContainer}>
+                <TouchableOpacity onPress={() => navigation.navigate('Landing')}>
                     <Image source={backBtn} style={styles.button}>
                     </Image>
                 </TouchableOpacity>
@@ -17,11 +17,11 @@ export function VoteView({ navigation }) {
                     </View>
                 </View>
                 <TouchableOpacity onPress={() => navigation.navigate('Landing')} style={styles.voteTrump}>
-                    <Image source={tickBtn} style={styles.voteTrumpBtn}>
+                    <Image source={tickBtn}>
                     </Image>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => navigation.navigate('Landing')} style={styles.voteBiden}>
-                    <Image source={tickBtn} style={styles.voteBiden}>
+                    <Image source={tickBtn}>
                     </Image>
                 </TouchableOpacity>
             </ImageBackground>
