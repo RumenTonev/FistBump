@@ -51,10 +51,10 @@ function App() {
           orientation: 'landscape'
         }}>
           <Stack.Screen name="Logo" component={LogoView} options={{
-            headerShown: false,
+            headerShown: false
           }} />
           <Stack.Screen name="EULA" component={EulaView} options={{
-            headerShown: false,
+            headerShown: false
           }} />
           <Stack.Screen
             name="SocialLogins"
@@ -73,19 +73,19 @@ function App() {
             }}
           />
           <Stack.Screen name="Landing" component={Landing} options={{
-            headerShown: false,
+            headerShown: false
           }} />
           <Stack.Screen name="MainGame" component={MainGame} options={{
-            headerShown: false,
+            headerShown: false
           }} />
           <Stack.Screen name="Vote" component={VoteView} options={{
-            headerShown: false,
+            headerShown: false
           }} />
           <Stack.Screen name="MainPlayerAnimation" component={MainPlayerAnimation} options={{
-            headerShown: false,
+            headerShown: false
           }} />
           <Stack.Screen name="Stats" component={Stats} options={{
-            headerShown: false,
+            headerShown: false
           }} />
           <Stack.Screen name="Profile" component={ProfileView} />
           <Stack.Screen name="Settings" component={SettingsView} />

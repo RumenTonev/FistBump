@@ -1,11 +1,20 @@
-import { View, TouchableOpacity, Image, StyleSheet, Text, ScrollView, BackHandler, ImageBackground, Dimensions } from "react-native";
-import { LandingPlayers, PlayBtn, StatsBtn, LandingBackground, BidenHome, TrumpHome, VoteBtn, bottomLanding, preBottomLanding, mediumLanding, preTopLanding, topLanding } from "../../resources";
-import { useEffect, useState } from "react";
+import { View, TouchableOpacity, Image, StyleSheet, ImageBackground, Dimensions } from "react-native";
+import { PlayBtn, StatsBtn, BidenHome, TrumpHome, VoteBtn, bottomLanding, preBottomLanding, mediumLanding, preTopLanding, topLanding } from "../../resources";
+import { useState } from "react";
 
 export function Landing({ navigation }) {
-
-    const [height, setHeight] = useState((Dimensions.get('window').height * 80) / 100);
-    const [width, setWidth] = useState((Dimensions.get('window').width * 40) / 100);
+    const screen = Dimensions.get('screen');
+    const orientation = screen.height > screen.width ? 'portrait' : 'landscape';
+    const [height, setHeight] = useState(() => {
+        console.log(orientation);
+        const result = orientation == 'portrait' ? (screen.width * 80) / 100 : (screen.height * 80) / 100;
+        return result;
+    });
+    const [width, setWidth] = useState(() => {
+        console.log(orientation);
+        const result = orientation == 'portrait' ? (screen.height * 40) / 100 : (screen.width * 40) / 100;
+        return result;
+    });
 
     return (
         <View style={styles.container}>
