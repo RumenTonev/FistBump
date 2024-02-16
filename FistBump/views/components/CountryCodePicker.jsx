@@ -112,9 +112,9 @@ setIsValid(isValidNum)
 Alert.alert("Please enter a valid number",)
   }
   else{
-    handleSendOTP(`+${callingCode}${value}`,isUs,navigation)
+    handleSendOTP(`+${callingCode}${value}`,isUs)
   }
-  },[callingCode,value,isUs,navigation])
+  },[callingCode,value,isUs])
 
 
 

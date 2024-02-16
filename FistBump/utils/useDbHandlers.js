@@ -2,7 +2,8 @@ import { useCallback, useContext } from "react";
 import { DbContext } from "../App";
 import Config from "react-native-config";
 import { useDispatch,useSelector } from "react-redux";
-import { setUser } from "../store/userSlice";
+import { setResults, setUser } from "../store/userSlice";
+import { PatchOperation } from "@azure/cosmos";
 
 export function useDbHandlers() {
   const cosmosClient = useContext(DbContext);
@@ -45,6 +46,7 @@ export function useDbHandlers() {
       console.log('problem sled')
     }
   }, [cosmosClient,id])
+
 
 
   const handleGet = useCallback(async (phone, isUs) => {
@@ -111,7 +113,7 @@ export function useDbHandlers() {
   const getCounts = useCallback(() => {
     cosmosClient
       .database(Config.REACT_APP_COSMOS_DATABASE)
-      .container(Config.REACT_APP_COSMOS_CONTAINER)
+      .container(Config.REACT_APP_COSMOS_RESULTS_CONTAINER)
       .items.query(
         ''
       )
@@ -142,10 +144,95 @@ export function useDbHandlers() {
     console.log('problem sled')
   }, [cosmosClient])
 
+  const getResults= useCallback(async () => {
+    
+      await cosmosClient
+        .database(Config.REACT_APP_COSMOS_DATABASE)
+        .container(Config.REACT_APP_COSMOS_RESULTS_CONTAINER)
+        .item('1', '1').read()
+        .then(async (response) => {
+
+          console.log('Kureeec')
+          
+          if (response.statusCode === 200) {
+
+
+
+            const { resource: readDoc } = response;
+            //setResultsObject
+            dispatch(setResults({
+
+              BaydenCount: readDoc.BaydenCount,
+        TrumpCount: readDoc.TrumpCount,
+        Total: readDoc.Total,
+            }))
+
+          }
+          console.log(response)
+          return true
+        }).catch((error) => {
+          console.log('Insied error')
+          console.log(error)
+          return false
+        })
+
+
+      console.log('problem sled')
+      
+    
+  }, [cosmosClient])
+
+  const updateResults= useCallback(async (isByden) => {
+    debugger
+    const operations=[
+
+      {op:"incr",path:isByden?'/BaydenCount':'/TrumpCount',value:1},
+      {op:"incr",path:'/Total',value:1},
+      
+    ]
+    var flag=Config
+      await cosmosClient
+        .database(Config.REACT_APP_COSMOS_DATABASE)
+        .container(Config.REACT_APP_COSMOS_RESULTS_CONTAINER)
+        .item('1', '1').patch(operations)
+        .then(async (response) => {
+debugger
+          console.log('Kureeec')
+          
+          if (response.statusCode === 200) {
+
+
+
+            const { resource: readDoc } = response;
+            //setResultsObject
+            dispatch(setResults({
+
+              BaydenCount: readDoc.BaydenCount,
+        TrumpCount: readDoc.TrumpCount,
+        Total: readDoc.Total,
+            }))
+
+          }
+          console.log(response)
+        }).catch((error) => {
+          console.log('Insied error')
+          console.log(error)
+        })
+
+
+      console.log('problem sled')
+    
+  }, [cosmosClient])
+
+
+
+
   return {
     handleAdd,
     handleGet,
     handleUpsert,
-    handleInitialGet
+    handleInitialGet,
+    getResults,
+    updateResults
   }
 }

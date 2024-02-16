@@ -25,7 +25,6 @@ export function useAxiosHandlers() {
   const dispatch = useDispatch();
 
   const handleConfirmOTP = useCallback(async (code) => {
-debugger
     console.log('IIIIIIII')
   let localPhone=id
   
@@ -34,7 +33,6 @@ debugger
     const config = getGetRequest(localPhone, code)
     axios(config)
       .then(async function (response) {
-        debugger
         if (response.data) {
 
           const { data } = response.data

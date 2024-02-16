@@ -1,13 +1,14 @@
 import { View, TouchableOpacity, Image, StyleSheet, Text, ScrollView, BackHandler, ImageBackground, Dimensions } from "react-native";
 import { LandingPlayers, PlayBtn, StatsBtn, LandingBackground, BidenHome, TrumpHome, VoteBtn, bottomLanding, preBottomLanding, mediumLanding, preTopLanding, topLanding } from "../../resources";
 import { useEffect, useState } from "react";
+import { useNavigation } from "@react-navigation/native";
 import { useActions } from "./useActions";
 
-export function Landing({ navigation }) {
-
-    const [height, setHeight] = useState((Dimensions.get('window').height * 85) / 100);
-    const [width, setWidth] = useState((Dimensions.get('window').width * 42) / 100);
-    const{handleStatsFlow,handleVoteFlow}=useActions(navigation)
+export function Landing() {
+const navigation=useNavigation()
+    const [height, setHeight] = useState((Dimensions.get('window').height * 80) / 100);
+    const [width, setWidth] = useState((Dimensions.get('window').width * 40) / 100);
+    const{handleStatsFlow}=useActions()
     return (
         <View style={styles.container}>
             <View style={[styles.landingContentPlayerTrump]}>
@@ -22,8 +23,8 @@ export function Landing({ navigation }) {
                     <ImageBackground source={preTopLanding} style={[styles.backgroundElementImage, styles.buttonContainerFlex]}>
                         <View style={styles.emptyButtonContainer}></View>
                         <View style={styles.buttonContainer}>
-                            <TouchableOpacity onPress={handleVoteFlow} style={styles.buttonContainer}>
-                                <Image source={Vote} style={styles.button}>
+                            <TouchableOpacity onPress={() => navigation.navigate('Vote')} style={styles.buttonContainer}>
+                                <Image source={VoteBtn} style={styles.button}>
                                 </Image>
                             </TouchableOpacity>
                         </View>
@@ -47,7 +48,7 @@ export function Landing({ navigation }) {
                         <View style={styles.emptyButtonContainer}></View>
                         <View style={styles.buttonContainer}>
                             <TouchableOpacity onPress={handleStatsFlow} style={styles.buttonContainer}>
-                                <Image source={Stats} style={styles.button}>
+                                <Image source={StatsBtn} style={styles.button}>
                                 </Image>
                             </TouchableOpacity>
                         </View>

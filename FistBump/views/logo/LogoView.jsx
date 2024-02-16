@@ -4,19 +4,25 @@ import { Logo } from '../../resources';
 import { useSelector } from 'react-redux';
 import { useDbHandlers } from '../../utils/useDbHandlers';
 import { useGetUserOnLoad } from '../../store/hooks/useGetUserOnLoad';
+import { useNavigation } from '@react-navigation/native';
 
-export function LogoView({ navigation }) {
+export function LogoView() {
     console.log('Fuckit')
     const fadeInitial = useRef(new Animated.Value(0)).current;
-console.log('Fuckit')
+    const navigation=useNavigation()
+console.log('Fuckit2')
     const user = useSelector((state) => state.user.user);
-   const status= useGetUserOnLoad()
-    const screenAnimation = ({ navigation }) => {
+    //console.log(user)
+const status= useGetUserOnLoad()
+   console.log(status)
+    const screenAnimation = () => {
+        console.log('called')
         Animated.timing(fadeInitial, {
             toValue: 1,
             duration: 5000,
             useNativeDriver: true
         }).start(({ finished }) => {
+            console.log('kurecami')
             if (finished) {
                 Animated.timing(fadeInitial, {
                     toValue: 0,
@@ -25,17 +31,18 @@ console.log('Fuckit')
                 }).start(({ finished }) => {
             
                     if (finished&&status!='pending') {
-                        user?.id?navigation.navigate("Landing"):navigation.navigate("EULA");
-                        //navigation.navigate("EUL");
+                        user?.id?navigation.navigate('Landing'):navigation.navigate("EULA");
+                       // navigation.navigate("Landing");
                         fadeInitial.current = new Animated.Value(0);
                     }
                 });
             }
         });
     };
-
+    
     useEffect(() => {
-        screenAnimation({ navigation });
+        console.log('inside')
+        screenAnimation();
     }, []);
 
     return (

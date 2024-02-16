@@ -1,9 +1,16 @@
 import { View, TouchableOpacity, Image, StyleSheet, Text, ImageBackground } from "react-native";
 import { TrumpStatsHolder, BidenStatsHolder, StatsBackgroundPlain, TrumpStatsHeader, StatsHeader, BidenStatsHeader, backBtn } from "../../resources";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
+import { useSelector } from "react-redux";
+import { useNavigation } from "@react-navigation/native";
+import { useGetStatsOnLoad } from "../../store/hooks/useGetStatsOnLoad";
 
-export function Stats({ navigation }) {
-
+export function Stats() {
+    const stats = useSelector((state) => state.user.results);
+    const {BaydenCount,TrumpCount}= stats
+    const navigation=useNavigation()
+    //SPINNER???
+    const status=useGetStatsOnLoad()
     return (
         <View style={styles.container}>
             <ImageBackground style={styles.landingContentStatsBackground} source={StatsBackgroundPlain}>
@@ -28,7 +35,7 @@ export function Stats({ navigation }) {
                     <View style={styles.statsContainer}>
                         <ImageBackground source={TrumpStatsHolder} style={[styles.trumpStatsHolder, styles.centerStat]}>
                             <View style={styles.statValueContainer}>
-                                <Text style={styles.statValue}>126 452 860</Text>
+                                <Text style={styles.statValue}>{TrumpCount}</Text>
                             </View>
                         </ImageBackground>
                     </View>
@@ -37,7 +44,7 @@ export function Stats({ navigation }) {
                     <View style={styles.statsContainer}>
                         <ImageBackground source={BidenStatsHolder} style={[styles.bidenStatsHolder, styles.centerStat]}>
                             <View style={styles.statValueContainer}>
-                                <Text style={styles.statValue}>3 650 350</Text>
+                                <Text style={styles.statValue}>{BaydenCount}</Text>
                             </View>
                         </ImageBackground>
                     </View>

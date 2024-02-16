@@ -20,18 +20,15 @@ import { EulaView } from './views/eula/EulaView';
 import { useInitialLoad } from './utils/useInitiaLoad';
 import { ConfirmationCodeView } from './views/ConfirmationCodeView';
 import CountryCodePicker from './views/components/CountryCodePicker';
-import { Landing } from './views/landing/Landing';
-import { MainGame } from './views/mainGame/MainGame';
-import { MainPlayerAnimation } from './views/mainGame/MainPlayerAnimation';
+import { MainPlayerAnimation } from './views/mainGame/MainPlayerAnimation.jsx';
 import { Stats } from './views/stats/Stats';
 import { VoteView } from './views/vote/VoteView';
 import PaywallScreen from './views/components/payments/Paywall/Paywall';
 import { Provider } from 'react-redux';
 import { persistor, store } from './store/store';
 import { PersistGate } from 'redux-persist/integration/react';
-import { Landing } from './views/landing/Landing';
+import { Landing } from './views/landing/Landing.jsx';
 import { MainGame } from './views/mainGame/MainGame';
-import { StatsView } from './views/stats/Stats';
 import OfferingDetailScreen from './views/components/payments/Paywall/PaywallAdvance';
 
 
@@ -51,9 +48,6 @@ function App() {
           <PersistGate loading={null} persistor={persistor}>
             <Stack.Navigator>
             
-          <Stack.Screen name="PayloadAdvance" component={OfferingDetailScreen}  options={{
-                  headerShown: false
-                }}/>
               <Stack.Screen name="Logo" component={LogoView} options={{
                 headerShown: false,
               }} />
@@ -67,20 +61,23 @@ function App() {
                   headerShown: false
                 }}
               />
-              <Stack.Screen
-                name="Stats"
-                component={StatsView}
-                options={{
+
+<Stack.Screen name="PaywallScreen" component={OfferingDetailScreen}  options={{
                   headerShown: false
-                }}
-              />
-              <Stack.Screen name="Landing" component={Landing} options={{
-                headerShown: false,
-              }} />
-              <Stack.Screen name="MainGame" component={MainGame} options={{
-                headerShown: false,
-              }} />
-              <Stack.Screen name="MainPlayerAnimation" component={MainPlayerAnimation} options={{
+                }}/>
+             <Stack.Screen name="Landing" component={Landing} options={{
+            headerShown: false,
+          }} />
+          <Stack.Screen name="MainGame" component={MainGame} options={{
+            headerShown: false,
+          }} />
+          <Stack.Screen name="Vote" component={VoteView} options={{
+            headerShown: false,
+          }} />
+          <Stack.Screen name="MainPlayerAnimation" component={MainPlayerAnimation} options={{
+            headerShown: false,
+          }} />
+          <Stack.Screen name="Stats" component={Stats} options={{
             headerShown: false,
           }} />
           <Stack.Screen name="ConfirmationCode" component={ConfirmationCodeView}  options={{
@@ -88,7 +85,7 @@ function App() {
                 }}/>
               <Stack.Screen name="Profile" component={ProfileView} />
               <Stack.Screen name="Settings" component={SettingsView} />
-              <Stack.Screen name="PaywallScreen" component={PaywallScreen} />
+              <Stack.Screen name="Paywall" component={PaywallScreen} />
               
             </Stack.Navigator>
             </PersistGate>

@@ -1,6 +1,6 @@
 
 import { useDispatch, useSelector } from "react-redux";
-import { setPaymentCount, setVote } from "../../store/userSlice";
+import { setBydenVote, setPaymentCount, setTrumpVote, setVote } from "../../store/userSlice";
 import { useDbHandlers } from "../../utils/useDbHandlers";
 import { useCallback } from "react";
 import { useNavigation } from "@react-navigation/native";
@@ -14,7 +14,7 @@ import { useNavigation } from "@react-navigation/native";
 // "expire_date": "2022-03-04 14:50:57"
 
 export function useActions() {
-  const{handleGet,handleUpsert}=useDbHandlers()
+  const{updateResults}=useDbHandlers()
   const navigation=useNavigation()
   const user = useSelector((state) => state.user.user);
   const {CountVisitStats,VoteFor}=user
@@ -37,10 +37,20 @@ export function useActions() {
 
 
 
-  const handleVoteFlow = useCallback(async (name) => {
-    
-    if(!VoteFor)
-    dispatch(setVote(name))
+  const handleVoteFlow = useCallback( async (name) => {
+    debugger
+    //if(!VoteFor){
+    //dispatch(setVote(name))
+    try{
+    await updateResults(name=='Byden')
+
+    dispatch(name=='Byden'?setBydenVote():setTrumpVote())
+    }
+    catch(e)
+    {
+      debugger
+    }
+    //}
   
   }, [VoteFor])
 

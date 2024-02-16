@@ -25,7 +25,7 @@ export const useGetUserOnLoad = () => {
 
 
     const execute = async () => {
-      debugger
+      
       if (id) {
         setStatus('pending')
         try {
@@ -37,7 +37,7 @@ export const useGetUserOnLoad = () => {
             .container(Config.REACT_APP_COSMOS_CONTAINER?Config.REACT_APP_COSMOS_CONTAINER:'')
             .item(id,id).read()
             .then(async (response) => {
-    debugger
+    
               console.log('Kureeec')
               
               if (response.statusCode === 200) {
