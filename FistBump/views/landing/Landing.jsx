@@ -6,12 +6,10 @@ export function Landing({ navigation }) {
     const screen = Dimensions.get('screen');
     const orientation = screen.height > screen.width ? 'portrait' : 'landscape';
     const [height, setHeight] = useState(() => {
-        const result = orientation == 'portrait' ? (screen.width * 80) / 100 : (screen.height * 80) / 100;
-        return result;
+        return orientation == 'portrait' ? (screen.width * 80) / 100 : (screen.height * 80) / 100;
     });
     const [width, setWidth] = useState(() => {
-        const result = orientation == 'portrait' ? (screen.height * 40) / 100 : (screen.width * 40) / 100;
-        return result;
+        return orientation == 'portrait' ? (screen.height * 40) / 100 : (screen.width * 40) / 100;
     });
 
     return (
