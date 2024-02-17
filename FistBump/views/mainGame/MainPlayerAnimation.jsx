@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { View, TouchableOpacity, StyleSheet, ImageBackground, Image } from "react-native";
 import { MainGameSparing, TrumpBiden, BidenTrump, backBtn } from "../../resources";
+import { useNavigation } from '@react-navigation/native';
 
-export function MainPlayerAnimation({ route, navigation }) {
+export function MainPlayerAnimation({ route}) {
     const { playerAnimation } = route.params;
+    const navigation=useNavigation()
     return (
         <View style={styles.container}>
             <ImageBackground style={styles.landingBackgroundAnimated} source={playerAnimation}>

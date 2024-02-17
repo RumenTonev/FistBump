@@ -1,12 +1,14 @@
 import { View, TouchableOpacity, Image, StyleSheet, Text, ScrollView, BackHandler, ImageBackground, Dimensions } from "react-native";
 import { LandingPlayers, PlayBtn, StatsBtn, LandingBackground, BidenHome, TrumpHome, VoteBtn, bottomLanding, preBottomLanding, mediumLanding, preTopLanding, topLanding } from "../../resources";
 import { useEffect, useState } from "react";
+import { useNavigation } from "@react-navigation/native";
+import { useActions } from "./useActions";
 
-export function Landing({ navigation }) {
-
+export function Landing() {
+const navigation=useNavigation()
     const [height, setHeight] = useState((Dimensions.get('window').height * 80) / 100);
     const [width, setWidth] = useState((Dimensions.get('window').width * 40) / 100);
-
+    const{handleStatsFlow}=useActions()
     return (
         <View style={styles.container}>
             <View style={[styles.landingContentPlayerTrump]}>
@@ -45,7 +47,7 @@ export function Landing({ navigation }) {
                     <ImageBackground source={preBottomLanding} style={[styles.backgroundElementImage, styles.buttonContainerFlex]}>
                         <View style={styles.emptyButtonContainer}></View>
                         <View style={styles.buttonContainer}>
-                            <TouchableOpacity onPress={() => navigation.navigate('Stats')} style={styles.buttonContainer}>
+                            <TouchableOpacity onPress={handleStatsFlow} style={styles.buttonContainer}>
                                 <Image source={StatsBtn} style={styles.button}>
                                 </Image>
                             </TouchableOpacity>
