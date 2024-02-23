@@ -119,7 +119,9 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     button: {
-        flex: 1
+        flex: 1,
+        width: '100%',
+        resizeMode: 'center'
     },
     emptyContainer: {
         flex: 2
