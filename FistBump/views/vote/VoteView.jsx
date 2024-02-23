@@ -1,16 +1,20 @@
 import { View, TouchableOpacity, Image, StyleSheet, Text, ScrollView, BackHandler, ImageBackground, Dimensions } from "react-native";
 import { useEffect, useState } from "react";
 import { VoteBackground, backBtn, VoteHeader, tickBtn } from "../../resources";
+import { customStyles } from '../components/styles';
+
 
 export function VoteView({ navigation }) {
 
     return (
         <View style={styles.container}>
             <ImageBackground source={VoteBackground} style={styles.backgroundContainer}>
-                <TouchableOpacity onPress={() => navigation.navigate('Landing')}>
-                    <Image source={backBtn} style={styles.button}>
-                    </Image>
-                </TouchableOpacity>
+                <View style={customStyles.buttonNavBackContainer}>
+                    <TouchableOpacity onPress={() => navigation.navigate('Landing')}>
+                        <Image source={backBtn}>
+                        </Image>
+                    </TouchableOpacity>
+                </View>
                 <View style={[styles.voteHeaderContent]}>
                     <View style={[styles.voteHeaderContainer]}>
                         <ImageBackground style={styles.voteHeader} source={VoteHeader}></ImageBackground>
@@ -58,7 +62,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         height: '25%',
-        width: '100%',
         marginTop: '2%'
     },
     voteHeaderContainer: {

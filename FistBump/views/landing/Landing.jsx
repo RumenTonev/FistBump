@@ -1,15 +1,19 @@
 import { View, TouchableOpacity, Image, StyleSheet, ImageBackground, Dimensions } from "react-native";
 import { PlayBtn, StatsBtn, BidenHome, TrumpHome, VoteBtn, bottomLanding, preBottomLanding, mediumLanding, preTopLanding, topLanding } from "../../resources";
 import { useState } from "react";
+import { customStyles } from '../components/styles';
+
 
 export function Landing({ navigation }) {
     const screen = Dimensions.get('screen');
     const orientation = screen.height > screen.width ? 'portrait' : 'landscape';
+    const baseWidth = 40;
+    const baseHeight = 90;
     const [height, setHeight] = useState(() => {
-        return orientation == 'portrait' ? (screen.width * 80) / 100 : (screen.height * 80) / 100;
+        return orientation == 'portrait' ? (screen.width * baseHeight) / 100 : (screen.height * baseHeight) / 100;
     });
     const [width, setWidth] = useState(() => {
-        return orientation == 'portrait' ? (screen.height * 40) / 100 : (screen.width * 40) / 100;
+        return orientation == 'portrait' ? (screen.height * baseWidth) / 100 : (screen.width * baseWidth) / 100;
     });
 
     return (
@@ -18,7 +22,7 @@ export function Landing({ navigation }) {
                 <Image style={{ height: height, width: width }} source={TrumpHome}>
                 </Image>
             </View>
-            <View style={styles.actionsContainer}>
+            <View style={[styles.actionsContainer, customStyles.fullStretch]}>
                 <View id="topLanding" style={styles.topBackgroundElement}>
                     <ImageBackground source={topLanding} style={styles.topLanding}></ImageBackground>
                 </View>
@@ -72,10 +76,7 @@ export function Landing({ navigation }) {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        height: '100%',
-        width: '100%',
-        position: 'relative'
+        flex: 1
     },
     topBackgroundElement: {
         height: '30%',
@@ -103,8 +104,6 @@ const styles = StyleSheet.create({
     },
     actionsContainer: {
         position: 'absolute',
-        width: '100%',
-        height: '100%',
         zIndex: 0,
         top: 0,
         left: 0
@@ -120,9 +119,7 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     button: {
-        flex: 1,
-        width: '100%',
-        resizeMode: 'center'
+        flex: 1
     },
     emptyContainer: {
         flex: 2
