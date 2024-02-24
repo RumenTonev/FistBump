@@ -1,12 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useCallback, useState } from 'react';
 import { View, TouchableOpacity, Image, StyleSheet, ImageBackground } from "react-native";
 import { MainGameSparing, MainGameIntro, HitLeft, HitRight, TrumpBiden, BidenTrump, backBtn, PlayHeader } from "../../resources";
 import { customStyles } from '../components/styles';
+import { useNavigation } from '@react-navigation/native';
 
-export function MainGame({ navigation }) {
+export function MainGame() {
     const [actionImage, setActionAnimation] = useState({ image: MainGameIntro });
     let [elementsVisibility, setElementsVisibility] = useState(false);
     let elementVisible = elementsVisibility ? styles.visible : styles.hidden;
+const navigation=useNavigation()
 
     triggerAnimation = (animationImage, duration) => {
         setTimeout(() => {
@@ -18,18 +20,25 @@ export function MainGame({ navigation }) {
     setActionImage = (actionImage, duration) => {
         setActionAnimation(actionImage);
         setElementsVisibility(false);
-        triggerAnimation({ image: MainGameSparing }, duration);
+        setTimeout(() => {
+            setElementsVisibility(true);
+            setActionAnimation({ image: MainGameSparing });
+        }, duration)
     };
 
     useEffect(() => {
         triggerAnimation({ image: MainGameSparing }, 2500);
     }, []);
 
+  const handBack= useCallback( () => {
+        navigation.navigate('Landing')
+  }, [])
+
     return (
         <View style={[styles.container, customStyles.fullStretch]}>
             <ImageBackground style={customStyles.fullStretch} source={actionImage.image}>
                 <View style={customStyles.buttonNavBackContainer}>
-                    <TouchableOpacity onPress={() => navigation.navigate('Landing')} style={elementVisible}>
+                    <TouchableOpacity onPress={handBack} style={elementVisible}>
                         <Image source={backBtn}>
                         </Image>
                     </TouchableOpacity>
@@ -75,6 +84,16 @@ const styles = StyleSheet.create({
     actionButton: {
         position: 'absolute',
         bottom: '10%'
+    },
+    button: {
+        width: 70,
+        height: 70
+    },
+    buttonNavBack: {
+        position: 'absolute',
+        top: 10,
+        left: 10,
+        zIndex:10
     },
     buttonHitBiden: {
         right: '10%'

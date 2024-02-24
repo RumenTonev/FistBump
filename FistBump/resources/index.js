@@ -34,3 +34,5 @@ export const VoteBackground = require('./vote/vote-background.png');
 export const VoteHeader = require('./vote/vote-header.png'); 
 export const PlayHeader = require('./main-game/play-header.png'); 
 export const funkyFont = require('./fonts/SuperFunky-lgmWw.ttf');
+export const ContinueButton=require('./login/con.png');
+export const LoginBackground=require('./login/stars.png');

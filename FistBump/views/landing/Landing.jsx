@@ -2,14 +2,17 @@ import { View, TouchableOpacity, Image, StyleSheet, ImageBackground, Dimensions 
 import { PlayBtn, StatsBtn, BidenHome, TrumpHome, VoteBtn, bottomLanding, preBottomLanding, mediumLanding, preTopLanding, topLanding } from "../../resources";
 import { useState } from "react";
 import { customStyles } from '../components/styles';
+import { useNavigation } from "@react-navigation/native";
+import { useActions } from "./useActions";
 
-
-export function Landing({ navigation }) {
+export function Landing() {
+    const navigation=useNavigation();   
     const screen = Dimensions.get('screen');
     const orientation = screen.height > screen.width ? 'portrait' : 'landscape';
     const baseWidth = 35;
     const baseHeight = 90;
     const basePercentage = 100;
+    const{handleStatsFlow}=useActions();
     
     const [height, setHeight] = useState(() => {
         return orientation == 'portrait' ? (screen.width * baseHeight) / basePercentage : (screen.height * baseHeight) / basePercentage;
@@ -51,7 +54,7 @@ export function Landing({ navigation }) {
                 <View id="preBottomLanding" style={styles.backgroundElement}>
                     <ImageBackground source={preBottomLanding} style={[styles.backgroundElementImage]}>
                         <View style={styles.buttonContainer}>
-                            <TouchableOpacity onPress={() => navigation.navigate('Stats')} style={styles.buttonContainer}>
+                            <TouchableOpacity onPress={handleStatsFlow} style={styles.buttonContainer}>
                                 <Image source={StatsBtn} style={styles.button}>
                                 </Image>
                             </TouchableOpacity>

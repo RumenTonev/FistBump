@@ -16,6 +16,8 @@
 		1AA0D4F02AEA4707004FF62A /* FistBumpSKConf.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 1AA0D4EE2AEA4707004FF62A /* FistBumpSKConf.storekit */; };
 		1AA0D4F22AEA5157004FF62A /* StoreKitTestCertificate.cer in Resources */ = {isa = PBXBuildFile; fileRef = 1AA0D4F12AEA5157004FF62A /* StoreKitTestCertificate.cer */; };
 		1AA0D4F32AEA5157004FF62A /* StoreKitTestCertificate.cer in Resources */ = {isa = PBXBuildFile; fileRef = 1AA0D4F12AEA5157004FF62A /* StoreKitTestCertificate.cer */; };
+		1AC6FB062B4B090C008B434A /* SecondTake.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 1AC6FB052B4B090C008B434A /* SecondTake.storekit */; };
+		1AC6FB082B4B09C4008B434A /* StoreKitTestCertificateTakeTwo.cer in Resources */ = {isa = PBXBuildFile; fileRef = 1AC6FB072B4B09C4008B434A /* StoreKitTestCertificateTakeTwo.cer */; };
 		1AF68BA52ABB044300CCA4E4 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AF68BA42ABB044300CCA4E4 /* StoreKit.framework */; };
 		7699B88040F8A987B510C191 /* libPods-FistBump-FistBumpTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-FistBump-FistBumpTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
@@ -43,9 +45,12 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = FistBump/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = FistBump/main.m; sourceTree = "<group>"; };
 		19F6CBCC0A4E27FBF8BF4A61 /* libPods-FistBump-FistBumpTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FistBump-FistBumpTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A4462052B49423700CD7D1C /* FistBumpDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = FistBumpDebug.entitlements; path = FistBump/FistBumpDebug.entitlements; sourceTree = "<group>"; };
 		1AA0D4EE2AEA4707004FF62A /* FistBumpSKConf.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = FistBumpSKConf.storekit; sourceTree = "<group>"; };
 		1AA0D4F12AEA5157004FF62A /* StoreKitTestCertificate.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = StoreKitTestCertificate.cer; sourceTree = "<group>"; };
 		1AB2797D2A97F801008A2B91 /* FistBump.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = FistBump.entitlements; path = FistBump/FistBump.entitlements; sourceTree = "<group>"; };
+		1AC6FB052B4B090C008B434A /* SecondTake.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = SecondTake.storekit; sourceTree = "<group>"; };
+		1AC6FB072B4B09C4008B434A /* StoreKitTestCertificateTakeTwo.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = StoreKitTestCertificateTakeTwo.cer; sourceTree = "<group>"; };
 		1AF68BA42ABB044300CCA4E4 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		3B4392A12AC88292D35C810B /* Pods-FistBump.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FistBump.debug.xcconfig"; path = "Target Support Files/Pods-FistBump/Pods-FistBump.debug.xcconfig"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-FistBump.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FistBump.release.xcconfig"; path = "Target Support Files/Pods-FistBump/Pods-FistBump.release.xcconfig"; sourceTree = "<group>"; };
@@ -53,8 +58,8 @@
 		5DCACB8F33CDC322A6C60F78 /* libPods-FistBump.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FistBump.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = FistBump/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-FistBump-FistBumpTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FistBump-FistBumpTests.release.xcconfig"; path = "Target Support Files/Pods-FistBump-FistBumpTests/Pods-FistBump-FistBumpTests.release.xcconfig"; sourceTree = "<group>"; };
+		9796758599A541CB8EAECE46 /* SuperFunky-lgmWw.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "SuperFunky-lgmWw.ttf"; path = "../resources/fonts/SuperFunky-lgmWw.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		9796758599A541CB8EAECE46 /* SuperFunky-lgmWw.ttf */ = {isa = PBXFileReference; name = "SuperFunky-lgmWw.ttf"; path = "../resources/fonts/SuperFunky-lgmWw.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +103,7 @@
 		13B07FAE1A68108700A75B9A /* FistBump */ = {
 			isa = PBXGroup;
 			children = (
+				1A4462052B49423700CD7D1C /* FistBumpDebug.entitlements */,
 				1AB2797D2A97F801008A2B91 /* FistBump.entitlements */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
@@ -107,6 +113,15 @@
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
 			name = FistBump;
+			sourceTree = "<group>";
+		};
+		1C66997A030148E48AFE5368 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				9796758599A541CB8EAECE46 /* SuperFunky-lgmWw.ttf */,
+			);
+			name = Resources;
+			path = "";
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
@@ -132,6 +147,8 @@
 			children = (
 				1AA0D4EE2AEA4707004FF62A /* FistBumpSKConf.storekit */,
 				1AA0D4F12AEA5157004FF62A /* StoreKitTestCertificate.cer */,
+				1AC6FB052B4B090C008B434A /* SecondTake.storekit */,
+				1AC6FB072B4B09C4008B434A /* StoreKitTestCertificateTakeTwo.cer */,
 				13B07FAE1A68108700A75B9A /* FistBump */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* FistBumpTests */,
@@ -164,15 +181,6 @@
 			);
 			path = Pods;
 			sourceTree = "<group>";
-		};
-		1C66997A030148E48AFE5368 /* Resources */ = {
-			isa = "PBXGroup";
-			children = (
-				9796758599A541CB8EAECE46 /* SuperFunky-lgmWw.ttf */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-			path = "";
 		};
 /* End PBXGroup section */
 
@@ -271,8 +279,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				1AA0D4EF2AEA4707004FF62A /* FistBumpSKConf.storekit in Resources */,
+				1AC6FB082B4B09C4008B434A /* StoreKitTestCertificateTakeTwo.cer in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				1AC6FB062B4B090C008B434A /* SecondTake.storekit in Resources */,
 				1AA0D4F22AEA5157004FF62A /* StoreKitTestCertificate.cer in Resources */,
 				B4F1738CB2554D948A363C93 /* SuperFunky-lgmWw.ttf in Resources */,
 			);
@@ -516,7 +526,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = FistBump/FistBump.entitlements;
+				CODE_SIGN_ENTITLEMENTS = FistBump/FistBumpDebug.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = MC5XCSR7F8;
 				ENABLE_BITCODE = NO;

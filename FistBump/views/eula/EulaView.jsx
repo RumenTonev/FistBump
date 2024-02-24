@@ -26,7 +26,7 @@ export function EulaView({ navigation }) {
                 </ImageBackground>
             </View>
             <View style={styles.actionsContainer}>
-                <TouchableOpacity onPress={() => navigation.navigate('Landing')} style={styles.buttonContainer}>
+                <TouchableOpacity onPress={() => navigation.navigate('SocialLogins')} style={styles.buttonContainer}>
                     <Image source={Accept} style={styles.button}>
                     </Image>
                 </TouchableOpacity>

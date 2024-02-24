@@ -3,9 +3,12 @@ import { useEffect, useState } from "react";
 import { VoteBackground, backBtn, VoteHeader, tickBtn } from "../../resources";
 import { customStyles } from '../components/styles';
 
+import { useActions } from "./useActions";
+import { useNavigation } from "@react-navigation/native";
 
-export function VoteView({ navigation }) {
-
+export function VoteView() {
+    const{handleVoteFlow}=useActions()
+    const navigation =useNavigation()
     return (
         <View style={styles.container}>
             <ImageBackground source={VoteBackground} style={styles.backgroundContainer}>
@@ -20,11 +23,11 @@ export function VoteView({ navigation }) {
                         <ImageBackground style={styles.voteHeader} source={VoteHeader}></ImageBackground>
                     </View>
                 </View>
-                <TouchableOpacity onPress={() => navigation.navigate('Landing')} style={styles.voteTrump}>
+                <TouchableOpacity onPress={()=>handleVoteFlow('Trump')} style={styles.voteTrump}>
                     <Image source={tickBtn}>
                     </Image>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => navigation.navigate('Landing')} style={styles.voteBiden}>
+                <TouchableOpacity onPress={()=>handleVoteFlow('Byden')} style={styles.voteBiden}>
                     <Image source={tickBtn}>
                     </Image>
                 </TouchableOpacity>

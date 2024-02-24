@@ -1,4 +1,5 @@
-
+import Config from 'react-native-config'
+  
   export function getGetRequest(phone,code){
 
       
@@ -7,7 +8,7 @@
         method: 'get',
         url: `https://api.dexatel.com/v1/verifications?phone=${phone}&code=${code}`,
         headers: { 
-          'X-Dexatel-Key': process.env.REACT_APP_DEXATEL_KEY, 
+          'X-Dexatel-Key': Config.REACT_APP_DEXATEL_KEY, 
           'Content-Type': 'application/json'
         },
 
@@ -34,7 +35,7 @@
         method: 'post',
         url: 'https://api.dexatel.com/v1/verifications',
         headers: { 
-          'X-Dexatel-Key': process.env.REACT_APP_DEXATEL_KEY, 
+          'X-Dexatel-Key': Config.REACT_APP_DEXATEL_KEY, 
           'Content-Type': 'application/json'
         },
         data : data

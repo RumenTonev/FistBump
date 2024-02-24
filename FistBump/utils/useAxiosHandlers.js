@@ -4,6 +4,10 @@ import { DbContext } from "../App";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import { getGetRequest, getPostRequestObject } from "./axiosRepo";
+import { useDbHandlers } from "./useDbHandlers";
+import { setConfirmedLogin, setLoggedIn } from "../store/userSlice";
+import { useDispatch ,useSelector} from "react-redux";
+import { useNavigation } from '@react-navigation/native';
 
 
 // "account_id": "72e47e47-95b9-41c2-bdcd-55dd9bb04e14",
@@ -14,12 +18,18 @@ import { getGetRequest, getPostRequestObject } from "./axiosRepo";
 // "expire_date": "2022-03-04 14:50:57"
 
 export function useAxiosHandlers() {
+  const{handleGet,handleUpsert}=useDbHandlers()
+  const user = useSelector((state) => state.user.user);
+  const {id,isUs}=user
+  const navigation = useNavigation();
+  const dispatch = useDispatch();
 
-  const handleConfirmOTP = useCallback(async (phoneNumber, code, navigation) => {
+  const handleConfirmOTP = useCallback(async (code) => {
     console.log('IIIIIIII')
-  let localPhone=phoneNumber
+  let localPhone=id
   
-  if(phoneNumber.startsWith('+'))localPhone=phoneNumber.substring(1)
+  if(id.startsWith('+'))localPhone=id.substring(1)
+
     const config = getGetRequest(localPhone, code)
     axios(config)
       .then(async function (response) {
@@ -30,7 +40,9 @@ export function useAxiosHandlers() {
             if (data.length > 0) {
               const { code: savedcode } = data[0]
               if (savedcode == code) {
-                navigation.navigate('Settings')
+                dispatch(setConfirmedLogin())
+                handleGet(id,isUs)
+                navigation.navigate('Landing')
               }
             }
           }
@@ -42,22 +54,24 @@ export function useAxiosHandlers() {
         console.log(error);
       });
 
-  }, [])
+  }, [id,isUs,navigation])
 
 
 
 
-  const handleSendOTP = useCallback(async (phoneNumber, navigation) => {
+  const handleSendOTP = useCallback(async (phoneNumber,isUs) => {
+  const flag=false
   
+  if(flag) return
     console.log('IIIIIIII')
     const config = getPostRequestObject(phoneNumber)
     axios(config)
       .then(async function (response) {
         if (response.data) {
           const {data}=response
+          dispatch(setLoggedIn({ phone: data.data.phone ,isUs:isUs}))
           
-          
-          navigation.navigate('ConfirmationCode', { phone: data.data.phone })
+          navigation.navigate('ConfirmationCode')
         }
         else {
           //TODO: no data in the response
@@ -67,7 +81,7 @@ export function useAxiosHandlers() {
         console.log(error);
       });
 
-  }, [])
+  }, [navigation])
 
 
   return {

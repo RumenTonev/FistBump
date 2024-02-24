@@ -2,9 +2,11 @@ import { useState } from 'react';
 import { View, TouchableOpacity, StyleSheet, ImageBackground, Image } from "react-native";
 import { backBtn } from "../../resources";
 import { customStyles } from '../components/styles';
+import { useNavigation } from '@react-navigation/native';
 
-export function MainPlayerAnimation({ route, navigation }) {
+export function MainPlayerAnimation({ route}) {
     const { playerAnimation } = route.params;
+    const navigation=useNavigation()
     return (
         <View style={[styles.container, custom.fullStretch]}>
             <ImageBackground style={custom.fullStretch} source={playerAnimation}>

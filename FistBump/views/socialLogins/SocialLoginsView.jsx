@@ -6,9 +6,7 @@
  * @format
  */
 
-import { GoogleSignin, GoogleSigninButton } from '@react-native-google-signin/google-signin';
 import React, { useEffect } from 'react';
-import { LoginButton } from 'react-native-fbsdk-next';
 import {
   Button,
   View,
@@ -45,8 +43,8 @@ export function SocialLoginsView({ navigation }) {
    // error reading value
  
 },[navigation]);
-  const linkedRef = React.useRef()
-  const { signInGoogle, signInFacebook,onAppleButtonPress } = useHandlers(navigation)
+  //const linkedRef = React.useRef()
+  const { onAppleButtonPress } = useHandlers(navigation)
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
 <CountryCodePicker/> 
@@ -58,19 +56,6 @@ export function SocialLoginsView({ navigation }) {
         }
       />
       
-      <GoogleSigninButton
-        style={{ width: 192, height: 48, marginTop: 30 ,marginBottom:30}}
-        size={GoogleSigninButton.Size.Wide}
-        color={GoogleSigninButton.Color.Dark}
-        onPress={signInGoogle}
-      />
-  
-      <LoginButton
-        testID='facebook-login'
-        permissions={['email', 'public_profile', 'openid']}
-        onLoginFinished={signInFacebook}
-
-      />
       <AppleButton
         style={styles.appleButton}
         cornerRadius={5}
@@ -78,17 +63,6 @@ export function SocialLoginsView({ navigation }) {
         buttonType={AppleButton.Type.CONTINUE}
         onPress={() => onAppleButtonPress()}
       />
-      {/* <LinkedInModal
-         ref={linkedRef}
-         clientID="78jx520vqfzskv"
-         clientSecret="h7kXliVSwS9SydjZ"
-         permissions={['openid','profile','email','r_emailaddress']}
-         redirectUri="https://oauth.pstmn.io/v1/callback"
-         onSuccess={onSuccessLinkedin}
-       />
-       <Button title="Log Out" onPress={linkedRef?.current?.logoutAsync()} />
-      */}
-
     </View>
   );
 }

@@ -6,10 +6,14 @@ import {
   StatusBar,
   TouchableOpacity,
   Text,
+  Alert,
+  ImageBackground,
+  Image,
 } from 'react-native';
 import PhoneInput from 'react-native-phone-number-input';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import { useAxiosHandlers } from '../../utils/useAxiosHandlers';
+import { ContinueButton, LoginBackground } from '../../resources';
 const phoneUtil = require('google-libphonenumber').PhoneNumberUtil.getInstance();
 
 
@@ -17,8 +21,10 @@ const phoneUtil = require('google-libphonenumber').PhoneNumberUtil.getInstance()
 const CountryCodePicker = ({navigation}) => {
   const [value, setValue] = useState('');
   const [callingCode,setCallingCode]=useState('')
+  const [isUs,setIsUs]=useState(true)
   const [disabled, setDisabled] = useState(false);
-  const phoneInput = useRef<PhoneInput>(null);
+  const [isValid,setIsValid]=useState(false)
+  const phoneInput = useRef(null);
 const {handleSendOTP}=  useAxiosHandlers()
   const handleOnChange=useCallback((phoneNumber)=>
   {
@@ -33,10 +39,13 @@ const {handleSendOTP}=  useAxiosHandlers()
     const callingCode= phoneInput.current?.getCallingCode()
     console.log(callingCode)
     const countryCode=phoneInput.current?.getCountryCode()
+    setIsUs(countryCode=='US')
     console.log(countryCode)
+    console.log(countryCode=='US')
 
       const parsedNo = phoneUtil.parseAndKeepRawInput(phoneNumber.startsWith('+')?phoneNumber:`+${callingCode}${phoneNumber}`, 'US');
-
+var isValidNum=phoneUtil.isValidNumberForRegion(parsedNo, countryCode);
+setIsValid(isValidNum)
 // Print the phone's country code.
 //console.log(number.getCountryCode());
 // => 1
@@ -46,6 +55,7 @@ const {handleSendOTP}=  useAxiosHandlers()
 // => 2024561414
     //const parsedNo = phoneUtil.parse(phoneNumber, '');
     console.log(parsedNo)
+    
     if (parsedNo.hasNationalNumber()) {
       const nationalNumber = parsedNo.getNationalNumber().toString();
       console.log(nationalNumber)
@@ -53,7 +63,7 @@ const {handleSendOTP}=  useAxiosHandlers()
       const code = parsedNo.getCountryCode();
       console.log(code)
       const mineCode=phoneUtil.getRegionCodeForNumber(parsedNo)
-      if(mineCode){
+      //if(mineCode){
       phoneInput.current?.setState((state)=>{
        return{ code: code,
       number: nationalNumber,
@@ -66,7 +76,7 @@ const {handleSendOTP}=  useAxiosHandlers()
       setValue(nationalNumber)
       setCallingCode(code)
     
-      }
+      
       console.log('MINECODE   '+mineCode)
      // const countryCode = phoneUtil.getRegionCodeForCountryCode(code);
       //console.log(countryCode)
@@ -79,19 +89,44 @@ const {handleSendOTP}=  useAxiosHandlers()
       // });
     }
   }
-    catch(e){}
+    catch(e){
+      debugger
+    }
     
   
  
     
   },[value,phoneInput.current,setValue])
 
+
+
+
+
+
+
+  const handleOnPress=useCallback(()=>
+  {
+  debugger
+  if(!isValid)
+  {
+Alert.alert("Please enter a valid number",)
+  }
+  else{
+    handleSendOTP(`+${callingCode}${value}`,isUs)
+  }
+  },[callingCode,value,isUs])
+
+
+
+
+  
+
   return (
     <>
       <StatusBar barStyle="dark-content" />
       <View style={styles.container}> 
+      <ImageBackground source={LoginBackground} style={styles.wrapper}>
       
-        <SafeAreaView style={styles.wrapper}>
         
         {/*@ts-ignore*/}
            <PhoneInput
@@ -103,7 +138,7 @@ const {handleSendOTP}=  useAxiosHandlers()
             onChangeText={(text)=>{handleOnChange(text)}}
             countryPickerProps={{withAlphaFilter:true}}
             disabled={false}
-            //withDarkTheme
+            //withDarkThemer
             //withShadow
             autoFocus
             textInputProps={{ autoCorrect:true,textContentType:"telephoneNumber",autoComplete:"tel",autoFocus:false,importantForAutofill:"yes" ,inputMode:"tel",dataDetectorTypes:"phoneNumber",keyboardType:"phone-pad"}}
@@ -113,12 +148,14 @@ const {handleSendOTP}=  useAxiosHandlers()
           />
           <TouchableOpacity
             style={[styles.button, disabled ? {} : styles.redColor]}
-            onPress={()=>handleSendOTP(`+${callingCode}${value}`,navigation)
-            
-            }>
-            <Text style={styles.buttonText}>Continue</Text>
+            //onPress={()=>handleSendOTP(`+${callingCode}${value}`,isUs,navigation)}
+            onPress={handleOnPress}
+            >
+
+           <Text style={styles.buttonText}>Continue</Text> 
           </TouchableOpacity> 
-        </SafeAreaView>
+          
+        </ImageBackground>
       </View>
     </>
   );
@@ -156,6 +193,14 @@ const styles = StyleSheet.create({
   },
   redColor: {
     backgroundColor: '#F57777'
+  },
+  image:{
+    flex:1,
+    alignSelf:'center',
+    width:'100%',
+    height:'100%',
+    resizeMode:'contain',
+    aspectRatio:4
   },
   message: {
     borderWidth: 1,
