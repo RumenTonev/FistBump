@@ -46,8 +46,9 @@ function App() {
       <DbContext.Provider value={cosmosClient}>
         <Provider store={store}>
           <PersistGate loading={null} persistor={persistor}>
-            <Stack.Navigator>
-            
+            <Stack.Navigator screenOptions={{
+              orientation: "landscape"
+            }}>
               <Stack.Screen name="Logo" component={LogoView} options={{
                 headerShown: false,
               }} />
@@ -58,39 +59,41 @@ function App() {
                 name="SocialLogins"
                 component={CountryCodePicker}
                 options={{
-                  headerShown: false
+                  headerShown: false,
+                  orientation: "portrait"
                 }}
               />
-
-<Stack.Screen name="PaywallScreen" component={OfferingDetailScreen}  options={{
-                  headerShown: false
-                }}/>
-             <Stack.Screen name="Landing" component={Landing} options={{
-            headerShown: false,
-          }} />
-          <Stack.Screen name="MainGame" component={MainGame} options={{
-            headerShown: false
-          }} />
-          <Stack.Screen name="Vote" component={VoteView} options={{
-            headerShown: false
-          }} />
-          <Stack.Screen name="MainPlayerAnimation" component={MainPlayerAnimation} options={{
-            headerShown: false
-          }} />
-          <Stack.Screen name="Stats" component={Stats} options={{
-            headerShown: false
-          }} />
-          <Stack.Screen name="ConfirmationCode" component={ConfirmationCodeView}  options={{
-                  headerShown: false
-                }}/>
+              <Stack.Screen name="PaywallScreen" component={OfferingDetailScreen} options={{
+                headerShown: false,
+                orientation: "portrait"
+              }} />
+              <Stack.Screen name="Landing" component={Landing} options={{
+                headerShown: false,
+              }} />
+              <Stack.Screen name="MainGame" component={MainGame} options={{
+                headerShown: false
+              }} />
+              <Stack.Screen name="Vote" component={VoteView} options={{
+                headerShown: false
+              }} />
+              <Stack.Screen name="MainPlayerAnimation" component={MainPlayerAnimation} options={{
+                headerShown: false
+              }} />
+              <Stack.Screen name="Stats" component={Stats} options={{
+                headerShown: false
+              }} />
+              <Stack.Screen name="ConfirmationCode" component={ConfirmationCodeView} options={{
+                headerShown: false,
+                orientation: "portrait"
+              }} />
               <Stack.Screen name="Profile" component={ProfileView} />
               <Stack.Screen name="Settings" component={SettingsView} />
               <Stack.Screen name="Paywall" component={PaywallScreen} />
-              
+
             </Stack.Navigator>
-            </PersistGate>
-            </Provider>
-            </DbContext.Provider>
+          </PersistGate>
+        </Provider>
+      </DbContext.Provider>
 
     </NavigationContainer>
   );
