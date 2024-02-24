@@ -1,32 +1,41 @@
-import { useState } from 'react';
-import { View, TouchableOpacity, Image, StyleSheet, ImageBackground, Platform } from "react-native";
-import { MainGameSparing, HitLeft, HitRight, TrumpBiden, BidenTrump, backBtn, PlayHeader } from "../../resources";
+import { useEffect, useState } from 'react';
+import { View, TouchableOpacity, Image, StyleSheet, ImageBackground } from "react-native";
+import { MainGameSparing, MainGameIntro, HitLeft, HitRight, TrumpBiden, BidenTrump, backBtn, PlayHeader } from "../../resources";
 import { customStyles } from '../components/styles';
 
 export function MainGame({ navigation }) {
-    const [actionImage, setActionAnimation] = useState({ image: MainGameSparing });
-    let [elementsVisibility, setElementsVisibility] = useState(true);
+    const [actionImage, setActionAnimation] = useState({ image: MainGameIntro });
+    let [elementsVisibility, setElementsVisibility] = useState(false);
     let elementVisible = elementsVisibility ? styles.visible : styles.hidden;
 
-    setActionImage = (actionImage, duration) => {
+    setActionImage = (actionImage, duration, initial) => {
         setActionAnimation(actionImage);
         setElementsVisibility(false);
+        if (!initial) {
+            setTimeout(() => {
+                setElementsVisibility(true);
+                setActionAnimation({ image: MainGameSparing });
+            }, duration)
+        }
+    };
+
+    useEffect(() => {
         setTimeout(() => {
             setElementsVisibility(true);
-            setActionAnimation({ image: MainGameSparing });
-        }, duration)
-    };
+            setActionAnimation({ image: MainGameSparing }, 0, true);
+        }, 2500)
+    }, [])
 
     return (
         <View style={[styles.container, customStyles.fullStretch]}>
             <ImageBackground style={customStyles.fullStretch} source={actionImage.image}>
                 <View style={customStyles.buttonNavBackContainer}>
-                    <TouchableOpacity onPress={() => navigation.navigate('Landing')}>
+                    <TouchableOpacity onPress={() => navigation.navigate('Landing')} style={elementVisible}>
                         <Image source={backBtn}>
                         </Image>
                     </TouchableOpacity>
                 </View>
-                <View style={[styles.playHeaderContent]}>
+                <View style={[styles.playHeaderContent, elementVisible]}>
                     <View style={[styles.playHeaderContainer]}>
                         <ImageBackground style={customStyles.fullStretch} source={PlayHeader}></ImageBackground>
                     </View>

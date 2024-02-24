@@ -13,6 +13,7 @@ export const VoteBtn = require('./landing/vote-new.png');
 export const HitLeft = require('./main-game/hit-original.png'); 
 export const HitRight = require('./main-game/hit-reversed-original.png'); 
 export const MainGameSparing = require('./main-game/main-game-sparing.gif'); 
+export const MainGameIntro = require('./main-game/main-game-intro.gif'); 
 export const TrumpBiden = require('./players/trump-biden.gif'); 
 export const BidenTrump = require('./players/biden-trump.gif'); 
 export const bottomLanding = require('./landing/bottomLanding.png'); 
