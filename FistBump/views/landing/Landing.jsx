@@ -7,13 +7,15 @@ import { customStyles } from '../components/styles';
 export function Landing({ navigation }) {
     const screen = Dimensions.get('screen');
     const orientation = screen.height > screen.width ? 'portrait' : 'landscape';
-    const baseWidth = 40;
+    const baseWidth = 35;
     const baseHeight = 90;
+    const basePercentage = 100;
+    
     const [height, setHeight] = useState(() => {
-        return orientation == 'portrait' ? (screen.width * baseHeight) / 100 : (screen.height * baseHeight) / 100;
+        return orientation == 'portrait' ? (screen.width * baseHeight) / basePercentage : (screen.height * baseHeight) / basePercentage;
     });
     const [width, setWidth] = useState(() => {
-        return orientation == 'portrait' ? (screen.height * baseWidth) / 100 : (screen.width * baseWidth) / 100;
+        return orientation == 'portrait' ? (screen.height * baseWidth) / basePercentage : (screen.width * baseWidth) / basePercentage;
     });
 
     return (
@@ -27,39 +29,33 @@ export function Landing({ navigation }) {
                     <ImageBackground source={topLanding} style={styles.topLanding}></ImageBackground>
                 </View>
                 <View id="preTopLanding" style={styles.backgroundElement}>
-                    <ImageBackground source={preTopLanding} style={[styles.backgroundElementImage, styles.buttonContainerFlex]}>
-                        <View style={styles.emptyButtonContainer}></View>
+                    <ImageBackground source={preTopLanding} style={[styles.backgroundElementImage]}>
                         <View style={styles.buttonContainer}>
                             <TouchableOpacity onPress={() => navigation.navigate('Vote')} style={styles.buttonContainer}>
                                 <Image source={VoteBtn} style={styles.button}>
                                 </Image>
                             </TouchableOpacity>
                         </View>
-                        <View style={styles.emptyButtonContainer}></View>
                     </ImageBackground>
                 </View>
                 <View id="mediumLanding" style={styles.backgroundElement}>
-                    <ImageBackground source={mediumLanding} style={[styles.backgroundElementImage, styles.buttonContainerFlex]}>
-                        <View style={styles.emptyButtonContainer}></View>
+                    <ImageBackground source={mediumLanding} style={[styles.backgroundElementImage]}>
                         <View style={styles.buttonContainer}>
                             <TouchableOpacity onPress={() => navigation.navigate('MainGame')} style={styles.buttonContainer}>
                                 <Image source={PlayBtn} style={styles.button}>
                                 </Image>
                             </TouchableOpacity>
                         </View>
-                        <View style={styles.emptyButtonContainer}></View>
                     </ImageBackground>
                 </View>
                 <View id="preBottomLanding" style={styles.backgroundElement}>
-                    <ImageBackground source={preBottomLanding} style={[styles.backgroundElementImage, styles.buttonContainerFlex]}>
-                        <View style={styles.emptyButtonContainer}></View>
+                    <ImageBackground source={preBottomLanding} style={[styles.backgroundElementImage]}>
                         <View style={styles.buttonContainer}>
                             <TouchableOpacity onPress={() => navigation.navigate('Stats')} style={styles.buttonContainer}>
                                 <Image source={StatsBtn} style={styles.button}>
                                 </Image>
                             </TouchableOpacity>
                         </View>
-                        <View style={styles.emptyButtonContainer}></View>
                     </ImageBackground>
                 </View>
                 <View id="bottomLanding" style={styles.backgroundElement}>
@@ -110,10 +106,6 @@ const styles = StyleSheet.create({
     },
     buttonContainerFlex: {
         flex: 1,
-        flexDirection: 'row',
-    },
-    emptyButtonContainer: {
-        flex: 0.5,
     },
     buttonContainer: {
         flex: 1,
@@ -121,9 +113,6 @@ const styles = StyleSheet.create({
     button: {
         flex: 1,
         width: '100%',
-        resizeMode: 'center'
-    },
-    emptyContainer: {
-        flex: 2
+        resizeMode: 'contain'
     }
 })
