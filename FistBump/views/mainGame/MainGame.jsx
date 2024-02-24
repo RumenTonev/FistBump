@@ -8,23 +8,22 @@ export function MainGame({ navigation }) {
     let [elementsVisibility, setElementsVisibility] = useState(false);
     let elementVisible = elementsVisibility ? styles.visible : styles.hidden;
 
-    setActionImage = (actionImage, duration, initial) => {
+    triggerAnimation = (animationImage, duration) => {
+        setTimeout(() => {
+            setElementsVisibility(true);
+            setActionAnimation(animationImage);
+        }, duration)
+    };
+
+    setActionImage = (actionImage, duration) => {
         setActionAnimation(actionImage);
         setElementsVisibility(false);
-        if (!initial) {
-            setTimeout(() => {
-                setElementsVisibility(true);
-                setActionAnimation({ image: MainGameSparing });
-            }, duration)
-        }
+        triggerAnimation({ image: MainGameSparing }, duration);
     };
 
     useEffect(() => {
-        setTimeout(() => {
-            setElementsVisibility(true);
-            setActionAnimation({ image: MainGameSparing }, 0, true);
-        }, 2500)
-    }, [])
+        triggerAnimation({ image: MainGameSparing }, 2500);
+    }, []);
 
     return (
         <View style={[styles.container, customStyles.fullStretch]}>
