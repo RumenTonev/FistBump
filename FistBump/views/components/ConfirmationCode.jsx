@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Text, TouchableOpacity,StyleSheet,Image,ImageBackground} from 'react-native';
+import {View, Text, TouchableOpacity,customStylesheet,Image,ImageBackground} from 'react-native';
 
 import {
   CodeField,
@@ -7,10 +7,9 @@ import {
   useBlurOnFulfill,
   useClearByFocusCell,
 } from 'react-native-confirmation-code-field';
-import styles from './styles';
+import { customStyles } from './styles';
 import { useAxiosHandlers } from '../../utils/useAxiosHandlers';
 import { useSelector } from 'react-redux';
-
 import { ContinueButton,LoginBackground} from '../../resources';
 
 const CELL_COUNT = 4;
@@ -30,31 +29,31 @@ const ConfirmationCode = ({navigation}) => {
 const disabled=value.length<CELL_COUNT
     const {handleConfirmOTP} =  useAxiosHandlers()
   return (
-       <ImageBackground source={LoginBackground} style={styles.wrapper}>
+       <ImageBackground source={LoginBackground} style={customStyles.wrapper}>
       <CodeField
         ref={ref}
         {...props}
         value={value}
         onChangeText={setValue}
         cellCount={CELL_COUNT}
-        rootStyle={styles.codeFieldRoot}
+        rootStyle={customStyles.codeFieldRoot}
         keyboardType="number-pad"
         textContentType="oneTimeCode"
         renderCell={({index, symbol, isFocused}) => (
           <Text
             key={index}
-            style={[styles.cell, isFocused && styles.focusCell]}
+            style={[customStyles.cell, isFocused && customStyles.focusCell]}
             onLayout={getCellOnLayoutHandler(index)}>
             {symbol || (isFocused ? <Cursor /> : null)}
           </Text>
         )}
       />
       <TouchableOpacity
-            style={[styles.button, disabled ? {} : styles.redColor]}
+            style={[customStyles.button, disabled ? {} : customStyles.redColor]}
             onPress={()=>handleConfirmOTP(value)
             
             }>
-                <Text style={styles.buttonText}>Continue</Text> 
+                <Text style={customStyles.buttonText}>Continue</Text> 
 
           </TouchableOpacity>
           </ImageBackground>

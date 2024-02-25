@@ -1,15 +1,23 @@
-import { useCallback, useState } from 'react';
+import { useEffect, useCallback, useState } from 'react';
 import { View, TouchableOpacity, Image, StyleSheet, ImageBackground } from "react-native";
-import { MainGameSparing, HitLeft, HitRight, TrumpBiden, BidenTrump, backBtn, PlayHeader } from "../../resources";
+import { MainGameSparing, MainGameIntro, HitLeft, HitRight, TrumpBiden, BidenTrump, backBtn, PlayHeader } from "../../resources";
+import { customStyles } from '../components/styles';
 import { useNavigation } from '@react-navigation/native';
 
 export function MainGame() {
-    const [actionImage, setActionAnimation] = useState({ image: MainGameSparing });
-    let [elementsVisibility, setElementsVisibility] = useState(true);
+    const [actionImage, setActionAnimation] = useState({ image: MainGameIntro });
+    let [elementsVisibility, setElementsVisibility] = useState(false);
     let elementVisible = elementsVisibility ? styles.visible : styles.hidden;
 const navigation=useNavigation()
 
-    const setActionImage = (actionImage, duration) => {
+    triggerAnimation = (animationImage, duration) => {
+        setTimeout(() => {
+            setElementsVisibility(true);
+            setActionAnimation(animationImage);
+        }, duration)
+    };
+
+    setActionImage = (actionImage, duration) => {
         setActionAnimation(actionImage);
         setElementsVisibility(false);
         setTimeout(() => {
@@ -18,36 +26,37 @@ const navigation=useNavigation()
         }, duration)
     };
 
-  const handBack= useCallback( () => {
-    
-    
-        navigation.navigate('Landing')
-    
+    useEffect(() => {
+        triggerAnimation({ image: MainGameSparing }, 2500);
+    }, []);
 
-    
+  const handBack= useCallback( () => {
+        navigation.navigate('Landing')
   }, [])
 
     return (
-        <View style={styles.container}>
-            <ImageBackground style={styles.landingBackgroundAnimated} source={actionImage.image}>
-                <TouchableOpacity onPress={handBack} style={[ elementVisible]}>
-                    <Image source={backBtn} style={styles.buttonNavBack}>
-                    </Image>
-                </TouchableOpacity>
-                <View style={[styles.playHeaderContent]}>
+        <View style={[styles.container, customStyles.fullStretch]}>
+            <ImageBackground style={customStyles.fullStretch} source={actionImage.image}>
+                <View style={customStyles.buttonNavBackContainer}>
+                    <TouchableOpacity onPress={handBack} style={elementVisible}>
+                        <Image source={backBtn}>
+                        </Image>
+                    </TouchableOpacity>
+                </View>
+                <View style={[styles.playHeaderContent, elementVisible]}>
                     <View style={[styles.playHeaderContainer]}>
-                        <ImageBackground style={styles.playHeader} source={PlayHeader}></ImageBackground>
+                        <ImageBackground style={customStyles.fullStretch} source={PlayHeader}></ImageBackground>
                     </View>
                 </View>
                 <View style={[styles.actionButton, styles.buttonHitTrump]}>
-                    <TouchableOpacity onPress={() => setActionImage({ image: TrumpBiden }, 2500)} style={elementVisible} >
-                        <Image source={HitLeft} style={styles.button}>
+                    <TouchableOpacity onPress={() => this.setActionImage({ image: TrumpBiden }, 2500)} style={elementVisible} >
+                        <Image source={HitLeft} style={customStyles.animationActionButton}>
                         </Image>
                     </TouchableOpacity>
                 </View>
                 <View style={[styles.actionButton, styles.buttonHitBiden]}>
                     <TouchableOpacity onPress={() => this.setActionImage({ image: BidenTrump }, 1750)} style={elementVisible}>
-                        <Image source={HitRight} style={styles.button}>
+                        <Image source={HitRight} style={customStyles.animationActionButton}>
                         </Image>
                     </TouchableOpacity>
                 </View>
@@ -58,13 +67,7 @@ const navigation=useNavigation()
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        height: '100%',
-        width: '100%'
-    },
-    landingBackgroundAnimated: {
-        width: '100%',
-        height: '100%'
+        flex: 1
     },
     landingContent: {
         flex: 1,
@@ -106,14 +109,13 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
         height: '25%',
         width: '100%',
-        marginTop: '10%'
+        ...customStyles.headers
     },
     playHeaderContainer: {
         width: '30%'
     },
-    playHeader: {
-        height: '100%',
-        width: '100%'
+    visible: {
+        display: 'flex'
     },
     hidden: {
         display: 'none'

@@ -1,30 +1,34 @@
 import { View, TouchableOpacity, Image, StyleSheet, Text, ScrollView, BackHandler, ImageBackground, Dimensions } from "react-native";
 import { useEffect, useState } from "react";
 import { VoteBackground, backBtn, VoteHeader, tickBtn } from "../../resources";
+import { customStyles } from '../components/styles';
+
 import { useActions } from "./useActions";
 import { useNavigation } from "@react-navigation/native";
 
 export function VoteView() {
-    const{handleVoteFlow}=useActions()
-    const navigation =useNavigation()
+    const { handleVoteFlow } = useActions()
+    const navigation = useNavigation()
     return (
         <View style={styles.container}>
             <ImageBackground source={VoteBackground} style={styles.backgroundContainer}>
-                <TouchableOpacity onPress={() => navigation.navigate('Landing')} style={styles.buttonContainer}>
-                    <Image source={backBtn} style={styles.button}>
-                    </Image>
-                </TouchableOpacity>
+                <View style={customStyles.buttonNavBackContainer}>
+                    <TouchableOpacity onPress={() => navigation.navigate('Landing')}>
+                        <Image source={backBtn}>
+                        </Image>
+                    </TouchableOpacity>
+                </View>
                 <View style={[styles.voteHeaderContent]}>
                     <View style={[styles.voteHeaderContainer]}>
                         <ImageBackground style={styles.voteHeader} source={VoteHeader}></ImageBackground>
                     </View>
                 </View>
-                <TouchableOpacity onPress={()=>handleVoteFlow('Trump')} style={styles.voteTrump}>
-                    <Image source={tickBtn} style={styles.voteTrumpBtn}>
+                <TouchableOpacity onPress={() => handleVoteFlow('Trump')} style={styles.voteTrump}>
+                    <Image source={tickBtn}>
                     </Image>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={()=>handleVoteFlow('Byden')} style={styles.voteBiden}>
-                    <Image source={tickBtn} style={styles.voteBiden}>
+                <TouchableOpacity onPress={() => handleVoteFlow('Byden')} style={styles.voteBiden}>
+                    <Image source={tickBtn}>
                     </Image>
                 </TouchableOpacity>
             </ImageBackground>
@@ -61,7 +65,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         height: '25%',
-        width: '100%',
         marginTop: '2%'
     },
     voteHeaderContainer: {

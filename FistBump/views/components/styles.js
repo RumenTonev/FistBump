@@ -1,14 +1,14 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 
 
 
-export default StyleSheet.create({
-  root: { minHeight: 300},
-  title: {textAlign: 'center', fontSize: 30},
-  codeFieldRoot: {marginTop: 20,backgroundColor: 'transparent',zIndex:999,opacity:0.99,width:200},
+export let customStyles = StyleSheet.create({
+  root: {  minHeight: 300 },
+  title: { textAlign: 'center', fontSize: 30 },
+  codeFieldRoot: { marginTop: 20 ,backgroundColor: 'transparent',zIndex:999,opacity:0.99,width:200},
   cell: {
     width: 40,
     height: 40,
@@ -47,7 +47,7 @@ export default StyleSheet.create({
     shadowRadius: 6.27,
     elevation: 10,
   },
-  buttonText:{
+  buttonText: {
     color: 'white',
     fontSize: 14,
   },
@@ -61,6 +61,32 @@ export default StyleSheet.create({
     marginBottom: 20,
     justifyContent: 'center',
     alignItems: 'flex-start',
+  },
+  headers: {
+    ...Platform.select({
+      ios: { marginTop: '2%' },
+      android: { marginTop: '2%' }
+    })
+  },
+  buttonNavBack: {
+    position: 'absolute',
+    top: 10,
+    left: 10,
+    zIndex: 100
+  },
+  buttonNavBackContainer: {
+    position: 'absolute',
+    zIndex: 10,
+    top: 10,
+    left: 10
+  },
+  fullStretch: {
+    width: '100%',
+    height: '100%'
+  },
+  animationActionButton: {
+    width: 70,
+    height: 70
   },
   image:{
     flex:1,

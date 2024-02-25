@@ -1,6 +1,7 @@
 import { View, TouchableOpacity, Image, StyleSheet, Text, ImageBackground } from "react-native";
 import { TrumpStatsHolder, BidenStatsHolder, StatsBackgroundPlain, TrumpStatsHeader, StatsHeader, BidenStatsHeader, backBtn } from "../../resources";
-import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
+import { RFPercentage } from "react-native-responsive-fontsize";
+import { customStyles } from '../components/styles';
 import { useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 import { useGetStatsOnLoad } from "../../store/hooks/useGetStatsOnLoad";
@@ -14,9 +15,9 @@ export function Stats() {
     return (
         <View style={styles.container}>
             <ImageBackground style={styles.landingContentStatsBackground} source={StatsBackgroundPlain}>
-                <View style={styles.buttonNavBackContainer}>
-                    <TouchableOpacity onPress={() => navigation.navigate('Landing')} style={styles.buttonNavBack}>
-                        <Image source={backBtn} style={styles.buttonNavBackImage}>
+                <View style={customStyles.buttonNavBackContainer}>
+                    <TouchableOpacity onPress={() => navigation.navigate('Landing')} >
+                        <Image source={backBtn}>
                         </Image>
                     </TouchableOpacity>
                 </View>
@@ -33,7 +34,7 @@ export function Stats() {
                 </View>
                 <View style={styles.statsContent}>
                     <View style={styles.statsContainer}>
-                        <ImageBackground source={TrumpStatsHolder} style={[styles.trumpStatsHolder, styles.centerStat]}>
+                        <ImageBackground source={TrumpStatsHolder} style={[styles.centerStat, styles.trumpStatsHolder]} >
                             <View style={styles.statValueContainer}>
                                 <Text style={styles.statValue}>{TrumpCount}</Text>
                             </View>
@@ -68,17 +69,15 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         height: '35%',
-        width: '100%',
-        marginTop: '2%'
+        width: '100%'
     },
     statsContent: {
         height: '60%',
-        width: '100%',
         flexDirection: 'row',
         justifyContent: 'space-evenly'
     },
     statsContainer: {
-        width: '40%',
+        width: '35%'
     },
     emptyStatsContainer: {
         width: '10%'
@@ -91,12 +90,6 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%'
     },
-    statsHeaderPaddingTop: {
-        paddingTop: '5%'
-    },
-    statsHeaderPaddingBottom: {
-        paddingBottom: '5%'
-    },
     statsHeaderContainer: {
         width: '30%'
     },
@@ -104,20 +97,12 @@ const styles = StyleSheet.create({
         height: '100%',
         width: '100%'
     },
-    statValueContainer: {
-    },
     centerStat: {
         justifyContent: 'center'
     },
     statValue: {
         textAlign: 'center',
-        fontSize: RFPercentage(4),
+        fontSize: RFPercentage(3),
         fontFamily: 'SuperFunky-lgmWw',
-    },
-    buttonNavBackContainer: {
-        position: 'absolute',
-        zIndex: 10,
-        top: 10,
-        left: 10
     }
 })

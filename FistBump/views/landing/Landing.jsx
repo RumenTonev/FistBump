@@ -1,58 +1,64 @@
-import { View, TouchableOpacity, Image, StyleSheet, Text, ScrollView, BackHandler, ImageBackground, Dimensions } from "react-native";
-import { LandingPlayers, PlayBtn, StatsBtn, LandingBackground, BidenHome, TrumpHome, VoteBtn, bottomLanding, preBottomLanding, mediumLanding, preTopLanding, topLanding } from "../../resources";
-import { useEffect, useState } from "react";
+import { View, TouchableOpacity, Image, StyleSheet, ImageBackground, Dimensions } from "react-native";
+import { PlayBtn, StatsBtn, BidenHome, TrumpHome, VoteBtn, bottomLanding, preBottomLanding, mediumLanding, preTopLanding, topLanding } from "../../resources";
+import { useState } from "react";
+import { customStyles } from '../components/styles';
 import { useNavigation } from "@react-navigation/native";
 import { useActions } from "./useActions";
 
 export function Landing() {
-const navigation=useNavigation()
-    const [height, setHeight] = useState((Dimensions.get('window').height * 80) / 100);
-    const [width, setWidth] = useState((Dimensions.get('window').width * 40) / 100);
-    const{handleStatsFlow}=useActions()
+    const navigation=useNavigation();   
+    const screen = Dimensions.get('screen');
+    const orientation = screen.height > screen.width ? 'portrait' : 'landscape';
+    const baseWidth = 35;
+    const baseHeight = 90;
+    const basePercentage = 100;
+    const{handleStatsFlow}=useActions();
+    
+    const [height, setHeight] = useState(() => {
+        return orientation == 'portrait' ? (screen.width * baseHeight) / basePercentage : (screen.height * baseHeight) / basePercentage;
+    });
+    const [width, setWidth] = useState(() => {
+        return orientation == 'portrait' ? (screen.height * baseWidth) / basePercentage : (screen.width * baseWidth) / basePercentage;
+    });
+
     return (
         <View style={styles.container}>
             <View style={[styles.landingContentPlayerTrump]}>
                 <Image style={{ height: height, width: width }} source={TrumpHome}>
                 </Image>
             </View>
-            <View style={styles.actionsContainer}>
+            <View style={[styles.actionsContainer, customStyles.fullStretch]}>
                 <View id="topLanding" style={styles.topBackgroundElement}>
                     <ImageBackground source={topLanding} style={styles.topLanding}></ImageBackground>
                 </View>
                 <View id="preTopLanding" style={styles.backgroundElement}>
-                    <ImageBackground source={preTopLanding} style={[styles.backgroundElementImage, styles.buttonContainerFlex]}>
-                        <View style={styles.emptyButtonContainer}></View>
+                    <ImageBackground source={preTopLanding} style={[styles.backgroundElementImage]}>
                         <View style={styles.buttonContainer}>
                             <TouchableOpacity onPress={() => navigation.navigate('Vote')} style={styles.buttonContainer}>
                                 <Image source={VoteBtn} style={styles.button}>
                                 </Image>
                             </TouchableOpacity>
                         </View>
-                        <View style={styles.emptyButtonContainer}></View>
                     </ImageBackground>
                 </View>
                 <View id="mediumLanding" style={styles.backgroundElement}>
-                    <ImageBackground source={mediumLanding} style={[styles.backgroundElementImage, styles.buttonContainerFlex]}>
-                        <View style={styles.emptyButtonContainer}></View>
+                    <ImageBackground source={mediumLanding} style={[styles.backgroundElementImage]}>
                         <View style={styles.buttonContainer}>
                             <TouchableOpacity onPress={() => navigation.navigate('MainGame')} style={styles.buttonContainer}>
                                 <Image source={PlayBtn} style={styles.button}>
                                 </Image>
                             </TouchableOpacity>
                         </View>
-                        <View style={styles.emptyButtonContainer}></View>
                     </ImageBackground>
                 </View>
                 <View id="preBottomLanding" style={styles.backgroundElement}>
-                    <ImageBackground source={preBottomLanding} style={[styles.backgroundElementImage, styles.buttonContainerFlex]}>
-                        <View style={styles.emptyButtonContainer}></View>
+                    <ImageBackground source={preBottomLanding} style={[styles.backgroundElementImage]}>
                         <View style={styles.buttonContainer}>
                             <TouchableOpacity onPress={handleStatsFlow} style={styles.buttonContainer}>
                                 <Image source={StatsBtn} style={styles.button}>
                                 </Image>
                             </TouchableOpacity>
                         </View>
-                        <View style={styles.emptyButtonContainer}></View>
                     </ImageBackground>
                 </View>
                 <View id="bottomLanding" style={styles.backgroundElement}>
@@ -69,10 +75,7 @@ const navigation=useNavigation()
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        height: '100%',
-        width: '100%',
-        position: 'relative'
+        flex: 1
     },
     topBackgroundElement: {
         height: '30%',
@@ -100,18 +103,12 @@ const styles = StyleSheet.create({
     },
     actionsContainer: {
         position: 'absolute',
-        width: '100%',
-        height: '100%',
         zIndex: 0,
         top: 0,
         left: 0
     },
     buttonContainerFlex: {
         flex: 1,
-        flexDirection: 'row',
-    },
-    emptyButtonContainer: {
-        flex: 0.5,
     },
     buttonContainer: {
         flex: 1,
@@ -119,9 +116,6 @@ const styles = StyleSheet.create({
     button: {
         flex: 1,
         width: '100%',
-        resizeMode: 'center'
-    },
-    emptyContainer: {
-        flex: 2
+        resizeMode: 'contain'
     }
 })
