@@ -6,14 +6,14 @@ import { useNavigation } from "@react-navigation/native";
 import { useActions } from "./useActions";
 
 export function Landing() {
-    const navigation=useNavigation();   
+    const navigation = useNavigation();
     const screen = Dimensions.get('screen');
     const orientation = screen.height > screen.width ? 'portrait' : 'landscape';
     const baseWidth = 35;
     const baseHeight = 90;
     const basePercentage = 100;
-    const{handleStatsFlow}=useActions();
-    
+    const { handleStatsFlow } = useActions();
+
     const [height, setHeight] = useState(() => {
         return orientation == 'portrait' ? (screen.width * baseHeight) / basePercentage : (screen.height * baseHeight) / basePercentage;
     });
