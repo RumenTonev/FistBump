@@ -3,10 +3,8 @@ import { useEffect, useState, useCallback } from "react";
 import { tickBtn, declineBtn } from "../../resources";
 import { useActions } from "./useActions";
 import { useNavigation } from "@react-navigation/native";
-import { useSelector } from "react-redux";
 
 export function VoteModal(props) {
-    const user = useSelector((state) => state.user.user);
     const { handleVoteFlow } = useActions();
     const navigation = useNavigation();
     const [voteText, setVoteText] = useState('');

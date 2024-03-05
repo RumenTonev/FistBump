@@ -4,11 +4,15 @@ import { VoteBackground, backBtn, VoteHeader, tickBtn } from "../../resources";
 import { customStyles } from '../components/styles';
 import { VoteModal } from "./VoteModal";
 import { useNavigation } from "@react-navigation/native";
+import { useSelector } from "react-redux";
 
 export function VoteView() {
+    const user = useSelector((state) => state.user);
     const navigation = useNavigation();
     const [modalVisibility, setModalVisibility] = useState(false);
-    let elementVisible = modalVisibility ? styles.hidden : styles.visible;
+    console.log(user.user.VoteFor)
+    let baseElementVisibility = modalVisibility ? styles.hidden : styles.visible;
+    let elementVisible = user.user.VoteFor ? styles.hidden : baseElementVisibility;
     const [candidate, setCandidate] = useState('');
 
     const renderModal = useCallback((modalVisibilityProp, candidate) => {
@@ -20,7 +24,7 @@ export function VoteView() {
     return (
         <View style={styles.container}>
             <ImageBackground source={VoteBackground} style={styles.backgroundContainer}>
-                <View style={[customStyles.buttonNavBackContainer, elementVisible]}>
+                <View style={[customStyles.buttonNavBackContainer, baseElementVisibility]}>
                     <TouchableOpacity onPress={() => navigation.navigate('Landing')}>
                         <Image source={backBtn}>
                         </Image>
