@@ -1,6 +1,6 @@
 
 import { useDispatch, useSelector } from "react-redux";
-import { setBydenVote, setPaymentCount, setTrumpVote, setVote } from "../../store/userSlice";
+import { setBidenVote, setPaymentCount, setTrumpVote, setVote } from "../../store/userSlice";
 import { useDbHandlers } from "../../utils/useDbHandlers";
 import { useCallback } from "react";
 import { useNavigation } from "@react-navigation/native";
@@ -42,9 +42,9 @@ export function useActions() {
     //if(!VoteFor){
     //dispatch(setVote(name))
     try{
-    await updateResults(name=='Byden')
+    await updateResults(name=='Biden')
 
-    dispatch(name=='Byden'?setBydenVote():setTrumpVote())
+    dispatch(name=='Biden'?setBidenVote():setTrumpVote())
     }
     catch(e)
     {

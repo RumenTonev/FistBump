@@ -182,11 +182,11 @@ export function useDbHandlers() {
     
   }, [cosmosClient])
 
-  const updateResults= useCallback(async (isByden) => {
+  const updateResults= useCallback(async (isBiden) => {
     debugger
     const operations=[
 
-      {op:"incr",path:isByden?'/BaydenCount':'/TrumpCount',value:1},
+      {op:"incr",path:isBiden?'/BaydenCount':'/TrumpCount',value:1},
       {op:"incr",path:'/Total',value:1},
       
     ]

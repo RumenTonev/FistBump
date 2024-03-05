@@ -1,18 +1,26 @@
 import { View, TouchableOpacity, Image, StyleSheet, Text, ScrollView, BackHandler, ImageBackground, Dimensions } from "react-native";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { VoteBackground, backBtn, VoteHeader, tickBtn } from "../../resources";
 import { customStyles } from '../components/styles';
-
-import { useActions } from "./useActions";
+import { VoteModal } from "./VoteModal";
 import { useNavigation } from "@react-navigation/native";
 
 export function VoteView() {
-    const { handleVoteFlow } = useActions()
-    const navigation = useNavigation()
+    const navigation = useNavigation();
+    const [modalVisibility, setModalVisibility] = useState(false);
+    let elementVisible = modalVisibility ? styles.hidden : styles.visible;
+    const [candidate, setCandidate] = useState('');
+
+    const renderModal = useCallback((modalVisibilityProp, candidate) => {
+        setModalVisibility(modalVisibilityProp);
+        setCandidate(candidate);
+    }, []);
+
+
     return (
         <View style={styles.container}>
             <ImageBackground source={VoteBackground} style={styles.backgroundContainer}>
-                <View style={customStyles.buttonNavBackContainer}>
+                <View style={[customStyles.buttonNavBackContainer, , elementVisible]}>
                     <TouchableOpacity onPress={() => navigation.navigate('Landing')}>
                         <Image source={backBtn}>
                         </Image>
@@ -23,11 +31,12 @@ export function VoteView() {
                         <ImageBackground style={styles.voteHeader} source={VoteHeader}></ImageBackground>
                     </View>
                 </View>
-                <TouchableOpacity onPress={() => handleVoteFlow('Trump')} style={styles.voteTrump}>
+                <VoteModal show={modalVisibility} candidate={candidate} close={() => renderModal(false)}></VoteModal>
+                <TouchableOpacity onPress={() => renderModal(true, 'Trump')} style={[styles.voteTrump, elementVisible]} >
                     <Image source={tickBtn}>
                     </Image>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => handleVoteFlow('Byden')} style={styles.voteBiden}>
+                <TouchableOpacity onPress={() => renderModal(true, 'Biden')} style={[styles.voteBiden, elementVisible]}>
                     <Image source={tickBtn}>
                     </Image>
                 </TouchableOpacity>
@@ -74,4 +83,10 @@ const styles = StyleSheet.create({
         height: '100%',
         width: '100%'
     },
+    visible: {
+        display: 'flex'
+    },
+    hidden: {
+        display: 'none'
+    }
 })
