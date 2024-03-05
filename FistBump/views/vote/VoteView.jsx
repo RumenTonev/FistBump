@@ -20,7 +20,7 @@ export function VoteView() {
     return (
         <View style={styles.container}>
             <ImageBackground source={VoteBackground} style={styles.backgroundContainer}>
-                <View style={[customStyles.buttonNavBackContainer, , elementVisible]}>
+                <View style={[customStyles.buttonNavBackContainer, elementVisible]}>
                     <TouchableOpacity onPress={() => navigation.navigate('Landing')}>
                         <Image source={backBtn}>
                         </Image>
