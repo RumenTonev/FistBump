@@ -37,10 +37,10 @@ state.user.isUs=action.payload.isUs
       state.results.TrumpCount=action.payload.TrumpCount
       state.results.Total=action.payload.Total
           },
-          setBydenVote:(state)=>{
+          setBidenVote:(state)=>{
             state.results.BaydenCount=state.results.BaydenCount+1
             state.results.Total=state.results.Total+1
-            state.user.VoteFor='Byden'
+            state.user.VoteFor='Biden'
 
                 },
                 setTrumpVote:(state)=>{
@@ -54,6 +54,6 @@ state.user.isUs=action.payload.isUs
   },
 });
 
-export const { setUser,setLoggedIn,setVote,setPaymentCount,setConfirmedLogin,setBydenVote,setTrumpVote,setResults } = userSlice.actions;
+export const { setUser,setLoggedIn,setVote,setPaymentCount,setConfirmedLogin,setBidenVote,setTrumpVote,setResults } = userSlice.actions;
 
 export default userSlice.reducer;
