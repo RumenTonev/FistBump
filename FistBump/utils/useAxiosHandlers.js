@@ -63,7 +63,7 @@ export function useAxiosHandlers() {
       .catch(function (error) {
         console.log('HANDLECONFIRMOTPERROR')
         console.log(error);
-
+        
       });
 
   }, [id, isUs, navigation])
