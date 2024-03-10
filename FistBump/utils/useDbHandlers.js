@@ -1,7 +1,7 @@
 import { useCallback, useContext } from "react";
 import { DbContext } from "../App";
 import Config from "react-native-config";
-import { useDispatch,useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setResults, setUser } from "../store/userSlice";
 import { PatchOperation } from "@azure/cosmos";
 
@@ -10,7 +10,7 @@ export function useDbHandlers() {
   const dispatch = useDispatch()
   const resultsContainer = cosmosClient.database('FistBump').container
   const user = useSelector((state) => state.user.user);
-  const {id}= user
+  const { id } = user
   const handleInitialGet = useCallback(async () => {
     if (id) {
       await cosmosClient
@@ -18,34 +18,29 @@ export function useDbHandlers() {
         .container(Config.REACT_APP_COSMOS_CONTAINER)
         .item(phone, phone).read()
         .then(async (response) => {
-
-          console.log('Kureeec')
-          
+          console.log('INITIALGET')
           if (response.statusCode === 200) {
 
-
-
             const { resource: readDoc } = response;
+
             dispatch(setUser({
               id: readDoc.id,
-        VoteFor: readDoc.VoteFor,
-        CountVisitStats: readDoc.CountVisitStats,
-        State:readDoc.State,
-        isUs:readDoc.isUS,
-        confirmedLogin:true
+              VoteFor: readDoc.VoteFor,
+              CountVisitStats: readDoc.CountVisitStats,
+              State: readDoc.State,
+              isUs: readDoc.isUS,
+              confirmedLogin: true
             }))
 
           }
           console.log(response)
         }).catch((error) => {
-          console.log('Insied error')
+          console.log('INITIALGETERROR')
           console.log(error)
         })
 
-
-      console.log('problem sled')
     }
-  }, [cosmosClient,id])
+  }, [cosmosClient, id])
 
 
 
@@ -56,8 +51,8 @@ export function useDbHandlers() {
       .item(phone, phone).read()
       .then(async (response) => {
 
-        console.log('Kureeec')
-        
+        console.log('HANDLEGET')
+
         if (response.statusCode === 404) {
           console.log('NOT FOUND')
           const newEntry = {
@@ -76,22 +71,20 @@ export function useDbHandlers() {
           const { resource: readDoc } = response;
           dispatch(setUser({
             id: readDoc.id,
-      VoteFor: readDoc.VoteFor,
-      CountVisitStats: readDoc.CountVisitStats,
-      State:readDoc.State,
-      isUs:readDoc.isUS,
-      confirmedLogin:true
+            VoteFor: readDoc.VoteFor,
+            CountVisitStats: readDoc.CountVisitStats,
+            State: readDoc.State,
+            isUs: readDoc.isUS,
+            confirmedLogin: true
           }))
 
         }
         console.log(response)
       }).catch((error) => {
-        console.log('Insied error')
+        console.log('HANDLEGETERROR')
         console.log(error)
       })
 
-
-    console.log('problem sled')
   }, [cosmosClient])
 
   const handleUpsert = useCallback((newEntry) => {
@@ -99,28 +92,18 @@ export function useDbHandlers() {
       .database(Config.REACT_APP_COSMOS_DATABASE)
       .container(Config.REACT_APP_COSMOS_CONTAINER)
       .items.upsert(newEntry).then((response) => {
-        console.log('Kureeec')
+        debugger
+        console.log('HANDLEUPSERT')
+        console.log(response)
         const { resource: readDoc } = response;
       }).catch((error) => {
-        console.log('Insied error')
+        console.log('UPSERTERROR')
         console.log(error)
       })
 
 
-    console.log('problem sled')
   }, [cosmosClient])
 
-  const getCounts = useCallback(() => {
-    cosmosClient
-      .database(Config.REACT_APP_COSMOS_DATABASE)
-      .container(Config.REACT_APP_COSMOS_RESULTS_CONTAINER)
-      .items.query(
-        ''
-      )
-
-
-    console.log('problem sled')
-  }, [cosmosClient])
 
   const handleAdd = useCallback(() => {
     cosmosClient
@@ -144,84 +127,78 @@ export function useDbHandlers() {
     console.log('problem sled')
   }, [cosmosClient])
 
-  const getResults= useCallback(async () => {
-    
-      await cosmosClient
-        .database(Config.REACT_APP_COSMOS_DATABASE)
-        .container(Config.REACT_APP_COSMOS_RESULTS_CONTAINER)
-        .item('1', '1').read()
-        .then(async (response) => {
+  const getResults = useCallback(async () => {
 
-          console.log('Kureeec')
-          
-          if (response.statusCode === 200) {
+    await cosmosClient
+      .database(Config.REACT_APP_COSMOS_DATABASE)
+      .container(Config.REACT_APP_COSMOS_RESULTS_CONTAINER)
+      .item('1', '1').read()
+      .then(async (response) => {
+        debugger
+        if (response.statusCode === 200) {
 
 
 
-            const { resource: readDoc } = response;
-            //setResultsObject
-            dispatch(setResults({
+          const { resource: readDoc } = response;
+          //setResultsObject
+          dispatch(setResults({
 
-              BaydenCount: readDoc.BaydenCount,
-        TrumpCount: readDoc.TrumpCount,
-        Total: readDoc.Total,
-            }))
+            BaydenCount: readDoc.BaydenCount,
+            TrumpCount: readDoc.TrumpCount,
+            Total: readDoc.Total,
+          }))
 
-          }
-          console.log(response)
-          return true
-        }).catch((error) => {
-          console.log('Insied error')
-          console.log(error)
-          return false
-        })
+        }
+        console.log('GETRESULTS ' + response)
+        return true
+      }).catch((error) => {
+        console.log('GETRESULTSERROR')
+        console.log(error)
+        return false
+      })
 
 
-      console.log('problem sled')
-      
-    
+    console.log('AFTER GETRESULTS')
+
+
   }, [cosmosClient])
 
-  const updateResults= useCallback(async (isBiden) => {
-    debugger
-    const operations=[
+  const updateResults = useCallback(async (isBiden) => {
+    const operations = [
 
-      {op:"incr",path:isBiden?'/BaydenCount':'/TrumpCount',value:1},
-      {op:"incr",path:'/Total',value:1},
-      
+      { op: "incr", path: isBiden ? '/BaydenCount' : '/TrumpCount', value: 1 },
+      { op: "incr", path: '/Total', value: 1 },
+
     ]
-    var flag=Config
-      await cosmosClient
-        .database(Config.REACT_APP_COSMOS_DATABASE)
-        .container(Config.REACT_APP_COSMOS_RESULTS_CONTAINER)
-        .item('1', '1').patch(operations)
-        .then(async (response) => {
+
+    await cosmosClient
+      .database(Config.REACT_APP_COSMOS_DATABASE)
+      .container(Config.REACT_APP_COSMOS_RESULTS_CONTAINER)
+      .item('1', '1').patch(operations)
+      .then(async (response) => {
 debugger
-          console.log('Kureeec')
-          
-          if (response.statusCode === 200) {
+        if (response.statusCode === 200) {
 
 
 
-            const { resource: readDoc } = response;
-            //setResultsObject
-            dispatch(setResults({
+          const { resource: readDoc } = response;
+          //setResultsObject
+          dispatch(setResults({
 
-              BaydenCount: readDoc.BaydenCount,
-        TrumpCount: readDoc.TrumpCount,
-        Total: readDoc.Total,
-            }))
+            BaydenCount: readDoc.BaydenCount,
+            TrumpCount: readDoc.TrumpCount,
+            Total: readDoc.Total,
+          }))
 
-          }
-          console.log(response)
-        }).catch((error) => {
-          console.log('Insied error')
-          console.log(error)
-        })
+        }
+        console.log('UPDATERESULTS ' + response)
+      }).catch((error) => {
+        console.log('UPDATERESULTS ERROR')
+        console.log(error)
+      })
 
 
-      console.log('problem sled')
-    
+
   }, [cosmosClient])
 
 

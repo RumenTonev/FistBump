@@ -58,7 +58,7 @@
 		5DCACB8F33CDC322A6C60F78 /* libPods-FistBump.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FistBump.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = FistBump/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-FistBump-FistBumpTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FistBump-FistBumpTests.release.xcconfig"; path = "Target Support Files/Pods-FistBump-FistBumpTests/Pods-FistBump-FistBumpTests.release.xcconfig"; sourceTree = "<group>"; };
-		9796758599A541CB8EAECE46 /* SuperFunky-lgmWw.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "SuperFunky-lgmWw.ttf"; path = "../resources/fonts/SuperFunky-lgmWw.ttf"; sourceTree = "<group>"; };
+		9796758599A541CB8EAECE46 /* SuperFunky-lgmWw.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SuperFunky-lgmWw.ttf"; path = "../resources/fonts/SuperFunky-lgmWw.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -121,7 +121,6 @@
 				9796758599A541CB8EAECE46 /* SuperFunky-lgmWw.ttf */,
 			);
 			name = Resources;
-			path = "";
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
@@ -525,6 +524,7 @@
 			baseConfigurationReference = 3B4392A12AC88292D35C810B /* Pods-FistBump.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = FistBump/FistBumpDebug.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
@@ -555,6 +555,7 @@
 			baseConfigurationReference = 5709B34CF0A7D63546082F79 /* Pods-FistBump.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = FistBump/FistBump.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";

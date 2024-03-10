@@ -90,7 +90,7 @@ setIsValid(isValidNum)
     }
   }
     catch(e){
-      debugger
+      
     }
     
   
@@ -106,7 +106,6 @@ setIsValid(isValidNum)
 
   const handleOnPress=useCallback(()=>
   {
-  debugger
   if(!isValid)
   {
 Alert.alert("Please enter a valid number",)

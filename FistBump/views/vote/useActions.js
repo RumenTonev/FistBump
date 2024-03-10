@@ -38,7 +38,7 @@ export function useActions() {
 
 
   const handleVoteFlow = useCallback( async (name) => {
-    debugger
+  
     //if(!VoteFor){
     //dispatch(setVote(name))
     try{
@@ -48,7 +48,7 @@ export function useActions() {
     }
     catch(e)
     {
-      debugger
+      
     }
     //}
   
