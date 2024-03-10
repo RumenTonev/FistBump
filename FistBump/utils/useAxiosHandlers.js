@@ -8,6 +8,7 @@ import { useDbHandlers } from "./useDbHandlers";
 import { setConfirmedLogin, setLoggedIn } from "../store/userSlice";
 import { useDispatch ,useSelector} from "react-redux";
 import { useNavigation } from '@react-navigation/native';
+import { Alert } from "react-native";
 
 
 // "account_id": "72e47e47-95b9-41c2-bdcd-55dd9bb04e14",
@@ -18,14 +19,14 @@ import { useNavigation } from '@react-navigation/native';
 // "expire_date": "2022-03-04 14:50:57"
 
 export function useAxiosHandlers() {
-  const{handleGet,handleUpsert}=useDbHandlers()
+  const{handleGet}=useDbHandlers()
   const user = useSelector((state) => state.user.user);
   const {id,isUs}=user
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
   const handleConfirmOTP = useCallback(async (code) => {
-    console.log('IIIIIIII')
+    console.log('CONFIRMOTPSTART')
   let localPhone=id
   
   if(id.startsWith('+'))localPhone=id.substring(1)
@@ -33,6 +34,7 @@ export function useAxiosHandlers() {
     const config = getGetRequest(localPhone, code)
     axios(config)
       .then(async function (response) {
+        console.log(response)
         if (response.data) {
 
           const { data } = response.data
@@ -51,7 +53,9 @@ export function useAxiosHandlers() {
               
         })
       .catch(function (error) {
+        console.log('HANDLECONFIRMOTPERROR')
         console.log(error);
+        
       });
 
   }, [id,isUs,navigation])
@@ -78,6 +82,7 @@ export function useAxiosHandlers() {
         }
       })
       .catch(function (error) {
+        if(error.code=='ERR_NETWORK')Alert.alert('Network problem');
         console.log(error);
       });
 

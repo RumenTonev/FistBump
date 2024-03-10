@@ -70,12 +70,12 @@ const OfferingDetailScreen = () => {
 
 
   const purchaseProduct = useCallback(async () => {
-    debugger
+    
     setIsPurchasing(true);
     try {
       if (product) {
         const { customerInfo } = await Purchases.purchaseStoreProduct(product);
-        debugger
+        
         //const kur:CustomerInf
         // if (typeof purchaserInfo.entitlements.active[ENTITLEMENT_ID] !== 'undefined') {
 

@@ -6,6 +6,7 @@ import { useNavigation } from "@react-navigation/native";
 
 export function VoteModal(props) {
     const { handleVoteFlow } = useActions();
+    const {candidate,close,show}=props
     const navigation = useNavigation();
     const [voteText, setVoteText] = useState('');
     const [elementsVisibility, setElementsVisibility] = useState(true);
@@ -15,17 +16,17 @@ export function VoteModal(props) {
     let navElementVisible = navElementVisiblity ? styles.visible : styles.hidden;
 
     useEffect(() => {
-        setVoteText(`Are you sure you want to vote for ${props.candidate} ?`);
-    }, [props]);
+        setVoteText(`Are you sure you want to vote for ${candidate} ?`);
+    }, [candidate]);
 
 
     const vote = useCallback(() => {
-        setVoteText(`Successfully voted for ${props.candidate}! \n You might want to check Stats View.`);
+        setVoteText(`Successfully voted for ${candidate}! ${"\n"}You might want to check Stats View.`);
         setElementsVisibility(false);
         setNavElementVisiblity(true);
-        console.log('Vote: ' + props.candidate);
-        handleVoteFlow(props.candidate);
-    }, [props]);
+        console.log('Vote: ' + candidate);
+        handleVoteFlow(candidate);
+    }, [candidate]);
 
     const navToHomePage = useCallback(() => {
         navigation.navigate('Landing')
@@ -33,12 +34,12 @@ export function VoteModal(props) {
 
     return (
         <View style={styles.centeredView}>
-            <Modal animationType="slide" visible={props.show} transparent={true}>
+            <Modal animationType="slide" visible={show} transparent={true} supportedOrientations={['landscape']}>
                 <View style={styles.centeredView}>
                     <View style={styles.modalView}>
                         <Text style={styles.modalText}>{voteText}</Text>
                         <View style={styles.buttonsContainer}>
-                            <TouchableOpacity onPress={() => vote()} style={[styles.modalButton, elementVisible]}>
+                            <TouchableOpacity onPress={() => vote()} style={[styles.modalButton, elementVisible]} >
                                 <Image source={tickBtn}>
                                 </Image>
                             </TouchableOpacity>
@@ -46,7 +47,7 @@ export function VoteModal(props) {
                                 <Image source={tickBtn}>
                                 </Image>
                             </TouchableOpacity>
-                            <TouchableOpacity onPress={props.close} style={[styles.modalButtonDecline, elementVisible]}>
+                            <TouchableOpacity onPress={close} style={[styles.modalButtonDecline, elementVisible]}>
                                 <Image source={declineBtn}>
                                 </Image>
                             </TouchableOpacity>
