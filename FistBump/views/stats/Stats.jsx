@@ -103,6 +103,6 @@ const styles = StyleSheet.create({
     statValue: {
         textAlign: 'center',
         fontSize: RFPercentage(3),
-        fontFamily: 'SuperFunky-lgmWw',
+        fontFamily: 'Super Funky',
     }
 })
