@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: 18,
         color: 'white',
-        fontFamily: 'SuperFunky-lgmWw',
+        fontFamily: 'Super Funky',
     },
     modalButtonDecline: {
         marginLeft: 15
