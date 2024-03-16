@@ -1,6 +1,7 @@
 export let tou = 
 `
 
+
 These terms of use, together with our Privacy Policy, all supplemental terms, and other documents referenced in these terms (the Terms”) govern your use and downloading of our Games.
 
 PLEASE READ THESE TERMS CAREFULLY. These Terms form a legally binding contract between you and us.  By using and downloading our Games, you accept and agree to these Terms.  If you do not agree to these Terms then do not use our Games.
