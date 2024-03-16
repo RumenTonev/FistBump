@@ -6,22 +6,25 @@ import { tou } from "../../resources/tou.js";
 
 
 export function EulaView({ navigation }) {
-
     const privacyPolicyUrl = 'http://crazybastards.pro';
 
     const openUrl = async (url) => {
         await Linking.openURL(url);
-    }
+    };
 
     const exitApp = () => {
         BackHandler.exitApp();
-    }
+    };
 
     return (
         <View style={styles.container}>
             <View style={styles.eulaContent}>
                 <ImageBackground style={styles.eulaFrame} source={EulaFrame}>
-                    <ScrollView bounces="false" style={styles.textContainer} contentContainerStyle={{ flexGrow: 1, paddingBottom: 150 }}>
+                    <ScrollView bounces="false" style={styles.textContainer} contentContainerStyle={styles.contentContainer}>
+                        <View style={styles.textHeadersContainer}>
+                            <Text style={styles.text}>TERMS OF USE</Text>
+                            <Text style={styles.text}>27th February 2024</Text>
+                        </View>
                         <Text style={styles.text}>{tou}</Text>
                     </ScrollView>
                 </ImageBackground>
@@ -61,7 +64,12 @@ const styles = StyleSheet.create({
         paddingTop: '15%'
     },
     text: {
-        color: 'white'
+        color: 'black',
+        fontSize: 16
+    },
+    textHeadersContainer: {
+        alignItems: "center",
+        justifyContent: "center"
     },
     eulaFrame: {
         position: 'relative',
@@ -84,4 +92,8 @@ const styles = StyleSheet.create({
         width: 'auto',
         height: '100%'
     },
+    contentContainer: {
+        flexGrow: 1,
+        paddingBottom: 100
+    }
 })
