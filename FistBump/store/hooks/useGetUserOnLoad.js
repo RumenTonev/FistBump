@@ -50,7 +50,7 @@ export const useGetUserOnLoad = () => {
             VoteFor: readDoc.VoteFor,
             CountVisitStats: readDoc.CountVisitStats,
             State:readDoc.State,
-            isUs:readDoc.isUS,
+            isUs:true,
             confirmedLogin:true
                 }))
     

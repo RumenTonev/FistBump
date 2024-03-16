@@ -38,3 +38,4 @@ export const funkyFont = require('./fonts/SuperFunky-lgmWw.ttf');
 export const ContinueButton = require('./login/con.png');
 export const LoginBackground = require('./login/stars.png');
 export const voted = require('./stats/voted.png');
+export const onlyInUs = require('./stats/only-in-us-white.png');
