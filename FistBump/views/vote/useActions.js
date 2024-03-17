@@ -4,6 +4,7 @@ import { setBidenVote, setPaymentCount, setTrumpVote, setVote } from "../../stor
 import { useDbHandlers } from "../../utils/useDbHandlers";
 import { useCallback } from "react";
 import { useNavigation } from "@react-navigation/native";
+import { clickSound, handleClick } from "../logo/LogoView";
 
 
 // "account_id": "72e47e47-95b9-41c2-bdcd-55dd9bb04e14",
@@ -21,7 +22,7 @@ export function useActions() {
   const dispatch = useDispatch();
 
   const handleStatsFlow = useCallback( () => {
-    
+    handleClick()
     if(CountVisitStats&&+CountVisitStats>0)
     {
         navigation.navigate('Stats')

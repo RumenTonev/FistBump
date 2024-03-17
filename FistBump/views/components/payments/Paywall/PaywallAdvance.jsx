@@ -19,6 +19,7 @@ import { useNavigation } from '@react-navigation/native';
 import { useDispatch } from 'react-redux';
 import { setPaymentCount } from '../../../../store/userSlice';
 import { LoginBackground, Logo } from '../../../../resources';
+import { clickSound, handleClick } from '../../../logo/LogoView';
 
 
 //type Props = NativeStackScreenProps<RootStackParamList, 'OfferingDetail'>;
@@ -65,17 +66,19 @@ const OfferingDetailScreen = () => {
 
 
 
+  const getBack = useCallback(async () => {
 
-
-
-
+    handleClick()
+    navigation.navigate('Landing')
+  }
+    , [])
   const purchaseProduct = useCallback(async () => {
-    
+   handleClick()
     setIsPurchasing(true);
     try {
       if (product) {
         const { customerInfo } = await Purchases.purchaseStoreProduct(product);
-        
+
         //const kur:CustomerInf
         // if (typeof purchaserInfo.entitlements.active[ENTITLEMENT_ID] !== 'undefined') {
 
@@ -129,6 +132,14 @@ const OfferingDetailScreen = () => {
             <Text style={styles.buttonText}>Continue</Text>
 
           </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.cancelButton]}
+
+            onPress={getBack}
+          >
+            <Text style={styles.buttonText}>Cancel</Text>
+
+          </TouchableOpacity>
         </View>
       </View>
 
@@ -137,7 +148,7 @@ const OfferingDetailScreen = () => {
 
   );
 };
-const {width,height}=Dimensions.get('window')
+const { width, height } = Dimensions.get('window')
 const styles = StyleSheet.create({
   innerText: {
     fontWeight: '300',
@@ -147,26 +158,26 @@ const styles = StyleSheet.create({
     backgroundColor: '#F57777'
   },
   inner: {
-    flex:1,
+    flex: 1,
     flexDirection: 'column',
     alignItems: 'center',
-    justifyContent:'center',
+    justifyContent: 'center',
     backgroundColor: 'white',
-    height:'40%',
-  
+    height: '40%',
+
   },
   container: {
     flexDirection: 'column',
-    height:height,
-  flex:1
+    height: height,
+    flex: 1
   },
   imgContainer: {
-paddingTop:'20%',
+    paddingTop: '20%',
     width: '100%',
-  flexShrink:0,
-  backgroundColor:'white',
+    flexShrink: 0,
+    backgroundColor: 'white',
 
-  height:'60%'
+    height: '60%'
   },
   otherContainer: {
     display: 'flex',
@@ -174,17 +185,17 @@ paddingTop:'20%',
     alignItems: 'center',
     paddingLeft: 50,
     paddingRight: 50,
-    width:'100%'
+    width: '100%'
   },
   bottomContainer: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    height:'40%',
-    
+    height: '40%',
+
     paddingLeft: 50,
     paddingRight: 50,
-  
+
   },
   otherText: {
     fontSize: 20,
@@ -209,6 +220,23 @@ paddingTop:'20%',
     shadowRadius: 6.27,
     elevation: 10,
   },
+  cancelButton: {
+    marginTop: 20,
+    height: 50,
+    width: 300,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'green',
+    shadowColor: 'rgba(0,0,0,0.4)',
+    borderRadius: 50,
+    shadowOffset: {
+      width: 10,
+      height: 15,
+    },
+    shadowOpacity: 0.34,
+    shadowRadius: 6.27,
+    elevation: 10,
+  },
   buttonText: {
     color: 'white',
     fontSize: 14,
@@ -217,9 +245,9 @@ paddingTop:'20%',
   },
   logoImage: {
     width: '100%',
-    height:undefined,
-    aspectRatio:1,
-    overflow:'visible'
+    height: undefined,
+    aspectRatio: 1,
+    overflow: 'visible'
   },
   title: {
     fontSize: 16,

@@ -5,6 +5,7 @@ import { customStyles } from '../components/styles';
 import { VoteModal } from "./VoteModal";
 import { useNavigation } from "@react-navigation/native";
 import { useSelector } from "react-redux";
+import { clickSound, handleClick } from "../logo/LogoView";
 
 export function VoteView() {
     const user = useSelector((state) => state.user);
@@ -23,11 +24,17 @@ export function VoteView() {
         setCandidate(candidate);
     }, []);
 
+    const navigateBack = useCallback(() => {
+        handleClick()
+        navigation.navigate('Landing')
+    }, []);
+
+
     return (
         <View style={styles.container}>
             <ImageBackground source={VoteBackground} style={styles.backgroundContainer}>
                 <View style={[customStyles.buttonNavBackContainer, baseElementVisibility]}>
-                    <TouchableOpacity onPress={() => navigation.navigate('Landing')}>
+                    <TouchableOpacity onPress={navigateBack}>
                         <Image source={backBtn}>
                         </Image>
                     </TouchableOpacity>

@@ -3,6 +3,7 @@ import { useEffect, useState, useCallback } from "react";
 import { tickBtn, declineBtn } from "../../resources";
 import { useActions } from "./useActions";
 import { useNavigation } from "@react-navigation/native";
+import { clickSound, handleClick } from "../logo/LogoView";
 
 export function VoteModal(props) {
     const { handleVoteFlow } = useActions();
@@ -21,6 +22,7 @@ export function VoteModal(props) {
 
 
     const vote = useCallback(() => {
+       handleClick()
         setVoteText(`Successfully voted for ${candidate}! ${"\n"}You might want to check Stats View.`);
         setElementsVisibility(false);
         setNavElementVisiblity(true);
@@ -29,7 +31,8 @@ export function VoteModal(props) {
     }, [candidate]);
 
     const navToHomePage = useCallback(() => {
-        navigation.navigate('Landing')
+        handleClick()
+                navigation.navigate('Landing')
     }, []);
 
     return (

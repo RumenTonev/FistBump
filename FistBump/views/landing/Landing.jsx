@@ -5,6 +5,8 @@ import { customStyles } from '../components/styles';
 import { useNavigation } from "@react-navigation/native";
 import { useActions } from "./useActions";
 
+
+
 export function Landing() {
     const navigation = useNavigation();
     const screen = Dimensions.get('screen');
@@ -12,7 +14,7 @@ export function Landing() {
     const baseWidth = 35;
     const baseHeight = 90;
     const basePercentage = 100;
-    const { handleStatsFlow } = useActions();
+    const { handleStatsFlow,handleButtonClick } = useActions();
 
     const [height, setHeight] = useState(() => {
         return orientation == 'portrait' ? (screen.width * baseHeight) / basePercentage : (screen.height * baseHeight) / basePercentage;
@@ -34,7 +36,7 @@ export function Landing() {
                 <View id="preTopLanding" style={styles.backgroundElement}>
                     <ImageBackground source={preTopLanding} style={[styles.backgroundElementImage]}>
                         <View style={styles.buttonContainer}>
-                            <TouchableOpacity onPress={() => navigation.navigate('Vote')} style={styles.buttonContainer}>
+                            <TouchableOpacity onPress={()=>handleButtonClick('Vote')} style={styles.buttonContainer}>
                                 <Image source={VoteBtn} style={styles.button}>
                                 </Image>
                             </TouchableOpacity>
@@ -44,7 +46,7 @@ export function Landing() {
                 <View id="mediumLanding" style={styles.backgroundElement}>
                     <ImageBackground source={mediumLanding} style={[styles.backgroundElementImage]}>
                         <View style={styles.buttonContainer}>
-                            <TouchableOpacity onPress={() => navigation.navigate('MainGame')} style={styles.buttonContainer}>
+                            <TouchableOpacity onPress={()=>handleButtonClick('MainGame')} style={styles.buttonContainer}>
                                 <Image source={PlayBtn} style={styles.button}>
                                 </Image>
                             </TouchableOpacity>
