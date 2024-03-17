@@ -4,7 +4,8 @@ import { setPaymentCount, setVote } from "../../store/userSlice";
 import { useDbHandlers } from "../../utils/useDbHandlers";
 import { useCallback } from "react";
 import { useNavigation } from "@react-navigation/native";
-
+import Sound from 'react-native-sound';
+import { clickSound, handleClick } from "../logo/LogoView";
 
 // "account_id": "72e47e47-95b9-41c2-bdcd-55dd9bb04e14",
 // "message_id": "e4fb1353-8ded-4ec7-991e-a757ea213106",
@@ -20,8 +21,13 @@ export function useActions() {
   const {CountVisitStats,VoteFor}=user
   const dispatch = useDispatch();
 
+  const handleButtonClick=useCallback( (view) => {
+    handleClick()
+    navigation.navigate(view)
+  }, [])
+
   const handleStatsFlow = useCallback( () => {
-    
+    handleClick()
     if(CountVisitStats&&+CountVisitStats>0)
     {
         navigation.navigate('Stats')
@@ -38,7 +44,7 @@ export function useActions() {
 
 
   const handleVoteFlow = useCallback(async (name) => {
-    
+    handleClick()
     if(!VoteFor)
     dispatch(setVote(name))
   
@@ -47,6 +53,7 @@ export function useActions() {
 
   return {
     handleStatsFlow,
-    handleVoteFlow
+    handleVoteFlow,
+    handleButtonClick
   }
 }
