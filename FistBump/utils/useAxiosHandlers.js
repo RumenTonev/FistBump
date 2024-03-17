@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigation } from '@react-navigation/native';
 import { Alert } from "react-native";
 import Config from "react-native-config";
+import { clickSound, handleClick } from "../views/logo/LogoView";
 
 
 // "account_id": "72e47e47-95b9-41c2-bdcd-55dd9bb04e14",
@@ -27,6 +28,7 @@ export function useAxiosHandlers() {
   const dispatch = useDispatch();
 
   const handleConfirmOTP = useCallback(async (code) => {
+    handleClick()
     console.log('CONFIRMOTPSTART')
     let localPhone = id
 

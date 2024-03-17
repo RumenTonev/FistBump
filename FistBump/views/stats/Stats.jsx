@@ -5,6 +5,8 @@ import { customStyles } from '../components/styles';
 import { useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 import { useGetStatsOnLoad } from "../../store/hooks/useGetStatsOnLoad";
+import { useCallback } from "react";
+import { clickSound, handleClick } from "../logo/LogoView";
 
 export function Stats() {
     const stats = useSelector((state) => state.user.results);
@@ -12,11 +14,18 @@ export function Stats() {
     const navigation=useNavigation()
     //SPINNER???
     const status=useGetStatsOnLoad()
+
+    const navigateBack = useCallback(() => {
+        
+handleClick()
+        navigation.navigate('Landing')
+    }, []);
+
     return (
         <View style={styles.container}>
             <ImageBackground style={styles.landingContentStatsBackground} source={StatsBackgroundPlain}>
                 <View style={customStyles.buttonNavBackContainer}>
-                    <TouchableOpacity onPress={() => navigation.navigate('Landing')} >
+                    <TouchableOpacity onPress={navigateBack} >
                         <Image source={backBtn}>
                         </Image>
                     </TouchableOpacity>

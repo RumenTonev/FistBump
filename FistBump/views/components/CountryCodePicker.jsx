@@ -14,6 +14,7 @@ import PhoneInput from 'react-native-phone-number-input';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import { useAxiosHandlers } from '../../utils/useAxiosHandlers';
 import { ContinueButton, LoginBackground } from '../../resources';
+import { clickSound, handleClick } from '../logo/LogoView';
 const phoneUtil = require('google-libphonenumber').PhoneNumberUtil.getInstance();
 
 
@@ -106,6 +107,7 @@ setIsValid(isValidNum)
 
   const handleOnPress=useCallback(()=>
   {
+    handleClick()
   if(!isValid)
   {
 Alert.alert("Please enter a valid number",)

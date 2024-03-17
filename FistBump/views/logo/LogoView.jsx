@@ -1,11 +1,68 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useCallback } from 'react';
 import { Animated, Image, StyleSheet, View } from 'react-native'
 import { Logo } from '../../resources';
 import { useSelector } from 'react-redux';
 import { useDbHandlers } from '../../utils/useDbHandlers';
 import { useGetUserOnLoad } from '../../store/hooks/useGetUserOnLoad';
 import { useNavigation } from '@react-navigation/native';
+import Sound from 'react-native-sound';
 
+Sound.setCategory('Playback')
+
+const initialSound=new Sound('intro.mp3',Sound.MAIN_BUNDLE,(error=>{
+    if(error)
+    {
+        console.log('failed to load sound '+error)
+        return
+    }
+    initialSound.play(success => {
+            if (success) {
+              console.log('successfully finished playing');
+            } else {
+              console.log('playback failed due to audio decoding errors');
+            }
+            
+            initialSound.release();
+          });
+    
+}
+))
+initialSound.setNumberOfLoops(-1)
+initialSound.setVolume(1)
+
+// export const clickSound=new Sound('click.mp3',Sound.MAIN_BUNDLE,(error=>{
+//     if(error)
+//     {
+//         console.log('failed to load sound '+error)
+//         return
+//     }
+// }
+// ))
+
+export const handleClick = useCallback(() => {
+    const clickSound=new Sound('click.mp3',Sound.MAIN_BUNDLE,(error=>{
+        if(error)
+        {
+            console.log('failed to load sound '+error)
+            return
+        }
+        clickSound.play(success => {
+            if (success) {
+              console.log('successfully finished playing');
+            } else {
+              console.log('playback failed due to audio decoding errors');
+            }
+            
+            clickSound.release();
+          }); 
+    }
+    ))
+  }, [])
+
+
+
+
+initialSound.setVolume(1)
 export function LogoView() {
     console.log('Fuckit')
     const fadeInitial = useRef(new Animated.Value(0)).current;
@@ -17,6 +74,7 @@ const status= useGetUserOnLoad()
    console.log(status)
     const screenAnimation = () => {
         console.log('called')
+    
         Animated.timing(fadeInitial, {
             toValue: 1,
             duration: 5000,
@@ -29,12 +87,13 @@ const status= useGetUserOnLoad()
                     duration: 5000,
                     useNativeDriver: true
                 }).start(({ finished }) => {
-            
+            initialSound.stop()
                     if (finished&&status!='pending') {
                         user?.id?navigation.navigate('Landing'):navigation.navigate("EULA");
                        // navigation.navigate("Landing");
                         fadeInitial.current = new Animated.Value(0);
                     }
+                    initialSound.release()
                 });
             }
         });

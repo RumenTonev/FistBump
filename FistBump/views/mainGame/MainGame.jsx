@@ -3,6 +3,69 @@ import { View, TouchableOpacity, Image, StyleSheet, ImageBackground } from "reac
 import { MainGameSparing, MainGameIntro, HitLeft, HitRight, TrumpBiden, BidenTrump, backBtn, PlayHeader } from "../../resources";
 import { customStyles } from '../components/styles';
 import { useNavigation } from '@react-navigation/native';
+import {  handleClick} from '../logo/LogoView';
+import Sound from 'react-native-sound';
+
+// export const punchSound=new Sound('punch.mp3',Sound.MAIN_BUNDLE,(error=>{
+//     if(error)
+//     {
+//         console.log('failed to load sound '+error)
+//         return
+//     }
+// }
+// ))
+
+export const handlePunch = useCallback(() => {
+    const punchSound=new Sound('punch.mp3',Sound.MAIN_BUNDLE,(error=>{
+        if(error)
+        {
+            console.log('failed to load sound '+error)
+            return
+        }
+        punchSound.play(success => {
+            if (success) {
+              console.log('successfully finished playing');
+            } else {
+              console.log('playback failed due to audio decoding errors');
+            }
+            
+            punchSound.release();
+          }); 
+    }
+    ))
+  }, [])
+
+export const bellSound=new Sound('bell.mp3',Sound.MAIN_BUNDLE,(error=>{
+    if(error)
+    {
+        console.log('failed to load sound '+error)
+        return
+    }
+}
+))
+
+
+
+// export const gameIntro=new Sound('gameIntro.mp3',Sound.MAIN_BUNDLE,(error=>{
+//     if(error)
+//     {
+//         console.log('failed to load sound '+error)
+//         return
+//     }
+//     gameIntro.play(success => {
+//         if (success) {
+//           console.log('successfully finished playing');
+//         } else {
+//           console.log('playback failed due to audio decoding errors');
+//         }
+        
+//         gameIntro.release();
+//       });
+
+// }
+// ))
+
+
 
 export function MainGame() {
     const [actionImage, setActionAnimation] = useState({ image: MainGameIntro });
@@ -12,25 +75,70 @@ export function MainGame() {
 
     const triggerAnimation = useCallback((animationImage, duration) => {
         setTimeout(() => {
+            
             setElementsVisibility(true);
             setActionAnimation(animationImage);
+            //initialSound.release()
         }, duration)
     }, []);
 
     const setActionImage = useCallback((actionImage, duration) => {
+        console.log(actionImage.image)
         setActionAnimation(actionImage);
         setElementsVisibility(false);
+        bellSound.play(success => {
+            if (success) {
+              console.log('successfully finished playing');
+            } else {
+              console.log('playback failed due to audio decoding errors');
+            }
+            
+            bellSound.release();
+          });
         setTimeout(() => {
+            
+           bellSound.stop()
+            //initialSound.release()
+        }, 3000)
+        setTimeout(() => {
+            handlePunch()
+        }, actionImage.image==19?1000:100)
+        
+        setTimeout(() => {
+            
             setElementsVisibility(true);
             setActionAnimation({ image: MainGameSparing });
         }, duration)
     }, []);
+
+useEffect(()=>{
+    const gameIntro=new Sound('gameIntro.mp3',Sound.MAIN_BUNDLE,(error=>{
+        if(error)
+        {
+            console.log('failed to load sound '+error)
+            return
+        }
+        gameIntro.play(success => {
+            if (success) {
+              console.log('successfully finished playing');
+            } else {
+              console.log('playback failed due to audio decoding errors');
+            }
+            
+            gameIntro.release();
+          });
+    
+    }
+    ))
+},[]);
+
 
     useEffect(() => {
         triggerAnimation({ image: MainGameSparing }, 2500);
     }, []);
 
     const handBack = useCallback(() => {
+        handleClick()
         navigation.navigate('Landing')
     }, [])
 
