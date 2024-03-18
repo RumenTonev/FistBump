@@ -117,13 +117,13 @@ const OfferingDetailScreen = () => {
           <Text style={styles.otherText}>
             Ignite your curiosity
           </Text>
-          <Text style={{ paddingTop: 30, textAlign: 'center' }}>{product?.description}</Text>
-        </View>
-
-        <View style={styles.bottomContainer}>
+          <Text style={{ paddingTop: 0.03*height, textAlign: 'center' }}>{product?.description}</Text>
           <Text style={styles.innerText}>
             3 x Full access for just {product?.priceString}
           </Text>
+        </View>
+
+        <View style={styles.bottomContainer}>
           <TouchableOpacity
             style={[styles.button]}
 
@@ -152,7 +152,8 @@ const { width, height } = Dimensions.get('window')
 const styles = StyleSheet.create({
   innerText: {
     fontWeight: '300',
-    fontSize: 10
+    fontSize: 10,
+    paddingTop:0.03*height,
   },
   redColor: {
     backgroundColor: '#F57777'
@@ -162,9 +163,9 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'white',
-    height: '40%',
-
+    backgroundColor: 'yellow',
+    height: 0.40*height,
+flexGrow:1
   },
   container: {
     flexDirection: 'column',
@@ -172,12 +173,11 @@ const styles = StyleSheet.create({
     flex: 1
   },
   imgContainer: {
-    paddingTop: '20%',
-    width: '100%',
-    flexShrink: 0,
-    backgroundColor: 'white',
-
-    height: '60%'
+    paddingTop: height*0.1,
+    width: width,
+    backgroundColor: 'blue',
+paddingBottom:height*0.1,
+    height: height*0.45
   },
   otherContainer: {
     display: 'flex',
@@ -185,14 +185,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingLeft: 50,
     paddingRight: 50,
-    width: '100%'
+    width: '100%',
+    height:0.2*height,
+    backgroundColor:'green'
   },
   bottomContainer: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    height: '40%',
-
+    height: 0.2*height,
+backgroundColor:'pink',
     paddingLeft: 50,
     paddingRight: 50,
 
@@ -201,12 +203,12 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "800",
     lineHeight: 25,
-    paddingTop: 30
+    paddingTop: 0.03*height
   },
   button: {
-    marginTop: 20,
-    height: 50,
-    width: 300,
+    marginTop: '10%',
+    height: height*0.05,
+    width: width*0.7,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'rgb(233, 60, 6)',
@@ -219,11 +221,12 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.34,
     shadowRadius: 6.27,
     elevation: 10,
+    
   },
   cancelButton: {
-    marginTop: 20,
-    height: 50,
-    width: 300,
+    marginTop: '10%',
+    height: height*0.05,
+    width: width*0.7,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'green',
@@ -246,7 +249,7 @@ const styles = StyleSheet.create({
   logoImage: {
     width: '100%',
     height: undefined,
-    aspectRatio: 1,
+    aspectRatio: 120/76,
     overflow: 'visible'
   },
   title: {

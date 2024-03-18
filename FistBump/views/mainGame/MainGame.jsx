@@ -112,7 +112,7 @@ export function MainGame() {
     }, []);
 
 useEffect(()=>{
-    const gameIntro=new Sound('gameIntro.mp3',Sound.MAIN_BUNDLE,(error=>{
+    const gameIntro=new Sound('gameintro.mp3',Sound.MAIN_BUNDLE,(error=>{
         if(error)
         {
             console.log('failed to load sound '+error)

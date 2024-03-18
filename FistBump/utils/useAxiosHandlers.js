@@ -75,12 +75,9 @@ export function useAxiosHandlers() {
 
   const handleSendOTP = useCallback(async (phoneNumber, isUs) => {
     const flag = false
-    console.log('PHONENUMBER ' + phoneNumber)
-    console.log('CONFIGPHONENUMBER ' + Config.REACT_APP_LOGIN_PHONE)
-    if(phoneNumber==Config.REACT_APP_LOGIN_PHONE)
+    if(phoneNumber==Config.REACT_APP_LOGIN_PHONE||phoneNumber.toString().trim()===Config.REACT_APP_LOGIN_PHONE_USA.toString().trim())
     {
-      dispatch(setLoggedIn({ phone: phoneNumber, isUs: isUs }))
-
+      dispatch(setLoggedIn({ phone: phoneNumber, isUs: phoneNumber.toString().trim()===Config.REACT_APP_LOGIN_PHONE_USA.toString().trim() }))
       navigation.navigate('ConfirmationCode')
       return
     }
