@@ -15,7 +15,7 @@ import { clickSound, handleClick } from "../logo/LogoView";
 // "expire_date": "2022-03-04 14:50:57"
 
 export function useActions() {
-  const{handleGet,handleUpsert}=useDbHandlers()
+  const{patchUser}=useDbHandlers()
   const navigation=useNavigation()
   const user = useSelector((state) => state.user.user);
   const {CountVisitStats,VoteFor}=user
@@ -32,6 +32,8 @@ export function useActions() {
     {
         navigation.navigate('Stats')
         dispatch(setPaymentCount(+CountVisitStats-1))
+        patchUser('/CountVisitStats', +CountVisitStats-1)
+        //TODO Update in dbehh
     }
     else{
         navigation.navigate('PaywallScreen')

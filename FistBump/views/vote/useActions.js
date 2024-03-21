@@ -15,44 +15,44 @@ import { clickSound, handleClick } from "../logo/LogoView";
 // "expire_date": "2022-03-04 14:50:57"
 
 export function useActions() {
-  const{updateResults}=useDbHandlers()
-  const navigation=useNavigation()
+  const { updateResults, patchUser } = useDbHandlers()
+  const navigation = useNavigation()
   const user = useSelector((state) => state.user.user);
-  const {CountVisitStats,VoteFor}=user
+  const { CountVisitStats, VoteFor } = user
   const dispatch = useDispatch();
 
-  const handleStatsFlow = useCallback( () => {
+  const handleStatsFlow = useCallback(() => {
     handleClick()
-    if(CountVisitStats&&+CountVisitStats>0)
-    {
-        navigation.navigate('Stats')
-        dispatch(setPaymentCount(+CountVisitStats-1))
+    if (CountVisitStats && +CountVisitStats > 0) {
+
+      dispatch(setPaymentCount(+CountVisitStats - 1))
+      patchUser('/CountVisitStats', +CountVisitStats - 1)
+      navigation.navigate('Stats')
     }
-    else{
-        navigation.navigate('PaywallScreen')
+    else {
+      navigation.navigate('PaywallScreen')
     }
 
-    
+
   }, [CountVisitStats])
 
 
 
 
-  const handleVoteFlow = useCallback( async (name) => {
-  
+  const handleVoteFlow = useCallback(async (name) => {
+
     //if(!VoteFor){
     //dispatch(setVote(name))
-    try{
-    await updateResults(name=='Biden')
-
-    dispatch(name=='Biden'?setBidenVote():setTrumpVote())
+    try {
+      await updateResults(name == 'Biden')
+      await patchUser('/VoteFor', name)
+      dispatch(name == 'Biden' ? setBidenVote() : setTrumpVote())
     }
-    catch(e)
-    {
-      
+    catch (e) {
+
     }
     //}
-  
+
   }, [VoteFor])
 
 
