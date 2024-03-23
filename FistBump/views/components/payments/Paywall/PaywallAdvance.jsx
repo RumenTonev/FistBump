@@ -122,7 +122,7 @@ const OfferingDetailScreen = () => {
           </Text>
           <Text style={{ paddingTop: 0.03*height, textAlign: 'center' }}>{product?.description}</Text>
           <Text style={styles.innerText}>
-            3 x Full access for just {product?.priceString}
+            5 x Full access for just {product?.priceString}
           </Text>
         </View>
 
