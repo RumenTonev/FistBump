@@ -31,12 +31,10 @@ const PaywallScreen = () => {
         console.log(productId)
         const products = await Purchases.getProducts([productId],PRODUCT_CATEGORY.NON_SUBSCRIPTION);
         console.log(products)
-       // debugger
         if (products) {
           setProducts(products);
         }
       } catch (e) {
-       //debugger
         console.log(e)
         Alert.alert('Error getting offers');
       }

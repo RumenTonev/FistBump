@@ -20,6 +20,7 @@ import { useDispatch } from 'react-redux';
 import { setPaymentCount } from '../../../../store/userSlice';
 import { LoginBackground, Logo } from '../../../../resources';
 import { clickSound, handleClick } from '../../../logo/LogoView';
+import { useDbHandlers } from '../../../../utils/useDbHandlers';
 
 
 //type Props = NativeStackScreenProps<RootStackParamList, 'OfferingDetail'>;
@@ -30,6 +31,7 @@ const OfferingDetailScreen = () => {
   const dispatch = useDispatch();
   const [product, setProduct] = useState();
   const [offering, setOfferings] = useState();
+  const {patchUser}=useDbHandlers()
 
   // - State for displaying an overlay view
   const [isPurchasing, setIsPurchasing] = useState(false);
@@ -82,7 +84,8 @@ const OfferingDetailScreen = () => {
         //const kur:CustomerInf
         // if (typeof purchaserInfo.entitlements.active[ENTITLEMENT_ID] !== 'undefined') {
 
-        dispatch(setPaymentCount(2))
+        dispatch(setPaymentCount(4))
+        patchUser('/CountVisitStats', 4)
         navigation.navigate('Stats')
       }
       //}
@@ -119,7 +122,7 @@ const OfferingDetailScreen = () => {
           </Text>
           <Text style={{ paddingTop: 0.03*height, textAlign: 'center' }}>{product?.description}</Text>
           <Text style={styles.innerText}>
-            3 x Full access for just {product?.priceString}
+            5 x Full access for just {product?.priceString}
           </Text>
         </View>
 
@@ -163,7 +166,6 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'yellow',
     height: 0.40*height,
 flexGrow:1
   },
@@ -175,7 +177,6 @@ flexGrow:1
   imgContainer: {
     paddingTop: height*0.1,
     width: width,
-    backgroundColor: 'blue',
 paddingBottom:height*0.1,
     height: height*0.45
   },
@@ -187,14 +188,12 @@ paddingBottom:height*0.1,
     paddingRight: 50,
     width: '100%',
     height:0.2*height,
-    backgroundColor:'green'
   },
   bottomContainer: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     height: 0.2*height,
-backgroundColor:'pink',
     paddingLeft: 50,
     paddingRight: 50,
 

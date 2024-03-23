@@ -2,79 +2,65 @@ import { useRef, useEffect, useCallback } from 'react';
 import { Animated, Image, StyleSheet, View } from 'react-native'
 import { Logo } from '../../resources';
 import { useSelector } from 'react-redux';
-import { useDbHandlers } from '../../utils/useDbHandlers';
 import { useGetUserOnLoad } from '../../store/hooks/useGetUserOnLoad';
 import { useNavigation } from '@react-navigation/native';
 import Sound from 'react-native-sound';
 
 Sound.setCategory('Playback')
 
-const initialSound=new Sound('intro.mp3',Sound.MAIN_BUNDLE,(error=>{
-    if(error)
-    {
-        console.log('failed to load sound '+error)
+const initialSound = new Sound('intro.mp3', Sound.MAIN_BUNDLE, (error => {
+    if (error) {
+        console.log('failed to load sound ' + error)
         return
     }
     initialSound.play(success => {
-            if (success) {
-              console.log('successfully finished playing');
-            } else {
-              console.log('playback failed due to audio decoding errors');
-            }
-            
-            initialSound.release();
-          });
-    
+        if (success) {
+            console.log('successfully finished playing');
+        } else {
+            console.log('playback failed due to audio decoding errors');
+        }
+
+        initialSound.release();
+    });
+
 }
 ))
 initialSound.setNumberOfLoops(-1)
 initialSound.setVolume(1)
 
-// export const clickSound=new Sound('click.mp3',Sound.MAIN_BUNDLE,(error=>{
-//     if(error)
-//     {
-//         console.log('failed to load sound '+error)
-//         return
-//     }
-// }
-// ))
-
 export const handleClick = useCallback(() => {
-    const clickSound=new Sound('click.mp3',Sound.MAIN_BUNDLE,(error=>{
-        if(error)
-        {
-            console.log('failed to load sound '+error)
+    const clickSound = new Sound('click.mp3', Sound.MAIN_BUNDLE, (error => {
+        if (error) {
+            console.log('failed to load sound ' + error)
             return
         }
         clickSound.play(success => {
             if (success) {
-              console.log('successfully finished playing');
+                console.log('successfully finished playing');
             } else {
-              console.log('playback failed due to audio decoding errors');
+                console.log('playback failed due to audio decoding errors');
             }
-            
+
             clickSound.release();
-          }); 
+        });
     }
     ))
-  }, [])
+}, [])
 
 
 
 
 initialSound.setVolume(1)
 export function LogoView() {
-    console.log('Fuckit')
     const fadeInitial = useRef(new Animated.Value(0)).current;
-    const navigation=useNavigation()
-console.log('Fuckit2')
+    const navigation = useNavigation()
     const user = useSelector((state) => state.user.user);
-    //console.log(user)
-const status= useGetUserOnLoad()
-   console.log(status)
+
+    const status = useGetUserOnLoad()
+    console.log(status)
     const screenAnimation = () => {
         console.log('called')
-    
+
         Animated.timing(fadeInitial, {
             toValue: 1,
             duration: 5000,
@@ -87,10 +73,9 @@ const status= useGetUserOnLoad()
                     duration: 5000,
                     useNativeDriver: true
                 }).start(({ finished }) => {
-            initialSound.stop()
-                    if (finished&&status!='pending') {
-                        user?.id?navigation.navigate('Landing'):navigation.navigate("EULA");
-                       // navigation.navigate("Landing");
+                    initialSound.stop()
+                    if (finished && status != 'pending') {
+                        user?.id ? navigation.navigate('Landing') : navigation.navigate("EULA");
                         fadeInitial.current = new Animated.Value(0);
                     }
                     initialSound.release()
@@ -98,9 +83,8 @@ const status= useGetUserOnLoad()
             }
         });
     };
-    
+
     useEffect(() => {
-        console.log('inside')
         screenAnimation();
     }, []);
 
@@ -110,7 +94,7 @@ const status= useGetUserOnLoad()
         }]}>
             <View style={styles.imgContainer}>
                 <Image source={Logo} style={[styles.logoImage]} >
-                </Image> 
+                </Image>
             </View>
         </Animated.View>
     );
@@ -120,11 +104,11 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: 'black',
         display: 'flex',
-        flex:1,
+        flex: 1,
         alignItems: 'center',
     },
     imgContainer: {
-        width:'60%'
+        width: '60%'
     },
     logoImage: {
         marginTop: '1%',

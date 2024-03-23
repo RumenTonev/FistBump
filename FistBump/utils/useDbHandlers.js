@@ -58,7 +58,7 @@ export function useDbHandlers() {
           const newEntry = {
             "id": phone,
             "VoteFor": null,
-            "CountVisitStats": null,
+            "CountVisitStats": 5,
             "State": null,
             "isUS": isUs
           }
@@ -92,7 +92,6 @@ export function useDbHandlers() {
       .database(Config.REACT_APP_COSMOS_DATABASE)
       .container(Config.REACT_APP_COSMOS_CONTAINER)
       .items.upsert(newEntry).then((response) => {
-        debugger
         console.log('HANDLEUPSERT')
         console.log(response)
         const { resource: readDoc } = response;
@@ -134,7 +133,6 @@ export function useDbHandlers() {
       .container(Config.REACT_APP_COSMOS_RESULTS_CONTAINER)
       .item('1', '1').read()
       .then(async (response) => {
-        debugger
         if (response.statusCode === 200) {
 
 
@@ -176,7 +174,6 @@ export function useDbHandlers() {
       .container(Config.REACT_APP_COSMOS_RESULTS_CONTAINER)
       .item('1', '1').patch(operations)
       .then(async (response) => {
-debugger
         if (response.statusCode === 200) {
 
 
@@ -201,6 +198,44 @@ debugger
 
   }, [cosmosClient])
 
+  const patchUser = useCallback(async (path,value) => {
+    const operations = [
+
+      { op: "set", path: path, value: value },
+    
+
+    ]
+
+    await cosmosClient
+      .database(Config.REACT_APP_COSMOS_DATABASE)
+      .container(Config.REACT_APP_COSMOS_CONTAINER)
+      .item(id, id).patch(operations)
+      .then(async (response) => {
+        if (response.statusCode === 200) {
+
+
+
+          const { resource: readDoc } = response;
+      
+        console.log(readDoc)
+
+            
+
+        }
+        console.log('UPDATEUSERVote ' + response)
+      }).catch((error) => {
+        console.log('UPDATEUSERVOTE ERROR')
+        console.log(error)
+      })
+
+
+
+  }, [cosmosClient])
+
+
+
+
+
 
 
 
@@ -210,6 +245,7 @@ debugger
     handleUpsert,
     handleInitialGet,
     getResults,
-    updateResults
+    updateResults,
+    patchUser
   }
 }
