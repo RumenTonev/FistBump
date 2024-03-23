@@ -248,7 +248,7 @@ paddingBottom:height*0.1,
   logoImage: {
     width: '100%',
     height: undefined,
-    aspectRatio: 120/76,
+    aspectRatio: 1,
     overflow: 'visible'
   },
   title: {
