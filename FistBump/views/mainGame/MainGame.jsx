@@ -99,7 +99,7 @@ export function MainGame() {
             
            bellSound.stop()
             //initialSound.release()
-        }, 3000)
+        }, 1000)
         setTimeout(() => {
             handlePunch()
         }, actionImage.image==19?1000:100)
