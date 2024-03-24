@@ -175,10 +175,10 @@ flexGrow:1
     flex: 1
   },
   imgContainer: {
-    paddingTop: height*0.1,
-    width: width,
-paddingBottom:height*0.1,
-    height: height*0.45
+    flex: 1,
+    width: '100%',
+    height: '50%',
+    alignItems: 'center'
   },
   otherContainer: {
     display: 'flex',
@@ -202,7 +202,6 @@ paddingBottom:height*0.1,
     fontSize: 20,
     fontWeight: "800",
     lineHeight: 25,
-    paddingTop: 0.03*height
   },
   button: {
     marginTop: '10%',
@@ -210,7 +209,7 @@ paddingBottom:height*0.1,
     width: width*0.7,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'rgb(233, 60, 6)',
+    backgroundColor: 'green',
     shadowColor: 'rgba(0,0,0,0.4)',
     borderRadius: 50,
     shadowOffset: {
@@ -228,7 +227,7 @@ paddingBottom:height*0.1,
     width: width*0.7,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'green',
+    backgroundColor: 'rgb(233, 60, 6)',
     shadowColor: 'rgba(0,0,0,0.4)',
     borderRadius: 50,
     shadowOffset: {
@@ -247,9 +246,11 @@ paddingBottom:height*0.1,
   },
   logoImage: {
     width: '100%',
-    height: undefined,
-    aspectRatio: 1,
-    overflow: 'visible'
+    height: '100%',
+    ...Platform.select({
+      ios: { aspectRatio: 120/76 },
+      android: { aspectRatio: 1 }
+    })
   },
   title: {
     fontSize: 16,
