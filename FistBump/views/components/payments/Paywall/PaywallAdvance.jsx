@@ -112,7 +112,7 @@ const OfferingDetailScreen = () => {
 
       <View style={styles.imgContainer} >
 
-        <Image source={Logo} resizeMode='cover' style={styles.logoImage} >
+        <Image source={Logo} resizeMode='contain' style={styles.logoImage} >
         </Image>
       </View>
       <View style={styles.inner}>
