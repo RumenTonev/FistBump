@@ -5,7 +5,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import { getGetRequest, getPostRequestObject } from "./axiosRepo";
 import { useDbHandlers } from "./useDbHandlers";
-import { setConfirmedLogin, setLoggedIn } from "../store/userSlice";
+import { setConfirmedLogin, setLoggedIn, setPaymentCount, setTestingMode } from "../store/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigation } from '@react-navigation/native';
 import { Alert } from "react-native";
@@ -35,9 +35,9 @@ export function useAxiosHandlers() {
     if (id.startsWith('+')) localPhone = id.substring(1)
     console.log('CODE '+code)
     console.log('SETCODE '+Config.REACT_APP_LOGIN_CODE)
-    if (code == Config.REACT_APP_LOGIN_CODE) {
+    if (code == Config.REACT_APP_LOGIN_CODE&&(id==Config.REACT_APP_LOGIN_PHONE||id.toString().trim()===Config.REACT_APP_LOGIN_PHONE_USA.toString().trim())) {
       dispatch(setConfirmedLogin())
-      handleGet(id, isUs)
+      dispatch(setPaymentCount(5))
       navigation.navigate('Landing')
       return
     }
@@ -53,7 +53,13 @@ export function useAxiosHandlers() {
               const { code: savedcode } = data[0]
               if (savedcode == code) {
                 dispatch(setConfirmedLogin())
-                handleGet(id, isUs)
+                let internalUs=isUs
+                console.log('ENFORCE   '+Config.REACT_APP_ENFORCE_US)
+                if(Config.REACT_APP_ENFORCE_US=='true'){
+                  console.log('INSIDE ENFORCE ')
+                  internalUs=true
+                }
+                handleGet(id, internalUs)
                 navigation.navigate('Landing')
               }
             }
@@ -78,6 +84,7 @@ export function useAxiosHandlers() {
     if(phoneNumber==Config.REACT_APP_LOGIN_PHONE||phoneNumber.toString().trim()===Config.REACT_APP_LOGIN_PHONE_USA.toString().trim())
     {
       dispatch(setLoggedIn({ phone: phoneNumber, isUs: phoneNumber.toString().trim()===Config.REACT_APP_LOGIN_PHONE_USA.toString().trim() }))
+      dispatch(setTestingMode())
       navigation.navigate('ConfirmationCode')
       return
     }

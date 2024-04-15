@@ -4,13 +4,17 @@ import { tickBtn, declineBtn } from "../../resources";
 import { useActions } from "./useActions";
 import { useNavigation } from "@react-navigation/native";
 import { clickSound, handleClick } from "../logo/LogoView";
+import { useDispatch, useSelector } from "react-redux";
+import { setBidenVote, setTrumpVote, setVote } from "../../store/userSlice";
 
 export function VoteModal(props) {
     const { handleVoteFlow } = useActions();
+    const dispatch = useDispatch();
     const {candidate,close,show}=props
     const navigation = useNavigation();
     const [voteText, setVoteText] = useState('');
     const [elementsVisibility, setElementsVisibility] = useState(true);
+    const testingMode = useSelector((state) => state.user.testingMode);
     let elementVisible = elementsVisibility ? styles.visible : styles.hidden;
 
     const [navElementVisiblity, setNavElementVisiblity] = useState(false);
@@ -27,7 +31,15 @@ export function VoteModal(props) {
         setElementsVisibility(false);
         setNavElementVisiblity(true);
         console.log('Vote: ' + candidate);
+        if(testingMode)
+        {
+            dispatch(setVote(candidate))
+            dispatch(candidate=='Trump'?setTrumpVote():setBidenVote())
+            navigation.navigate('Landing')
+        }
+        else{
         handleVoteFlow(candidate);
+        }
     }, [candidate]);
 
     const navToHomePage = useCallback(() => {

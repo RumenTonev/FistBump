@@ -6,7 +6,7 @@ import { tou } from "../../resources/tou.js";
 
 
 export function EulaView({ navigation }) {
-    const privacyPolicyUrl = 'http://crazybastards.pro';
+    const privacyPolicyUrl = 'https://crazybastards.pro/privacy-policy/';
 
     const openUrl = async (url) => {
         await Linking.openURL(url);

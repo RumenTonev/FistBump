@@ -28,7 +28,7 @@ export function useDbHandlers() {
               VoteFor: readDoc.VoteFor,
               CountVisitStats: readDoc.CountVisitStats,
               State: readDoc.State,
-              isUs: readDoc.isUS,
+              isUs: readDoc.isUs,
               confirmedLogin: true
             }))
 
@@ -55,12 +55,13 @@ export function useDbHandlers() {
 
         if (response.statusCode === 404) {
           console.log('NOT FOUND')
+          console.log('BEHING'+isUs)
           const newEntry = {
             "id": phone,
             "VoteFor": null,
             "CountVisitStats": 5,
             "State": null,
-            "isUS": isUs
+            "isUs": isUs
           }
           handleUpsert(newEntry)
           dispatch(setUser(newEntry))
@@ -74,7 +75,7 @@ export function useDbHandlers() {
             VoteFor: readDoc.VoteFor,
             CountVisitStats: readDoc.CountVisitStats,
             State: readDoc.State,
-            isUs: readDoc.isUS,
+            isUs: readDoc.isUs,
             confirmedLogin: true
           }))
 
