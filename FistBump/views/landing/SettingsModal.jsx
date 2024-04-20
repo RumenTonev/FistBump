@@ -15,27 +15,18 @@ export function SettingsModal(props) {
     let initialModalContainerVisibility = initialModalContainerVisible ? styles.visible : styles.hidden;
     let confirmContainerVisibility = confirmContainerVisible ? styles.visible : styles.hidden;
 
-    const deleteAcc = useCallback(() => {
-        handleClick();
-        setConfirmContainerVisible(true);
-        setInitialModalContainerVisible(false);
-    }, []);
 
-    const declineConfirm = useCallback(() => {
+    const handleModalBtnClick = useCallback((isMainContainerVisible, accDeletionHook) => {
         handleClick();
-        setConfirmContainerVisible(false);
-        setInitialModalContainerVisible(true);
-    }, []);
+        setConfirmContainerVisible(!isMainContainerVisible);
+        setInitialModalContainerVisible(isMainContainerVisible);
 
-    
-    const confirmDeletion = useCallback(() => {
-        handleClick();
-        //call hook for deletion
-        setConfirmContainerVisible(false);
-        setInitialModalContainerVisible(true);
-        close();
+        //call hook
+        if (accDeletionHook) {
+            accDeletionHook();
+            close();
+        }
     }, []);
-
 
     return (
         <View style={styles.centeredView}>
@@ -45,7 +36,7 @@ export function SettingsModal(props) {
                         <View style={[styles.modalViewStyle, initialModalContainerVisibility]}>
                             <Text style={styles.modalText}>Settings</Text>
 
-                            <TouchableOpacity onPress={() => deleteAcc()} style={[styles.cancelButton, styles.marginTop,styles.marginBottom]} >
+                            <TouchableOpacity onPress={() => handleModalBtnClick(false)} style={[styles.cancelButton, styles.marginTop, styles.marginBottom]} >
                                 <Text style={[styles.modalText, styles.deleteBtnText]}>Delete Account</Text>
                             </TouchableOpacity>
                             <View style={styles.buttonsContainer}>
@@ -61,11 +52,11 @@ export function SettingsModal(props) {
                             <Text style={[styles.modalText, styles.marginBottom]}>Are you sure you want to Delete your Account ?</Text>
 
                             <View style={styles.buttonsContainer}>
-                                <TouchableOpacity onPress={() => confirmDeletion()} >
+                                <TouchableOpacity onPress={() => handleModalBtnClick(true, () => { console.log('here') })} >
                                     <Image source={tickBtn}>
                                     </Image>
                                 </TouchableOpacity>
-                                <TouchableOpacity onPress={() => declineConfirm()} style={[styles.modalButtonDecline]}>
+                                <TouchableOpacity onPress={() => handleModalBtnClick(true)} style={[styles.modalButtonDecline]}>
                                     <Image source={declineBtn}>
                                     </Image>
                                 </TouchableOpacity>
