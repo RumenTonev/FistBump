@@ -112,6 +112,9 @@ const styles = StyleSheet.create({
     statValue: {
         textAlign: 'center',
         fontSize: RFPercentage(3),
-        fontFamily: 'Super Funky',
+        ...Platform.select({
+            ios: { fontFamily: 'Super Funky' },
+            android: { fontFamily: 'SuperFunky-lgmWw' }
+        })
     }
 })

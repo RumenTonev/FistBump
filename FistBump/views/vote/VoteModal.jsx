@@ -79,7 +79,10 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: 18,
         color: 'white',
-        fontFamily: 'Super Funky',
+        ...Platform.select({
+            ios: { fontFamily: 'Super Funky' },
+            android: { fontFamily: 'SuperFunky-lgmWw' }
+        })
     },
     modalButtonDecline: {
         marginLeft: 15
