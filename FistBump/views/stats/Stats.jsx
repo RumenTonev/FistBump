@@ -10,7 +10,7 @@ import { clickSound, handleClick } from "../logo/LogoView";
 
 export function Stats() {
     const stats = useSelector((state) => state.user.results);
-    const {BaydenCount,TrumpCount}= stats
+    const {BidenCount,TrumpCount}= stats
     const navigation=useNavigation()
     //SPINNER???
     const status=useGetStatsOnLoad()
@@ -54,7 +54,7 @@ handleClick()
                     <View style={styles.statsContainer}>
                         <ImageBackground source={BidenStatsHolder} style={[styles.bidenStatsHolder, styles.centerStat]}>
                             <View style={styles.statValueContainer}>
-                                <Text style={styles.statValue}>{BaydenCount}</Text>
+                                <Text style={styles.statValue}>{BidenCount}</Text>
                             </View>
                         </ImageBackground>
                     </View>

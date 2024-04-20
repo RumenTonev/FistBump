@@ -10,7 +10,7 @@ export function useDbHandlers() {
   const dispatch = useDispatch()
   const resultsContainer = cosmosClient.database('FistBump').container
   const user = useSelector((state) => state.user.user);
-  const { id } = user
+  const { id,CountVisitStats,VoteFor } = user
   const handleInitialGet = useCallback(async () => {
     if (id) {
       await cosmosClient
@@ -142,7 +142,7 @@ export function useDbHandlers() {
           //setResultsObject
           dispatch(setResults({
 
-            BaydenCount: readDoc.BaydenCount,
+            BidenCount: readDoc.BidenCount,
             TrumpCount: readDoc.TrumpCount,
             Total: readDoc.Total,
           }))
@@ -165,7 +165,7 @@ export function useDbHandlers() {
   const updateResults = useCallback(async (isBiden) => {
     const operations = [
 
-      { op: "incr", path: isBiden ? '/BaydenCount' : '/TrumpCount', value: 1 },
+      { op: "incr", path: isBiden ? '/BidenCount' : '/TrumpCount', value: 1 },
       { op: "incr", path: '/Total', value: 1 },
 
     ]
@@ -183,7 +183,7 @@ export function useDbHandlers() {
           //setResultsObject
           dispatch(setResults({
 
-            BaydenCount: readDoc.BaydenCount,
+            BidenCount: readDoc.BidenCount,
             TrumpCount: readDoc.TrumpCount,
             Total: readDoc.Total,
           }))
@@ -234,6 +234,73 @@ export function useDbHandlers() {
   }, [cosmosClient])
 
 
+  const deleteAccount= useCallback(async () => {
+    const operations = [
+
+      { op: "set", path: path, value: value },
+    
+
+    ]
+
+    await cosmosClient
+      .database(Config.REACT_APP_COSMOS_DATABASE)
+      .container(Config.REACT_APP_COSMOS_CONTAINER)
+      .item(id, id).delete()
+      .then(async (response) => {
+        if (response.statusCode === 200) {
+
+          const operations = [
+
+            { op: "incr", path: VoteFor=='Biden' ? '/BidenCount' : '/TrumpCount', value: -1 },
+            { op: "incr", path: '/Total', value: -1},
+      
+          ]
+      
+          await cosmosClient
+            .database(Config.REACT_APP_COSMOS_DATABASE)
+            .container(Config.REACT_APP_COSMOS_RESULTS_CONTAINER)
+            .item('1', '1').patch(operations)
+            .then(async (response) => {
+              if (response.statusCode === 200) {
+      
+      
+      
+                const { resource: readDoc } = response;
+                //setResultsObject
+                dispatch(setResults({
+      
+                  BidenCount: readDoc.BidenCount,
+                  TrumpCount: readDoc.TrumpCount,
+                  Total: readDoc.Total,
+                }))
+      
+              }
+              console.log('UPDATERESULTS ' + response)
+            }).catch((error) => {
+              console.log('UPDATERESULTS ERROR')
+              console.log(error)
+            })
+      
+          dispatch(setUser({
+            id: null,
+            VoteFor: null,
+            CountVisitStats: CountVisitStats,
+            State: null,
+            isUs: false,
+            confirmedLogin: false
+          }))
+
+        console.log('ACCOUNT DELETED')
+        }
+      }).catch((error) => {
+        console.log('UNABLE TO DELETE ACCOUNT')
+        console.log(error)
+      })
+
+
+
+  }, [cosmosClient,CountVisitStats,id])
+
 
 
 
@@ -247,6 +314,7 @@ export function useDbHandlers() {
     handleInitialGet,
     getResults,
     updateResults,
-    patchUser
+    patchUser,
+    deleteAccount
   }
 }
