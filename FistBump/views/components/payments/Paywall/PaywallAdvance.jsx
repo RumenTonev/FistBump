@@ -117,11 +117,11 @@ const OfferingDetailScreen = () => {
       </View>
       <View style={styles.inner}>
         <View style={styles.otherContainer}>
-          <Text style={styles.otherText}>
+          <Text style={[styles.otherText]}>
             Ignite your curiosity
           </Text>
-          <Text style={{ paddingTop: 0.03*height, textAlign: 'center' }}>{product?.description}</Text>
-          <Text style={styles.innerText}>
+          <Text style={[{ paddingTop: 0.03*height, textAlign: 'center' }, styles.customFont]}>{product?.description}</Text>
+          <Text style={[styles.innerText, styles.customFont]}>
             5 x Full access for just {product?.priceString}
           </Text>
         </View>
@@ -132,7 +132,7 @@ const OfferingDetailScreen = () => {
 
             onPress={purchaseProduct}
           >
-            <Text style={styles.buttonText}>Continue</Text>
+            <Text style={[styles.buttonText, styles.customFont]}>Continue</Text>
 
           </TouchableOpacity>
           <TouchableOpacity
@@ -140,7 +140,7 @@ const OfferingDetailScreen = () => {
 
             onPress={getBack}
           >
-            <Text style={styles.buttonText}>Cancel</Text>
+            <Text style={[styles.buttonText, styles.customFont]}>Cancel</Text>
 
           </TouchableOpacity>
         </View>
@@ -200,8 +200,11 @@ flexGrow:1
   },
   otherText: {
     fontSize: 20,
-    fontWeight: "800",
     lineHeight: 25,
+    ...Platform.select({
+      ios: { fontFamily: 'Super Funky' },
+      android: { fontFamily: 'SuperFunky-lgmWw' }
+    })
   },
   button: {
     marginTop: '10%',
@@ -238,11 +241,16 @@ flexGrow:1
     shadowRadius: 6.27,
     elevation: 10,
   },
+  customFont:{
+    ...Platform.select({
+      ios: { fontFamily: 'Super Funky' },
+      android: { fontFamily: 'SuperFunky-lgmWw' }
+    })
+  },
   buttonText: {
     color: 'white',
     fontSize: 14,
-    fontWeight: '600',
-
+    fontWeight: '600'
   },
   logoImage: {
     width: '100%',
