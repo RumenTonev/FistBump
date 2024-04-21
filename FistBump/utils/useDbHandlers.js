@@ -235,19 +235,16 @@ export function useDbHandlers() {
 
 
   const deleteAccount= useCallback(async () => {
-    const operations = [
 
-      { op: "set", path: path, value: value },
+    console.log('ID IN DELETE '+id)
     
-
-    ]
-
+if(id)
     await cosmosClient
       .database(Config.REACT_APP_COSMOS_DATABASE)
       .container(Config.REACT_APP_COSMOS_CONTAINER)
       .item(id, id).delete()
       .then(async (response) => {
-        if (response.statusCode === 200) {
+        if (response.statusCode === 200||response.statusCode===204) {
 
           const operations = [
 
@@ -255,13 +252,15 @@ export function useDbHandlers() {
             { op: "incr", path: '/Total', value: -1},
       
           ]
-      
+          
+    if(VoteFor)
+    {
           await cosmosClient
             .database(Config.REACT_APP_COSMOS_DATABASE)
             .container(Config.REACT_APP_COSMOS_RESULTS_CONTAINER)
             .item('1', '1').patch(operations)
             .then(async (response) => {
-              if (response.statusCode === 200) {
+              if (response.statusCode === 200||response.statusCode===204) {
       
       
       
@@ -280,7 +279,7 @@ export function useDbHandlers() {
               console.log('UPDATERESULTS ERROR')
               console.log(error)
             })
-      
+          }
           dispatch(setUser({
             id: null,
             VoteFor: null,
@@ -299,7 +298,7 @@ export function useDbHandlers() {
 
 
 
-  }, [cosmosClient,CountVisitStats,id])
+  }, [cosmosClient,CountVisitStats,id,VoteFor])
 
 
 
