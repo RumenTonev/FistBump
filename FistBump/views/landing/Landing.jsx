@@ -1,9 +1,11 @@
 import { View, TouchableOpacity, Image, StyleSheet, ImageBackground, Dimensions } from "react-native";
-import { PlayBtn, StatsBtn, BidenHome, TrumpHome, VoteBtn, bottomLanding, preBottomLanding, mediumLanding, preTopLanding, topLanding } from "../../resources";
-import { useState } from "react";
+import { PlayBtn, StatsBtn, BidenHome, TrumpHome, VoteBtn, bottomLanding, preBottomLanding, mediumLanding, preTopLanding, topLanding, settingsBtn } from "../../resources";
+import { useState, useCallback } from "react";
 import { customStyles } from '../components/styles';
 import { useNavigation } from "@react-navigation/native";
 import { useActions } from "./useActions";
+import { SettingsModal } from "./SettingsModal";
+import { handleClick } from "../logo/LogoView";
 
 
 
@@ -14,7 +16,9 @@ export function Landing() {
     const baseWidth = 35;
     const baseHeight = 90;
     const basePercentage = 100;
-    const { handleStatsFlow,handleButtonClick } = useActions();
+    const { handleStatsFlow, handleButtonClick } = useActions();
+    const [modalVisibility, setModalVisibility] = useState(false);
+
 
     const [height, setHeight] = useState(() => {
         return orientation == 'portrait' ? (screen.width * baseHeight) / basePercentage : (screen.height * baseHeight) / basePercentage;
@@ -23,8 +27,15 @@ export function Landing() {
         return orientation == 'portrait' ? (screen.height * baseWidth) / basePercentage : (screen.width * baseWidth) / basePercentage;
     });
 
+
+    const renderModal = useCallback((modalVisibilityProp) => {
+        handleClick();
+        setModalVisibility(modalVisibilityProp);
+    }, []);
+
     return (
         <View style={styles.container}>
+            <SettingsModal show={modalVisibility}  close={() => renderModal(false)}></SettingsModal>
             <View style={[styles.landingContentPlayerTrump]}>
                 <Image style={{ height: height, width: width }} source={TrumpHome}>
                 </Image>
@@ -36,7 +47,7 @@ export function Landing() {
                 <View id="preTopLanding" style={styles.backgroundElement}>
                     <ImageBackground source={preTopLanding} style={[styles.backgroundElementImage]}>
                         <View style={styles.buttonContainer}>
-                            <TouchableOpacity onPress={()=>handleButtonClick('Vote')} style={styles.buttonContainer}>
+                            <TouchableOpacity onPress={() => handleButtonClick('Vote')} style={styles.buttonContainer}>
                                 <Image source={VoteBtn} style={styles.button}>
                                 </Image>
                             </TouchableOpacity>
@@ -46,7 +57,7 @@ export function Landing() {
                 <View id="mediumLanding" style={styles.backgroundElement}>
                     <ImageBackground source={mediumLanding} style={[styles.backgroundElementImage]}>
                         <View style={styles.buttonContainer}>
-                            <TouchableOpacity onPress={()=>handleButtonClick('MainGame')} style={styles.buttonContainer}>
+                            <TouchableOpacity onPress={() => handleButtonClick('MainGame')} style={styles.buttonContainer}>
                                 <Image source={PlayBtn} style={styles.button}>
                                 </Image>
                             </TouchableOpacity>
@@ -70,6 +81,12 @@ export function Landing() {
             <View style={styles.landingContentPlayerBIden}>
                 <Image style={{ height: height, width: width }} source={BidenHome}>
                 </Image>
+            </View>
+            <View style={styles.buttonSettingsContainer}>
+                <TouchableOpacity onPress={() => renderModal(true)}>
+                    <Image source={settingsBtn} style={styles.btnSettings}>
+                    </Image>
+                </TouchableOpacity>
             </View>
         </View>
     );
@@ -119,5 +136,15 @@ const styles = StyleSheet.create({
         flex: 1,
         width: '100%',
         resizeMode: 'contain'
+    },
+    buttonSettingsContainer: {
+        position: 'absolute',
+        top: 10,
+        right: 10,
+        zIndex: 10
+    },
+    btnSettings: {
+        width: 50,
+        height: 50
     }
 })
