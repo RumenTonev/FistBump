@@ -27,9 +27,9 @@ import PaywallScreen from './views/components/payments/Paywall/Paywall';
 import { Provider } from 'react-redux';
 import { persistor, store } from './store/store';
 import { PersistGate } from 'redux-persist/integration/react';
-import { Landing } from './views/landing/Landing.jsx';
 import { MainGame } from './views/mainGame/MainGame';
 import OfferingDetailScreen from './views/components/payments/Paywall/PaywallAdvance';
+import { Landing } from './views/landing/Landing';
 
 
 
