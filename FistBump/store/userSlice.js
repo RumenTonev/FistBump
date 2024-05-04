@@ -8,7 +8,9 @@ export const userSlice = createSlice({
         CountVisitStats: null,
         State:null,
         isUs:false,
-        confirmedLogin:false
+        confirmedLogin:false,
+        attemptCounts:0,
+        confirmedTerms:false
   } ,results:{
     Total: 0,
     TrumpCount: 0,
@@ -18,7 +20,7 @@ testingMode:false
 },
   reducers: {
     setUser: (state, action) => {
-      console.log('SEUSER '+action.payload.toString())
+      console.log('SEUSER '+action.payload.confirmedLogin)
       state.user = action.payload
     },
     setLoggedIn:(state,action)=>{
@@ -34,6 +36,14 @@ state.user.isUs=action.payload.isUs
     setConfirmedLogin:(state)=>{
       
       state.user.confirmedLogin=true
+    },
+    setConfirmedTerms:(state)=>{
+      
+      state.user.confirmedTerms=true
+    },
+    setAttemptCount:(state)=>{
+      
+      state.user.attemptCounts=state.user.attemptCounts+1
     },
     setTestingMode:(state)=>{
       
@@ -62,6 +72,6 @@ state.user.isUs=action.payload.isUs
   },
 });
 
-export const { setUser,setLoggedIn,setVote,setPaymentCount,setConfirmedLogin,setBidenVote,setTrumpVote,setResults,setTestingMode } = userSlice.actions;
+export const { setUser,setLoggedIn,setVote,setPaymentCount,setConfirmedLogin,setBidenVote,setTrumpVote,setResults,setTestingMode,setConfirmedTerms,setAttemptCount } = userSlice.actions;
 
 export default userSlice.reducer;

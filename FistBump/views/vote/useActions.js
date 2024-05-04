@@ -26,7 +26,7 @@ export function useActions() {
     if (CountVisitStats && +CountVisitStats > 0) {
 
       dispatch(setPaymentCount(+CountVisitStats - 1))
-      patchUser('/CountVisitStats', +CountVisitStats - 1)
+     // patchUser('/CountVisitStats', +CountVisitStats - 1)
       navigation.navigate('Stats')
     }
     else {

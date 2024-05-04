@@ -66,7 +66,6 @@ export function LogoView() {
             duration: 5000,
             useNativeDriver: true
         }).start(({ finished }) => {
-            console.log('kurecami')
             if (finished) {
                 Animated.timing(fadeInitial, {
                     toValue: 0,
@@ -75,7 +74,7 @@ export function LogoView() {
                 }).start(({ finished }) => {
                     initialSound.stop()
                     if (finished && status != 'pending') {
-                        user?.id ? navigation.navigate('Landing') : navigation.navigate("EULA");
+                        user?.confirmedTerms ? navigation.navigate('Landing') : navigation.navigate("EULA");
                         fadeInitial.current = new Animated.Value(0);
                     }
                     initialSound.release()

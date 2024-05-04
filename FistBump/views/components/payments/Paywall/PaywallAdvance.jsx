@@ -140,7 +140,7 @@ const OfferingDetailScreen = () => {
 
             onPress={getBack}
           >
-            <Text style={styles.buttonText}>Cancel</Text>
+            <Text style={styles.cancelText}>Cancel</Text>
 
           </TouchableOpacity>
         </View>
@@ -227,7 +227,7 @@ flexGrow:1
     width: width*0.7,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'rgb(233, 60, 6)',
+    backgroundColor: 'white',
     shadowColor: 'rgba(0,0,0,0.4)',
     borderRadius: 50,
     shadowOffset: {
@@ -237,6 +237,10 @@ flexGrow:1
     shadowOpacity: 0.34,
     shadowRadius: 6.27,
     elevation: 10,
+  },
+  cancelText:{
+    color: 'gray',
+    fontSize: 14,
   },
   buttonText: {
     color: 'white',

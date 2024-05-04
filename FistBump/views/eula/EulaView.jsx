@@ -3,10 +3,16 @@ import { Linking } from 'react-native';
 import { View, TouchableOpacity, Image, StyleSheet, Text, ScrollView, BackHandler, ImageBackground } from "react-native";
 import { Accept, Decline, PrivacyPolicy, EulaFrame } from "../../resources";
 import { tou } from "../../resources/tou.js";
+import { useNavigation } from "@react-navigation/native";
+import { useDispatch } from "react-redux";
+import { setConfirmedTerms, setPaymentCount } from "../../store/userSlice";
 
 
-export function EulaView({ navigation }) {
+export function EulaView() {
     const privacyPolicyUrl = 'https://crazybastards.pro/privacy-policy/';
+    const navigation=useNavigation()
+  
+  const dispatch = useDispatch();
 
     const openUrl = async (url) => {
         await Linking.openURL(url);
@@ -15,6 +21,20 @@ export function EulaView({ navigation }) {
     const exitApp = () => {
         BackHandler.exitApp();
     };
+
+
+    const handleOnAccept = useCallback(() => {
+        try{
+        dispatch(setPaymentCount(5))
+        dispatch(setConfirmedTerms())
+        navigation.navigate('Landing')
+        }
+        catch(e)
+        {
+            console.log('Iside Accept '+e)
+        }
+    }, []);
+
 
     return (
         <View style={styles.container}>
@@ -30,7 +50,7 @@ export function EulaView({ navigation }) {
                 </ImageBackground>
             </View>
             <View style={styles.actionsContainer}>
-                <TouchableOpacity onPress={() => navigation.navigate('SocialLogins')} style={styles.buttonContainer}>
+                <TouchableOpacity onPress={handleOnAccept} style={styles.buttonContainer}>
                     <Image source={Accept} style={styles.button}>
                     </Image>
                 </TouchableOpacity>

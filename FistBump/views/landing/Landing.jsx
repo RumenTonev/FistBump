@@ -16,7 +16,7 @@ export function Landing() {
     const baseWidth = 35;
     const baseHeight = 90;
     const basePercentage = 100;
-    const { handleStatsFlow, handleButtonClick } = useActions();
+    const { handleStatsFlow, handleButtonClick,handleVoteFlow } = useActions();
     const [modalVisibility, setModalVisibility] = useState(false);
 
 
@@ -47,7 +47,7 @@ export function Landing() {
                 <View id="preTopLanding" style={styles.backgroundElement}>
                     <ImageBackground source={preTopLanding} style={[styles.backgroundElementImage]}>
                         <View style={styles.buttonContainer}>
-                            <TouchableOpacity onPress={() => handleButtonClick('Vote')} style={styles.buttonContainer}>
+                            <TouchableOpacity onPress={handleVoteFlow} style={styles.buttonContainer}>
                                 <Image source={VoteBtn} style={styles.button}>
                                 </Image>
                             </TouchableOpacity>

@@ -2,7 +2,7 @@ import { useCallback, useContext } from "react";
 import { DbContext } from "../App";
 import Config from "react-native-config";
 import { useDispatch, useSelector } from "react-redux";
-import { setResults, setUser } from "../store/userSlice";
+import { setResults, setUser, setVote } from "../store/userSlice";
 import { PatchOperation } from "@azure/cosmos";
 
 export function useDbHandlers() {
@@ -10,13 +10,13 @@ export function useDbHandlers() {
   const dispatch = useDispatch()
   const resultsContainer = cosmosClient.database('FistBump').container
   const user = useSelector((state) => state.user.user);
-  const { id,CountVisitStats,VoteFor } = user
+  const { id,CountVisitStats,VoteFor,attemptCounts,confirmedLogin,confirmedTerms } = user
   const handleInitialGet = useCallback(async () => {
     if (id) {
       await cosmosClient
         .database(Config.REACT_APP_COSMOS_DATABASE)
         .container(Config.REACT_APP_COSMOS_CONTAINER)
-        .item(phone, phone).read()
+        .item(id, id).read()
         .then(async (response) => {
           console.log('INITIALGET')
           if (response.statusCode === 200) {
@@ -26,7 +26,7 @@ export function useDbHandlers() {
             dispatch(setUser({
               id: readDoc.id,
               VoteFor: readDoc.VoteFor,
-              CountVisitStats: readDoc.CountVisitStats,
+              CountVisitStats: CountVisitStats,
               State: readDoc.State,
               isUs: readDoc.isUs,
               confirmedLogin: true
@@ -40,17 +40,16 @@ export function useDbHandlers() {
         })
 
     }
-  }, [cosmosClient, id])
+  }, [cosmosClient, id,CountVisitStats])
 
 
 
-  const handleGet = useCallback(async (phone, isUs) => {
+  const handleGet = useCallback(async (phone, isUs,VoteFor) => {
     await cosmosClient
       .database(Config.REACT_APP_COSMOS_DATABASE)
       .container(Config.REACT_APP_COSMOS_CONTAINER)
       .item(phone, phone).read()
       .then(async (response) => {
-
         console.log('HANDLEGET')
 
         if (response.statusCode === 404) {
@@ -58,10 +57,13 @@ export function useDbHandlers() {
           console.log('BEHING'+isUs)
           const newEntry = {
             "id": phone,
-            "VoteFor": null,
-            "CountVisitStats": 5,
+            "VoteFor": VoteFor,
+            "CountVisitStats": CountVisitStats,
             "State": null,
-            "isUs": isUs
+            "isUs": isUs,
+            "confirmedLogin":true,
+        "attemptCounts":attemptCounts,
+        "confirmedTerms":true
           }
           handleUpsert(newEntry)
           dispatch(setUser(newEntry))
@@ -70,14 +72,9 @@ export function useDbHandlers() {
 
 
           const { resource: readDoc } = response;
-          dispatch(setUser({
-            id: readDoc.id,
-            VoteFor: readDoc.VoteFor,
-            CountVisitStats: readDoc.CountVisitStats,
-            State: readDoc.State,
-            isUs: readDoc.isUs,
-            confirmedLogin: true
-          }))
+          dispatch(setVote(
+            readDoc.VoteFor
+           ))
 
         }
         console.log(response)
@@ -86,7 +83,7 @@ export function useDbHandlers() {
         console.log(error)
       })
 
-  }, [cosmosClient])
+  }, [cosmosClient,CountVisitStats])
 
   const handleUpsert = useCallback((newEntry) => {
     cosmosClient
@@ -237,7 +234,7 @@ export function useDbHandlers() {
   const deleteAccount= useCallback(async () => {
 
     console.log('ID IN DELETE '+id)
-    
+    //debugger
 if(id)
     await cosmosClient
       .database(Config.REACT_APP_COSMOS_DATABASE)
@@ -286,7 +283,8 @@ if(id)
             CountVisitStats: CountVisitStats,
             State: null,
             isUs: false,
-            confirmedLogin: false
+            confirmedLogin: false,
+            confirmedTerms:true
           }))
 
         console.log('ACCOUNT DELETED')

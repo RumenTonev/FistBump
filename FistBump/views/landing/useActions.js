@@ -18,7 +18,7 @@ export function useActions() {
   const{patchUser}=useDbHandlers()
   const navigation=useNavigation()
   const user = useSelector((state) => state.user.user);
-  const {CountVisitStats,VoteFor}=user
+  const {CountVisitStats,id,confirmedLogin}=user
   const dispatch = useDispatch();
 
   const handleButtonClick=useCallback( (view) => {
@@ -32,7 +32,7 @@ export function useActions() {
     {
         navigation.navigate('Stats')
         dispatch(setPaymentCount(+CountVisitStats-1))
-        patchUser('/CountVisitStats', +CountVisitStats-1)
+        //patchUser('/CountVisitStats', +CountVisitStats-1)
         //TODO Update in dbehh
     }
     else{
@@ -45,12 +45,13 @@ export function useActions() {
 
 
 
-  const handleVoteFlow = useCallback(async (name) => {
+  const handleVoteFlow = useCallback(async () => {
     handleClick()
-    if(!VoteFor)
-    dispatch(setVote(name))
-  
-  }, [VoteFor])
+    if(confirmedLogin)navigation.navigate('Vote')
+    else navigation.navigate('SocialLogins')
+    
+    
+  }, [confirmedLogin])
 
 
   return {

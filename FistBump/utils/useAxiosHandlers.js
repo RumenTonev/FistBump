@@ -37,8 +37,8 @@ export function useAxiosHandlers() {
     console.log('SETCODE '+Config.REACT_APP_LOGIN_CODE)
     if (code == Config.REACT_APP_LOGIN_CODE&&(id==Config.REACT_APP_LOGIN_PHONE||id.toString().trim()===Config.REACT_APP_LOGIN_PHONE_USA.toString().trim())) {
       dispatch(setConfirmedLogin())
-      dispatch(setPaymentCount(5))
-      navigation.navigate('Landing')
+      handleGet(id, true)
+      navigation.navigate('Vote')
       return
     }
     const config = getGetRequest(localPhone, code)
@@ -55,12 +55,9 @@ export function useAxiosHandlers() {
                 dispatch(setConfirmedLogin())
                 let internalUs=isUs
                 console.log('ENFORCE   '+Config.REACT_APP_ENFORCE_US)
-                if(Config.REACT_APP_ENFORCE_US=='true'){
-                  console.log('INSIDE ENFORCE ')
-                  internalUs=true
-                }
-                handleGet(id, internalUs)
-                navigation.navigate('Landing')
+                
+                handleGet(id, true)
+                navigation.navigate('Vote')
               }
             }
           }
@@ -81,6 +78,8 @@ export function useAxiosHandlers() {
 
   const handleSendOTP = useCallback(async (phoneNumber, isUs) => {
     const flag = false
+    var kur=Config.REACT_APP_LOGIN_PHONE||phoneNumber.toString().trim()
+    var kur2=Config.REACT_APP_LOGIN_PHONE_USA.toString().trim()
     if(phoneNumber==Config.REACT_APP_LOGIN_PHONE||phoneNumber.toString().trim()===Config.REACT_APP_LOGIN_PHONE_USA.toString().trim())
     {
       dispatch(setLoggedIn({ phone: phoneNumber, isUs: phoneNumber.toString().trim()===Config.REACT_APP_LOGIN_PHONE_USA.toString().trim() }))

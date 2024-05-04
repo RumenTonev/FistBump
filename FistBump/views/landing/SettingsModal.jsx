@@ -1,16 +1,20 @@
-import { View, Modal, TouchableOpacity, Image, StyleSheet, Text, ScrollView, BackHandler, ImageBackground, Dimensions } from "react-native";
+import { View, Modal, TouchableOpacity, Image, StyleSheet, Text, ScrollView, BackHandler, ImageBackground, Dimensions, Platform } from "react-native";
 import { useEffect, useState, useCallback } from "react";
 import { tickBtn, declineBtn } from "../../resources";
 import { useActions } from "./useActions";
 import { useNavigation } from "@react-navigation/native";
 import { handleClick } from "../logo/LogoView";
 import { useDispatch, useSelector } from "react-redux";
+import { useDbHandlers } from "../../utils/useDbHandlers";
 
 export function SettingsModal(props) {
     const dispatch = useDispatch();
+    const user = useSelector((state) => state.user.user);
+  const { confirmedLogin} = user
     const { close, show } = props;
     const [confirmContainerVisible, setConfirmContainerVisible] = useState(false);
     const [initialModalContainerVisible, setInitialModalContainerVisible] = useState(true);
+    const{deleteAccount}=useDbHandlers()
 
     let initialModalContainerVisibility = initialModalContainerVisible ? styles.visible : styles.hidden;
     let confirmContainerVisibility = confirmContainerVisible ? styles.visible : styles.hidden;
@@ -35,10 +39,11 @@ export function SettingsModal(props) {
                     <View style={styles.modalView}>
                         <View style={[styles.modalViewStyle, initialModalContainerVisibility]}>
                             <Text style={styles.modalText}>Settings</Text>
-
+{confirmedLogin?
                             <TouchableOpacity onPress={() => handleModalBtnClick(false)} style={[styles.cancelButton, styles.marginTop, styles.marginBottom]} >
                                 <Text style={[styles.modalText, styles.deleteBtnText]}>Delete Account</Text>
-                            </TouchableOpacity>
+                            </TouchableOpacity>:
+                            <Text style={styles.modalText}>No Account Created</Text>}
                             <View style={styles.buttonsContainer}>
                                 <TouchableOpacity onPress={close} style={[styles.modalButtonDecline]}>
                                     <Image source={declineBtn}>
@@ -46,13 +51,15 @@ export function SettingsModal(props) {
                                 </TouchableOpacity>
                             </View>
                         </View>
+
                         <View style={[styles.modalViewStyle, confirmContainerVisibility]}>
-                            <Text style={styles.modalText}>Confirm Account Deletion</Text>
+                            
+                           <Text style={styles.modalText}>Confirm Account Deletion</Text>
                             <Text style={[styles.modalText, styles.marginTop]}>This will also delete your vote.</Text>
                             <Text style={[styles.modalText, styles.marginBottom]}>Are you sure you want to Delete your Account ?</Text>
 
                             <View style={styles.buttonsContainer}>
-                                <TouchableOpacity onPress={() => handleModalBtnClick(true, () => { console.log('here') })} >
+                                <TouchableOpacity onPress={() => handleModalBtnClick(true, deleteAccount)} >
                                     <Image source={tickBtn}>
                                     </Image>
                                 </TouchableOpacity>
@@ -133,11 +140,5 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.34,
         shadowRadius: 6.27,
         elevation: 10,
-    },
-    visible: {
-        display: 'flex'
-    },
-    hidden: {
-        display: 'none'
     }
 })

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Text, TouchableOpacity,customStylesheet,Image,ImageBackground} from 'react-native';
+import {View, Text, TouchableOpacity,StatusBar} from 'react-native';
 
 import {
   CodeField,
@@ -11,13 +11,14 @@ import { customStyles } from './styles';
 import { useAxiosHandlers } from '../../utils/useAxiosHandlers';
 import { useSelector } from 'react-redux';
 import { ContinueButton,LoginBackground} from '../../resources';
+import { useNavigation } from '@react-navigation/native';
 
 const CELL_COUNT = 4;
 
-const ConfirmationCode = ({navigation}) => {
+const ConfirmationCode = () => {
   
   const user = useSelector((state) => state.user.user);
-
+const navigation=useNavigation()
   const {id,isUs} = user
 
   const [value, setValue] = useState('');
@@ -29,8 +30,24 @@ const ConfirmationCode = ({navigation}) => {
 const disabled=value.length<CELL_COUNT
     const {handleConfirmOTP} =  useAxiosHandlers()
   return (
-       <ImageBackground source={LoginBackground} style={customStyles.wrapper}>
-      <CodeField
+
+
+
+
+
+
+
+    <>
+      <StatusBar barStyle="dark-content" />
+      <View style={customStyles.container}>
+        <View style={customStyles.wrapper}>
+          {/* <ImageBackground source={LoginBackground} style={styles.wrapper}> */}
+          <View style={[{ flex: 1,justifyContent:'flex-end'}]}>
+            <Text style={customStyles.modalText}>Enter the code send to +{id}</Text>
+          </View>
+          {/*@ts-ignore*/}
+          <View style={{flex:1,justifyContent:'center'}}>
+          <CodeField
         ref={ref}
         {...props}
         value={value}
@@ -48,17 +65,71 @@ const disabled=value.length<CELL_COUNT
           </Text>
         )}
       />
-      <TouchableOpacity
-            style={[customStyles.button, disabled ? {} : customStyles.redColor]}
-            onPress={()=>handleConfirmOTP(value)
-            
-            }>
-                <Text style={customStyles.buttonText}>Continue</Text> 
+      
+          </View>
+          <View style={[{flex:1,justifyContent:'space-evenly'}]}>
+          <TouchableOpacity
+            style={[customStyles.button, disabled ? customStyles.redColor : {}]}
+            onPress={()=>handleConfirmOTP(value)}
+            disabled={disabled}
+            >
+                <Text style={customStyles.buttonText}>Confirm</Text> 
 
           </TouchableOpacity>
-          </ImageBackground>
+
+          <TouchableOpacity
+          style={[customStyles.buttonCancel]}
+          onPress={()=>navigation.navigate('SocialLogins')}
+          >
+
+         <Text style={customStyles.buttonTextCancel}>Cancel</Text> 
+        </TouchableOpacity> 
+      
+
+          </View>
+          {/* </ImageBackground> */}
+        </View>
+      </View>
+    </>
+       //<ImageBackground source={LoginBackground} style={customStyles.wrapper}>
+  //      <>
+  //     <CodeField
+  //       ref={ref}
+  //       {...props}
+  //       value={value}
+  //       onChangeText={setValue}
+  //       cellCount={CELL_COUNT}
+  //       rootStyle={customStyles.codeFieldRoot}
+  //       keyboardType="number-pad"
+  //       textContentType="oneTimeCode"
+  //       renderCell={({index, symbol, isFocused}) => (
+  //         <Text
+  //           key={index}
+  //           style={[customStyles.cell, isFocused && customStyles.focusCell]}
+  //           onLayout={getCellOnLayoutHandler(index)}>
+  //           {symbol || (isFocused ? <Cursor /> : null)}
+  //         </Text>
+  //       )}
+  //     />
+  //     <TouchableOpacity
+  //           style={[customStyles.button, disabled ? {} : customStyles.redColor]}
+  //           onPress={()=>handleConfirmOTP(value)
+            
+  //           }>
+  //               <Text style={customStyles.buttonText}>Continue</Text> 
+
+  //         </TouchableOpacity>
+
+  //         <TouchableOpacity
+  //         style={[customStyles.button]}
+  //         onPress={()=>navigation.navigate('SocialLogins')}
+  //         >
+
+  //        <Text style={customStyles.buttonText}>Cancel</Text> 
+  //       </TouchableOpacity> 
+        
           
-  
+  // </>
   );
 };
 

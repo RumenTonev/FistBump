@@ -4,7 +4,7 @@ import React, { FC } from 'react';
 import ConfirmationCode from "./components/ConfirmationCode";
 export const ConfirmationCodeView = ({ navigation }) => {
 
-  return (<View style={{ flex: 1}}>
+  return (
     <ConfirmationCode navigation={navigation} />
-  </View>)
+  )
 };

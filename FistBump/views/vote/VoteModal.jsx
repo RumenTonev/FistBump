@@ -31,15 +31,15 @@ export function VoteModal(props) {
         setElementsVisibility(false);
         setNavElementVisiblity(true);
         console.log('Vote: ' + candidate);
-        if(testingMode)
-        {
-            dispatch(setVote(candidate))
-            dispatch(candidate=='Trump'?setTrumpVote():setBidenVote())
-            navigation.navigate('Landing')
-        }
-        else{
+        // if(testingMode)
+        // {
+        //     dispatch(setVote(candidate))
+        //     dispatch(candidate=='Trump'?setTrumpVote():setBidenVote())
+        //     navigation.navigate('Landing')
+        // }
+        // else{
         handleVoteFlow(candidate);
-        }
+        //}
     }, [candidate]);
 
     const navToHomePage = useCallback(() => {
