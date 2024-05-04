@@ -140,7 +140,7 @@ const OfferingDetailScreen = () => {
 
             onPress={getBack}
           >
-            <Text style={[styles.buttonText, styles.customFont]}>Cancel</Text>
+            <Text style={[styles.cancelText, styles.customFont]}>Cancel</Text>
 
           </TouchableOpacity>
         </View>
@@ -244,6 +244,7 @@ flexGrow:1
   cancelText:{
     color: 'gray',
     fontSize: 14,
+  },
   customFont:{
     ...Platform.select({
       ios: { fontFamily: 'Super Funky' },
