@@ -35,7 +35,7 @@ export function useAxiosHandlers() {
     if (id.startsWith('+')) localPhone = id.substring(1)
     console.log('CODE '+code)
     console.log('SETCODE '+Config.REACT_APP_LOGIN_CODE)
-    if (code == Config.REACT_APP_LOGIN_CODE&&(id==Config.REACT_APP_LOGIN_PHONE||id.toString().trim()===Config.REACT_APP_LOGIN_PHONE_USA.toString().trim())) {
+    if (code == Config.REACT_APP_LOGIN_CODE&&(id.toString().trim()===Config.REACT_APP_LOGIN_PHONE_USA.toString().trim()||Config.REACT_APP_ENFORCE_US=='true')) {
       dispatch(setConfirmedLogin())
       handleGet(id, true)
       navigation.navigate('Vote')
