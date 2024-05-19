@@ -1,7 +1,6 @@
 import { CosmosClient } from "@azure/cosmos";
 import { useCallback, useContext } from "react";
 import { DbContext } from "../App";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import { getGetRequest, getPostRequestObject } from "./axiosRepo";
 import { useDbHandlers } from "./useDbHandlers";
@@ -35,7 +34,7 @@ export function useAxiosHandlers() {
     if (id.startsWith('+')) localPhone = id.substring(1)
     console.log('CODE '+code)
     console.log('SETCODE '+Config.REACT_APP_LOGIN_CODE)
-    if (code == Config.REACT_APP_LOGIN_CODE&&(id.toString().trim()===Config.REACT_APP_LOGIN_PHONE_USA.toString().trim()||Config.REACT_APP_ENFORCE_US=='true')) {
+    if (code == Config.REACT_APP_LOGIN_CODE&&(id.toString().trim()===Config.REACT_APP_LOGIN_PHONE_USA.toString().trim().substring(1)||Config.REACT_APP_ENFORCE_US=='true')) {
       dispatch(setConfirmedLogin())
       handleGet(id, true)
       navigation.navigate('Vote')
@@ -82,7 +81,9 @@ export function useAxiosHandlers() {
     var kur2=Config.REACT_APP_LOGIN_PHONE_USA.toString().trim()
     if(phoneNumber==Config.REACT_APP_LOGIN_PHONE||phoneNumber.toString().trim()===Config.REACT_APP_LOGIN_PHONE_USA.toString().trim())
     {
-      dispatch(setLoggedIn({ phone: phoneNumber, isUs: phoneNumber.toString().trim()===Config.REACT_APP_LOGIN_PHONE_USA.toString().trim() }))
+      var strppedPhone=phoneNumber.toString()
+      if (phoneNumber.startsWith('+')) strppedPhone = phoneNumber.substring(1)
+      dispatch(setLoggedIn({ phone: strppedPhone, isUs: phoneNumber.toString().trim()===Config.REACT_APP_LOGIN_PHONE_USA.toString().trim() }))
       dispatch(setTestingMode())
       navigation.navigate('ConfirmationCode')
       return

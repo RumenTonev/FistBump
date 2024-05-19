@@ -21,8 +21,7 @@ import Config from 'react-native-config'
     
     var data = JSON.stringify({
       "data":{
-        
-      "sender": "RumenTonev",
+      "sender": "18885312218",
       "phone": `${phone}`,
       "template": "3c692bf0-017b-47d8-b1ac-2b084451bf39",
       "code_length": "4"

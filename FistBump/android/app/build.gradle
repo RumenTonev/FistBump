@@ -79,8 +79,8 @@ android {
         applicationId "com.fistbump"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 3
-        versionName "1.2"
+        versionCode 5
+        versionName "1.5"
     }
     signingConfigs {
         debug {
@@ -111,7 +111,7 @@ dependencies {
 
     // For animated GIF support
     implementation 'com.facebook.fresco:animated-gif:2.5.0'
-
+implementation "androidx.work:work-runtime-ktx:2.7.0"
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}")
     debugImplementation("com.facebook.flipper:flipper-network-plugin:${FLIPPER_VERSION}") {
         exclude group:'com.squareup.okhttp3', module:'okhttp'

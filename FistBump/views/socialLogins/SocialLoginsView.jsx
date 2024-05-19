@@ -15,17 +15,14 @@ import {
 } from 'react-native';
 import { useHandlers } from './handlers/useHandlers';
 import { AppleButton } from '@invertase/react-native-apple-authentication';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import CountryCodePicker from './components/CountryCodePicker';
 
 
 const cgetMyStringValue = async (key,navigation) => {
   try {
-    const value=await AsyncStorage.getItem(key)
-    console.log(key+' USER '+value)
-    if (value) {
+  
       navigation.navigate('Profile', { name: 'Jane' })
-    }
+    
   } catch(e) {
     // read error
   }
