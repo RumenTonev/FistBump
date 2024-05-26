@@ -27,7 +27,7 @@ const PaywallScreen = () => {
       try {
        // Purchases.logOut()
         //Purchases.logIn("kirkora78@gmail.com")
-        const productId=Platform.OS === 'ios'?'RenewableSubscription':'product123'
+        const productId=Platform.OS === 'ios'?'statsAccess':'product123'
         console.log(productId)
         const products = await Purchases.getProducts([productId],PRODUCT_CATEGORY.NON_SUBSCRIPTION);
         console.log(products)

@@ -14,7 +14,7 @@ export const useGetUserOnLoad = () => {
     const user = useSelector((state) => state.user.user);
     const cosmosClient = useContext(DbContext);
     const dispatch = useDispatch()
-    const {id,confirmedLogin,confirmedTerms}=user
+    const {id,confirmedLogin,confirmedTerms,CountVisitStats}=user
   const [status, setStatus] = useState(
     'idle',
   )
@@ -51,7 +51,8 @@ export const useGetUserOnLoad = () => {
             State:readDoc.State,
             isUs:true,
             confirmedLogin:confirmedLogin,
-            confirmedTerms:confirmedTerms
+            confirmedTerms:confirmedTerms,
+            CountVisitStats:CountVisitStats
                 }))
     
               }
