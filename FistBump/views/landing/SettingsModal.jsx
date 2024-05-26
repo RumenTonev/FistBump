@@ -43,7 +43,7 @@ export function SettingsModal(props) {
                             <TouchableOpacity onPress={() => handleModalBtnClick(false)} style={[styles.cancelButton, styles.marginTop, styles.marginBottom]} >
                                 <Text style={[styles.modalText, styles.deleteBtnText]}>Delete Account</Text>
                             </TouchableOpacity>:
-                            <Text style={styles.modalText}>No Account Created</Text>}
+                            <Text style={[styles.modalText,styles.marginTop, styles.marginBottom]}>No Account Created</Text>}
                             <View style={styles.buttonsContainer}>
                                 <TouchableOpacity onPress={close} style={[styles.modalButtonDecline]}>
                                     <Image source={declineBtn}>
