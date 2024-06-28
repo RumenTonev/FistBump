@@ -35,7 +35,7 @@ export function Landing() {
 
     return (
         <View style={styles.container}>
-            <SettingsModal show={modalVisibility}  close={() => renderModal(false)}></SettingsModal>
+            {/* <SettingsModal show={modalVisibility}  close={() => renderModal(false)}></SettingsModal> */}
             <View style={[styles.landingContentPlayerTrump]}>
                 <Image style={{ height: height, width: width }} source={TrumpHome}>
                 </Image>
@@ -82,12 +82,12 @@ export function Landing() {
                 <Image style={{ height: height, width: width }} source={BidenHome}>
                 </Image>
             </View>
-            <View style={styles.buttonSettingsContainer}>
+            {/* <View style={styles.buttonSettingsContainer}>
                 <TouchableOpacity onPress={() => renderModal(true)}>
                     <Image source={settingsBtn} style={styles.btnSettings}>
                     </Image>
                 </TouchableOpacity>
-            </View>
+            </View> */}
         </View>
     );
 }

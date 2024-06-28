@@ -85,8 +85,8 @@ const OfferingDetailScreen = () => {
         //const kur:CustomerInf
         // if (typeof purchaserInfo.entitlements.active[ENTITLEMENT_ID] !== 'undefined') {
 
-        dispatch(setPaymentCount(4))
-        patchUser('/CountVisitStats', 4)
+        dispatch(setPaymentCount(2))
+        //patchUser('/CountVisitStats', 4)
         navigation.navigate('Stats')
       }
       //}
@@ -123,7 +123,7 @@ const OfferingDetailScreen = () => {
           </Text>
           <Text style={[{ paddingTop: 0.03*height, textAlign: 'center' }, styles.customFont]}>{product?.description}</Text>
           <Text style={[styles.innerText, styles.customFont]}>
-            5 x Full access for just {product?.priceString}
+            3 x Full access for just {product?.priceString}
           </Text>
         </View>
 

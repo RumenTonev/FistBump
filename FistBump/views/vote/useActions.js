@@ -45,7 +45,7 @@ export function useActions() {
     //dispatch(setVote(name))
     try {
       await updateResults(name == 'Biden')
-      await patchUser('/VoteFor', name)
+      //await patchUser('/VoteFor', name)
 
       if(name == 'Biden'){
         dispatch(setBidenVote())

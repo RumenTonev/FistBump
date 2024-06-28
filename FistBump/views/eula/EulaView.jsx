@@ -25,7 +25,7 @@ export function EulaView() {
 
     const handleOnAccept = useCallback(() => {
         try{
-        dispatch(setPaymentCount(5))
+        dispatch(setPaymentCount(3))
         dispatch(setConfirmedTerms())
         navigation.navigate('Landing')
         }

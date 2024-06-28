@@ -56,8 +56,8 @@ export function LogoView() {
     const navigation = useNavigation()
     const user = useSelector((state) => state.user.user);
 
-    const status = useGetUserOnLoad()
-    console.log(status)
+    //const status = useGetUserOnLoad()
+    //console.log(status)
     const screenAnimation = () => {
         console.log('called')
 
@@ -73,7 +73,7 @@ export function LogoView() {
                     useNativeDriver: true
                 }).start(({ finished }) => {
                     initialSound.stop()
-                    if (finished && status != 'pending') {
+                    if (finished ) {
                         user?.confirmedTerms ? navigation.navigate('Landing') : navigation.navigate("EULA");
                         fadeInitial.current = new Animated.Value(0);
                     }

@@ -14,10 +14,10 @@ export function VoteView() {
     const [candidate, setCandidate] = useState('');
 
     console.log(user.user.VoteFor);
-    let voteOnlyInUsVisibility = !user.user.isUs ? styles.visible : styles.hidden;
+    //let voteOnlyInUsVisibility = !user.user.isUs ? styles.visible : styles.hidden;
     let baseElementVisibility = modalVisibility ? styles.hidden : styles.visible;
-    let elementVisible = !user.user.isUs ? styles.hidden : user.user.VoteFor || user.user.VoteFor === '' ? styles.hidden : baseElementVisibility;
-    let votedVisibilityElement = (user.user.VoteFor && user.user.VoteFor !== '') && user.user.isUs ? user.user.VoteFor == 'Biden' ? styles.voteBidenPositionStyle : user.user.VoteFor == 'Trump' ? styles.voteTrumpPositionStyle : styles.hidden : styles.hidden;
+    let elementVisible = user.user.VoteFor || user.user.VoteFor === '' ? styles.hidden : baseElementVisibility;
+    let votedVisibilityElement = (user.user.VoteFor && user.user.VoteFor !== '')  ? user.user.VoteFor == 'Biden' ? styles.voteBidenPositionStyle : user.user.VoteFor == 'Trump' ? styles.voteTrumpPositionStyle : styles.hidden : styles.hidden;
 
     const renderModal = useCallback((modalVisibilityProp, candidate) => {
         setModalVisibility(modalVisibilityProp);
@@ -45,10 +45,10 @@ export function VoteView() {
                     </View>
                 </View>
                 <VoteModal show={modalVisibility} candidate={candidate} close={() => renderModal(false)}></VoteModal>
-                <View style={[styles.voteOnlyInUsContainer, voteOnlyInUsVisibility]}>
+                {/* <View style={[styles.voteOnlyInUsContainer, voteOnlyInUsVisibility]}>
                     <Image style={[styles.voteOnlyInUsSize]} source={onlyInUs}>
                     </Image>
-                </View>
+                </View> */}
                 <Image style={[styles.votedContainer, votedVisibilityElement]} source={voted}>
                 </Image>
                 <TouchableOpacity onPress={() => renderModal(true, 'Trump')} style={[styles.voteTrumpPositionStyle, elementVisible]} >

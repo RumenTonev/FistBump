@@ -47,11 +47,12 @@ export function useActions() {
 
   const handleVoteFlow = useCallback(async () => {
     handleClick()
-    if(confirmedLogin)navigation.navigate('Vote')
-    else navigation.navigate('SocialLogins')
+    //if(confirmedLogin)
+      navigation.navigate('Vote')
+   //else navigation.navigate('SocialLogins')
     
     
-  }, [confirmedLogin])
+  }, [])
 
 
   return {
