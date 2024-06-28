@@ -64,7 +64,11 @@ export function EulaView() {
     );
 }
 
-const { width, height } = Dimensions.get('window')
+let { width, height } = Dimensions.get('window');
+let widthCalculated = height;
+let heightCalculated = width;
+console.log(width);
+console.log(height);
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -123,8 +127,8 @@ const styles = StyleSheet.create({
     },
     button: {
         marginTop: '1.5%',
-        height: height * 0.11,
-        width: width * 0.2,
+        height: heightCalculated * 0.10,
+        width: widthCalculated * 0.2,
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 50,
