@@ -129,8 +129,8 @@ const styles = StyleSheet.create({
     },
     button: {
         marginTop: '1.5%',
-        height: heightCalculated * 0.10,
-        width: widthCalculated * 0.2,
+        height: height * 0.11,
+        width: width * 0.2,
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 50,
