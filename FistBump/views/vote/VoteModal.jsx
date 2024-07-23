@@ -27,7 +27,7 @@ export function VoteModal(props) {
 
     const vote = useCallback(() => {
        handleClick()
-        setVoteText(`Successfully voted for ${candidate}! ${"\n"}You might want to check Stats View.`);
+        setVoteText(`Successfully voted ${candidate}! ${"\n"}You might want to check Stats View.`);
         setElementsVisibility(false);
         setNavElementVisiblity(true);
         console.log('Vote: ' + candidate);
