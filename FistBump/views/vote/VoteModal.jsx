@@ -21,7 +21,7 @@ export function VoteModal(props) {
     let navElementVisible = navElementVisiblity ? styles.visible : styles.hidden;
 
     useEffect(() => {
-        setVoteText(`Are you sure you want to vote for ${candidate} ?`);
+        setVoteText(`Are you sure you want to vote against Trump ?`);
     }, [candidate]);
 
 
