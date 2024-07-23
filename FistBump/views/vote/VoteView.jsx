@@ -51,11 +51,11 @@ export function VoteView() {
                 </View> */}
                 <Image style={[styles.votedContainer, votedVisibilityElement]} source={voted}>
                 </Image>
-                <TouchableOpacity onPress={() => renderModal(true, 'Trump')} style={[styles.voteTrumpPositionStyle, elementVisible]} >
+                <TouchableOpacity onPress={() => renderModal(true, 'for Trump')} style={[styles.voteTrumpPositionStyle, elementVisible]} >
                     <Image source={tickBtn}>
                     </Image>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => renderModal(true, 'Biden')} style={[styles.voteBidenPositionStyle, elementVisible]}>
+                <TouchableOpacity onPress={() => renderModal(true, 'against Trump')} style={[styles.voteBidenPositionStyle, elementVisible]}>
                     <Image source={tickBtn}>
                     </Image>
                 </TouchableOpacity>
