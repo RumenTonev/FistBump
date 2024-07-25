@@ -1,4 +1,4 @@
-package com.fistbump;
+package com.fistbumpelections;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;

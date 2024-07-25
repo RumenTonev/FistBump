@@ -74,13 +74,16 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace "com.fistbump"
+    namespace "com.fistbumpelections"
     defaultConfig {
-        applicationId "com.fistbump"
+        applicationId "com.fistbumpelections"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 5
-        versionName "1.5"
+        versionCode 8
+        versionName "1.8"
+        ndk {
+            debugSymbolLevel 'FULL'
+        }
     }
     signingConfigs {
         debug {
@@ -102,6 +105,7 @@ android {
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
     }
+
 }
 
 dependencies {
