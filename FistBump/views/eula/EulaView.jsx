@@ -1,18 +1,19 @@
 import { useCallback } from "react";
 import { Linking } from 'react-native';
-import { View, TouchableOpacity, Image, StyleSheet, Text, ScrollView, BackHandler, ImageBackground } from "react-native";
-import { Accept, Decline, PrivacyPolicy, EulaFrame } from "../../resources";
+import { View, TouchableOpacity, Image, StyleSheet, Text, ScrollView, BackHandler, ImageBackground, Platform, Dimensions } from "react-native";
+import { EulaFrame } from "../../resources";
 import { tou } from "../../resources/tou.js";
 import { useNavigation } from "@react-navigation/native";
 import { useDispatch } from "react-redux";
 import { setConfirmedTerms, setPaymentCount } from "../../store/userSlice";
+import { RFPercentage } from "react-native-responsive-fontsize";
 
 
 export function EulaView() {
     const privacyPolicyUrl = 'https://crazybastards.pro/privacy-policy/';
-    const navigation=useNavigation()
-  
-  const dispatch = useDispatch();
+    const navigation = useNavigation()
+
+    const dispatch = useDispatch();
 
     const openUrl = async (url) => {
         await Linking.openURL(url);
@@ -24,14 +25,13 @@ export function EulaView() {
 
 
     const handleOnAccept = useCallback(() => {
-        try{
-        dispatch(setPaymentCount(3))
-        dispatch(setConfirmedTerms())
-        navigation.navigate('Landing')
+        try {
+            dispatch(setPaymentCount(3))
+            dispatch(setConfirmedTerms())
+            navigation.navigate('Landing')
         }
-        catch(e)
-        {
-            console.log('Iside Accept '+e)
+        catch (e) {
+            console.log('Iside Accept ' + e)
         }
     }, []);
 
@@ -49,24 +49,26 @@ export function EulaView() {
                     </ScrollView>
                 </ImageBackground>
             </View>
-            <View style={styles.actionsContainer}>
-                <TouchableOpacity onPress={handleOnAccept} style={styles.buttonContainer}>
-                    <Image source={Accept} style={styles.button}>
-                    </Image>
+            <View style={styles.bottomContainer}>
+                <TouchableOpacity onPress={handleOnAccept} style={[styles.button, styles.acceptBtnBgColor]}>
+                    <Text style={[styles.buttonText, styles.customFont]}>Accept</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => openUrl(privacyPolicyUrl)} style={styles.buttonContainer}>
-                    <Image source={PrivacyPolicy} style={styles.button}>
-                    </Image>
+                <TouchableOpacity onPress={() => openUrl(privacyPolicyUrl)} style={[styles.button, styles.ppBtnBgColor]}>
+                    <Text style={[styles.buttonText, styles.customFont]}>Privacy Policy</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => exitApp()} style={styles.buttonContainer}>
-                    <Image source={Decline} style={styles.button}>
-                    </Image>
+                <TouchableOpacity onPress={() => exitApp()} style={[styles.button, styles.rejectBtnBgColor]}>
+                    <Text style={[styles.buttonText, styles.customFont]}>Reject</Text>
                 </TouchableOpacity>
             </View>
         </View>
     );
 }
 
+let { width, height } = Dimensions.get('window');
+let widthCalculated = height;
+let heightCalculated = width;
+console.log(width);
+console.log(height);
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -100,20 +102,41 @@ const styles = StyleSheet.create({
         height: '80%',
         width: '80%',
     },
-    actionsContainer: {
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'center'
-    },
-    buttonContainer: {
-        flex: 1
-    },
-    button: {
-        width: 'auto',
-        height: '100%'
-    },
     contentContainer: {
         flexGrow: 1,
         paddingBottom: 100
+    },
+    customFont: {
+        ...Platform.select({
+            ios: { fontFamily: 'Super Funky' },
+            android: { fontFamily: 'SuperFunky-lgmWw' }
+        })
+    },
+    buttonText: {
+        color: 'white',
+        fontSize: RFPercentage(2)
+    },
+    acceptBtnBgColor: {
+        backgroundColor: '#d1a728'
+    },
+    ppBtnBgColor: {
+        backgroundColor: '#d1a728'
+    },
+    rejectBtnBgColor: {
+        backgroundColor: '#d1a728'
+    },
+    button: {
+        marginTop: '1.5%',
+        height: heightCalculated * 0.10,
+        width: widthCalculated * 0.2,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 50,
+    },
+    bottomContainer: {
+        width: '100%',
+        display: 'flex',
+        justifyContent: 'space-evenly',
+        flexDirection: 'row'
     }
 })

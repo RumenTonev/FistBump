@@ -21,13 +21,13 @@ export function VoteModal(props) {
     let navElementVisible = navElementVisiblity ? styles.visible : styles.hidden;
 
     useEffect(() => {
-        setVoteText(`Are you sure you want to vote for ${candidate} ?`);
+        setVoteText(`Are you sure you want to vote ${candidate} ?`);
     }, [candidate]);
 
 
     const vote = useCallback(() => {
        handleClick()
-        setVoteText(`Successfully voted for ${candidate}! ${"\n"}You might want to check Stats View.`);
+        setVoteText(`Successfully voted ${candidate}! ${"\n"}You might want to check Stats View.`);
         setElementsVisibility(false);
         setNavElementVisiblity(true);
         console.log('Vote: ' + candidate);
