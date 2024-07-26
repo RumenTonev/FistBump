@@ -44,10 +44,10 @@ export function useActions() {
     //if(!VoteFor){
     //dispatch(setVote(name))
     try {
-      await updateResults(name == 'Biden')
+      await updateResults(name !== 'for Trump')
       //await patchUser('/VoteFor', name)
 
-      if(name == 'Biden'){
+      if(name !== 'for Trump'){
         dispatch(setBidenVote())
 
       }

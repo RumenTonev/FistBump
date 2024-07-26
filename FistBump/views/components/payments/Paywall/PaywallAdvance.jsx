@@ -3,7 +3,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { Alert, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, useColorScheme, View, Image, ImageBackground, Dimensions } from 'react-native';
 
 import { Colors, } from 'react-native/Libraries/NewAppScreen';
-
+import Config from 'react-native-config';
 import Purchases, {
   PRODUCT_CATEGORY,
   PURCHASE_TYPE,
@@ -85,7 +85,7 @@ const OfferingDetailScreen = () => {
         //const kur:CustomerInf
         // if (typeof purchaserInfo.entitlements.active[ENTITLEMENT_ID] !== 'undefined') {
 
-        dispatch(setPaymentCount(2))
+        dispatch(setPaymentCount(Config.REACT_APP_PAYMENT_COUNT-1))
         //patchUser('/CountVisitStats', 4)
         navigation.navigate('Stats')
       }
@@ -123,7 +123,7 @@ const OfferingDetailScreen = () => {
           </Text>
           <Text style={[{ paddingTop: 0.03*height, textAlign: 'center' }, styles.customFont]}>{product?.description}</Text>
           <Text style={[styles.innerText, styles.customFont]}>
-            3 x Full access for just {product?.priceString}
+            5 x Full access for just {product?.priceString}
           </Text>
         </View>
 

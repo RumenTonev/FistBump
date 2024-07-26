@@ -25,7 +25,7 @@ export function VoteModal(props) {
     }, [candidate]);
 
 
-    const vote = useCallback(() => {
+    const vote = useCallback(async () => {
        handleClick()
         setVoteText(`Successfully voted ${candidate}! ${"\n"}You might want to check Stats View.`);
         setElementsVisibility(false);
@@ -38,7 +38,7 @@ export function VoteModal(props) {
         //     navigation.navigate('Landing')
         // }
         // else{
-        handleVoteFlow(candidate);
+       await handleVoteFlow(candidate);
         //}
     }, [candidate]);
 

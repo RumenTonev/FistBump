@@ -7,6 +7,7 @@ import { useNavigation } from "@react-navigation/native";
 import { useDispatch } from "react-redux";
 import { setConfirmedTerms, setPaymentCount } from "../../store/userSlice";
 import { RFPercentage } from "react-native-responsive-fontsize";
+import Config from 'react-native-config';
 
 
 export function EulaView() {
@@ -26,7 +27,8 @@ export function EulaView() {
 
     const handleOnAccept = useCallback(() => {
         try {
-            dispatch(setPaymentCount(3))
+            console.log('COUNTC '+Config.REACT_APP_PAYMENT_COUNT)
+            dispatch(setPaymentCount(Config.REACT_APP_PAYMENT_COUNT))
             dispatch(setConfirmedTerms())
             navigation.navigate('Landing')
         }

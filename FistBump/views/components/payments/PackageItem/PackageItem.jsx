@@ -5,6 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 import styles from './styles';
 import { setPaymentCount } from '../../../../store/userSlice';
 import { useDispatch } from 'react-redux';
+import Config from 'react-native-config';
 //import { ENTITLEMENT_ID } from '../../constants';
 
 // interface Props{
@@ -29,7 +30,7 @@ export const PackageItem = (props) => {
        //const kur:CustomerInf
      // if (typeof purchaserInfo.entitlements.active[ENTITLEMENT_ID] !== 'undefined') {
       navigation.navigate('Stats')
-      dispatch(setPaymentCount(3))
+      dispatch(setPaymentCount(Config.REACT_APP_PAYMENT_COUNT))
       //}
     } catch (e) {
       

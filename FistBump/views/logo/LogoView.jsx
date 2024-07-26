@@ -10,7 +10,7 @@ Sound.setCategory('Playback')
 
 const initialSound = new Sound('intro.mp3', Sound.MAIN_BUNDLE, (error => {
     if (error) {
-        console.log('failed to load sound ' + error)
+        console.log('failed to load sound ' + error.toString())
         return
     }
     initialSound.play(success => {
