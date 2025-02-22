@@ -55,7 +55,7 @@ export function VoteView() {
                     <Image source={tickBtn}>
                     </Image>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => renderModal(true, 'against Trump')} style={[styles.voteBidenPositionStyle, elementVisible]}>
+                <TouchableOpacity onPress={() => renderModal(true, 'for Harris')} style={[styles.voteBidenPositionStyle, elementVisible]}>
                     <Image source={tickBtn}>
                     </Image>
                 </TouchableOpacity>

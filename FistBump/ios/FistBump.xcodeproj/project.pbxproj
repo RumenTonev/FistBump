@@ -12,6 +12,11 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		1A9D6C4F2C538A6C0053B79A /* gameIntro.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1A9D6C4B2C538A6C0053B79A /* gameIntro.mp3 */; };
+		1A9D6C502C538A6C0053B79A /* bell.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1A9D6C4C2C538A6C0053B79A /* bell.mp3 */; };
+		1A9D6C512C538A6C0053B79A /* punch.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1A9D6C4D2C538A6C0053B79A /* punch.mp3 */; };
+		1A9D6C522C538A6C0053B79A /* click.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1A9D6C4E2C538A6C0053B79A /* click.mp3 */; };
+		1A9D6C542C538A990053B79A /* intro.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1A9D6C532C538A990053B79A /* intro.mp3 */; };
 		1AA0D4EF2AEA4707004FF62A /* FistBumpSKConf.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 1AA0D4EE2AEA4707004FF62A /* FistBumpSKConf.storekit */; };
 		1AA0D4F02AEA4707004FF62A /* FistBumpSKConf.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 1AA0D4EE2AEA4707004FF62A /* FistBumpSKConf.storekit */; };
 		1AA0D4F22AEA5157004FF62A /* StoreKitTestCertificate.cer in Resources */ = {isa = PBXBuildFile; fileRef = 1AA0D4F12AEA5157004FF62A /* StoreKitTestCertificate.cer */; };
@@ -46,6 +51,11 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = FistBump/main.m; sourceTree = "<group>"; };
 		19F6CBCC0A4E27FBF8BF4A61 /* libPods-FistBump-FistBumpTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FistBump-FistBumpTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A4462052B49423700CD7D1C /* FistBumpDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = FistBumpDebug.entitlements; path = FistBump/FistBumpDebug.entitlements; sourceTree = "<group>"; };
+		1A9D6C4B2C538A6C0053B79A /* gameIntro.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = gameIntro.mp3; path = ../../../../../Desktop/sounds/gameIntro.mp3; sourceTree = "<group>"; };
+		1A9D6C4C2C538A6C0053B79A /* bell.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = bell.mp3; path = ../../../../../Desktop/sounds/bell.mp3; sourceTree = "<group>"; };
+		1A9D6C4D2C538A6C0053B79A /* punch.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = punch.mp3; path = ../../../../../Desktop/sounds/punch.mp3; sourceTree = "<group>"; };
+		1A9D6C4E2C538A6C0053B79A /* click.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = click.mp3; path = ../../../../../Desktop/sounds/click.mp3; sourceTree = "<group>"; };
+		1A9D6C532C538A990053B79A /* intro.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = intro.mp3; path = ../../../../../Desktop/sounds/intro.mp3; sourceTree = "<group>"; };
 		1AA0D4EE2AEA4707004FF62A /* FistBumpSKConf.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = FistBumpSKConf.storekit; sourceTree = "<group>"; };
 		1AA0D4F12AEA5157004FF62A /* StoreKitTestCertificate.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = StoreKitTestCertificate.cer; sourceTree = "<group>"; };
 		1AB2797D2A97F801008A2B91 /* FistBump.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = FistBump.entitlements; path = FistBump/FistBump.entitlements; sourceTree = "<group>"; };
@@ -107,8 +117,8 @@
 				1AB2797D2A97F801008A2B91 /* FistBump.entitlements */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
-				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
+				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
@@ -144,6 +154,11 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				1A9D6C532C538A990053B79A /* intro.mp3 */,
+				1A9D6C4C2C538A6C0053B79A /* bell.mp3 */,
+				1A9D6C4E2C538A6C0053B79A /* click.mp3 */,
+				1A9D6C4B2C538A6C0053B79A /* gameIntro.mp3 */,
+				1A9D6C4D2C538A6C0053B79A /* punch.mp3 */,
 				1AA0D4EE2AEA4707004FF62A /* FistBumpSKConf.storekit */,
 				1AA0D4F12AEA5157004FF62A /* StoreKitTestCertificate.cer */,
 				1AC6FB052B4B090C008B434A /* SecondTake.storekit */,
@@ -278,12 +293,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				1AA0D4EF2AEA4707004FF62A /* FistBumpSKConf.storekit in Resources */,
+				1A9D6C4F2C538A6C0053B79A /* gameIntro.mp3 in Resources */,
+				1A9D6C522C538A6C0053B79A /* click.mp3 in Resources */,
+				1A9D6C502C538A6C0053B79A /* bell.mp3 in Resources */,
 				1AC6FB082B4B09C4008B434A /* StoreKitTestCertificateTakeTwo.cer in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
+				1A9D6C512C538A6C0053B79A /* punch.mp3 in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				1AC6FB062B4B090C008B434A /* SecondTake.storekit in Resources */,
 				1AA0D4F22AEA5157004FF62A /* StoreKitTestCertificate.cer in Resources */,
 				B4F1738CB2554D948A363C93 /* SuperFunky-lgmWw.ttf in Resources */,
+				1A9D6C542C538A990053B79A /* intro.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -536,7 +556,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 2.1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -568,7 +588,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 2.1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",

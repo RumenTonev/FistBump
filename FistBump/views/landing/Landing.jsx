@@ -56,14 +56,14 @@ export function Landing() {
                 </View>
                 <View id="mediumLanding" style={styles.backgroundElement}>
                     <ImageBackground source={mediumLanding} style={[styles.backgroundElementImage]}>
-                        <View style={styles.buttonContainer}>
+                        {/* <View style={styles.buttonContainer}>
                             <TouchableOpacity onPress={() => handleButtonClick('MainGame')} style={styles.buttonContainer}>
                                 <Image source={PlayBtn} style={styles.button}>
                                 </Image>
-                            </TouchableOpacity>
-                        </View>
+                            </TouchableOpacity> 
+                        </View> */}
                     </ImageBackground>
-                </View>
+                </View> 
                 <View id="preBottomLanding" style={styles.backgroundElement}>
                     <ImageBackground source={preBottomLanding} style={[styles.backgroundElementImage]}>
                         <View style={styles.buttonContainer}>
