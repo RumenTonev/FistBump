@@ -1,11 +1,20 @@
-const {getDefaultConfig, mergeConfig} = require('@react-native/metro-config');
+const { getDefaultConfig, mergeConfig } = require('@react-native/metro-config');
+const path = require('path');
 
-/**
- * Metro configuration
- * https://facebook.github.io/metro/docs/configuration
- *
- * @type {import('metro-config').MetroConfig}
- */
-const config = {};
+const defaultConfig = getDefaultConfig(__dirname);
 
-module.exports = mergeConfig(getDefaultConfig(__dirname), config);
+const config = {
+  resolver: {
+    resolveRequest: (context, moduleName, platform) => {
+      if (moduleName === '@azure/logger') {
+        return {
+          filePath: path.resolve(__dirname, 'shims/logger.js'),
+          type: 'sourceFile',
+        };
+      }
+      return context.resolveRequest(context, moduleName, platform);
+    },
+  },
+};
+
+module.exports = mergeConfig(defaultConfig, config);

@@ -125,7 +125,7 @@ export function useDbHandlers() {
   }, [cosmosClient])
 
   const getResults = useCallback(async () => {
-
+console.log("COSOMS DB "+Config.REACT_APP_COSMOS_DATABASE)
     await cosmosClient
       .database(Config.REACT_APP_COSMOS_DATABASE)
       .container(Config.REACT_APP_COSMOS_RESULTS_CONTAINER)
