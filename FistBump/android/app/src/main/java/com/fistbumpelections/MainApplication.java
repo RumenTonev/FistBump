@@ -1,4 +1,4 @@
-package com.fistbump;
+package com.fistbumpelections;
 
 import android.app.Application;
 import com.facebook.react.PackageList;

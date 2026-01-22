@@ -31,7 +31,19 @@ import { MainGame } from './views/mainGame/MainGame';
 import OfferingDetailScreen from './views/components/payments/Paywall/PaywallAdvance';
 import { Landing } from './views/landing/Landing';
 
+// 👇 ADD THIS PATCH FIRST
+if (console.warning === undefined) {
+  console.warning = console.warn;
+}
 
+// Optional: if a `logger` global is expected (some Cosmos versions use this)
+global.logger = {
+  info: console.log,
+  debug: console.debug,
+  warn: console.warn,
+  warning: console.warn, // patch to avoid crash
+  error: console.error,
+};
 
 setupURLPolyfill()
 const Stack = createNativeStackNavigator();
